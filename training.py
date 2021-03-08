@@ -2,12 +2,20 @@ import os
 import neat
 from simulator import Simulation
 
+
+
 def simulation(genomes, config):
+    curr_genome = 0
     for genomeId, genome in genomes:
+        show = False
+        curr_genome +=1
         
         net = neat.nn.feed_forward.FeedForwardNetwork.create(genome,config)
-        
-        genome.fitness = Simulation().run(net)
+        if curr_genome == 1:
+            print(curr_genome)
+            show = True
+        print(show)
+        genome.fitness = Simulation().run(net, show)
         print(genome.fitness)
     
 
