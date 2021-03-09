@@ -41,6 +41,7 @@ PHASE_W_GREEN = 3
 class Simulation:
     def __init__(self) -> None:
         self._max_steps = 400
+        self._n_cars_generated=100
         self._sumoBinary = checkBinary('sumo')
         self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name), "--no-step-log", "true", "--waiting-time-memory", str(400)]
         self._num_states = 40
@@ -99,7 +100,7 @@ class Simulation:
         fitness = 0 
         fitness -= np.sum(self._queue_lengths / self._max_steps) / 4
         
-        fitness -= self._collect_waiting_times()
+        fitness -= self._collect_waiting_times()/self._n_cars_generated
         
         return fitness
         
