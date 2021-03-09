@@ -3,20 +3,23 @@ import neat
 from simulator import Simulation
 
 
-
 def simulation(genomes, config):
-    curr_genome = 0
-    for genomeId, genome in genomes:
-        show = False
-        curr_genome +=1
+    curr_max_fitness = -1000000000000.0
+    best_genome = None
+    for _, genome in genomes:
         
         net = neat.nn.feed_forward.FeedForwardNetwork.create(genome,config)
-        if curr_genome == 1:
-            print(curr_genome)
-            show = True
-        print(show)
-        genome.fitness = Simulation().run(net, show)
-        print(genome.fitness)
+        genome.fitness = Simulation().run(net, False)
+        if genome.fitness > curr_max_fitness :
+            curr_max_fitness = genome.fitness
+            best_genome = genome
+        
+        print(f"#{_}", genome.fitness)
+    
+    net = neat.nn.FeedForwardNetwork.create(best_genome, config)
+    print(Simulation().run(net, True))
+        
+        
     
 
 def run(config_path):
