@@ -24,7 +24,7 @@ def simulation(genomes, config):
         if genome.fitness > -27:
             os.makedirs(f"models\\reward{genome.fitness}")
             f = open(f"models\\reward{genome.fitness}\\{_}.k", "wb")
-            visualize.draw_net(config, genome, True, filename=f"models\\reward{genome.fitness}\\net.gv.svg")
+            visualize.draw_net(config, genome, False, filename=f"models\\reward{genome.fitness}\\net.gv.svg")
             pickle.dump(genome, f)
         
         print(f"#{_}", genome.fitness)
