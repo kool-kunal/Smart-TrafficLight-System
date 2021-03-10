@@ -20,11 +20,17 @@ def simulation(genomes, config):
         if genome.fitness > curr_max_fitness :
             curr_max_fitness = genome.fitness
             best_genome = genome
+            
+        if genome.fitness > -27:
+            os.makedirs(f"models\\reward{genome.fitness}")
+            f = open(f"models\\reward{genome.fitness}\\{_}.k", "wb")
+            visualize.draw_net(config, genome, True, filename=f"models\\reward{genome.fitness}\\net.gv.svg")
+            pickle.dump(genome, f)
         
         print(f"#{_}", genome.fitness)
     
-    net = neat.nn.FeedForwardNetwork.create(best_genome, config)
-    print(Simulation().run(net, True))
+    # net = neat.nn.FeedForwardNetwork.create(best_genome, config)
+    # print(Simulation().run(net, True))
         
         
     
@@ -36,10 +42,10 @@ def run(config_path):
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
-    checkpoint = neat.Checkpointer(10)
-    p.add_reporter(checkpoint)
+    #checkpoint = neat.Checkpointer(10)
+    #p.add_reporter(checkpoint)
     
-    winner = p.run(simulation,5)
+    winner = p.run(simulation,100)
     
     print(winner)
     f = open('winner.p', 'wb')
