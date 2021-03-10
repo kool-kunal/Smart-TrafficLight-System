@@ -79,5 +79,5 @@ class TrafficGenerator:
             print("</routes>", file=routes)
 
 
-tf = TrafficGenerator(400, 100)
-tf.generate_routefile(69)
+# tf = TrafficGenerator(400, 100)
+# tf.generate_routefile(69)

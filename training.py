@@ -1,11 +1,18 @@
 import os
 import neat
 from simulator import Simulation
-
+from generator import TrafficGenerator
+import time
+import pickle
+import visualize
 
 def simulation(genomes, config):
     curr_max_fitness = -1000000000000.0
     best_genome = None
+    
+    tf = TrafficGenerator(400, 100)
+    tf.generate_routefile(int(time.time()%1000))
+    
     for _, genome in genomes:
         
         net = neat.nn.feed_forward.FeedForwardNetwork.create(genome,config)
@@ -32,7 +39,14 @@ def run(config_path):
     checkpoint = neat.Checkpointer(10)
     p.add_reporter(checkpoint)
     
-    p.run(simulation,5)
+    winner = p.run(simulation,5)
+    
+    print(winner)
+    f = open('winner.p', 'wb')
+    pickle.dump(winner, f)
+    visualize.draw_net(config, winner, True)
+    visualize.plot_stats(stats, ylog=False, view=True)
+    visualize.plot_species(stats, view=True)
     
 if __name__ == "__main__":
     local_dir = os.path.dirname(__file__)
