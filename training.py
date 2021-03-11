@@ -25,8 +25,11 @@ def simulation(genomes, config):
         
         print(f"#{_}", genome.fitness)
         
-    if best_genome_id not in os.listdir("models"):
-        os.makedirs(f"models\\{best_genome_id}")
+    if f'{best_genome_id}' not in os.listdir("models"):
+        try:
+            os.makedirs(f"models\\{best_genome_id}")
+        except:
+            pass
     f = open(f"models\\{best_genome_id}\\genome.k", "wb")
     visualize.draw_net(config, best_genome, False, filename=f"models\\{best_genome_id}\\net")
     pickle.dump(best_genome, f)
