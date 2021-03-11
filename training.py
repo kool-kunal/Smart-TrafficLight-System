@@ -5,13 +5,20 @@ from generator import TrafficGenerator
 import time
 import pickle
 import visualize
+import utils
+
+
+GEN = 0
+program_config = None
 
 def simulation(genomes, config):
     curr_max_fitness = -1000000000000.0
     best_genome = None
-    best_genome_id = None
-    tf = TrafficGenerator(400, 100)
+    global program_config
+    tf = TrafficGenerator(program_config['max_steps'], program_config['n_cars'])
     tf.generate_routefile(int(time.time()%1000))
+    global GEN
+    GEN += 1
     
     for _, genome in genomes:
         
@@ -20,27 +27,27 @@ def simulation(genomes, config):
         if genome.fitness > curr_max_fitness :
             curr_max_fitness = genome.fitness
             best_genome = genome
-            best_genome_id = _
             
         
         print(f"#{_}", genome.fitness)
         
-    if f'{best_genome_id}' not in os.listdir("models"):
+    if f'{GEN}' not in os.listdir("models"):
         try:
-            os.makedirs(f"models\\{best_genome_id}")
+            os.makedirs(f"models\\{GEN}")
         except:
             pass
-    f = open(f"models\\{best_genome_id}\\genome.k", "wb")
-    visualize.draw_net(config, best_genome, False, filename=f"models\\{best_genome_id}\\net")
+    f = open(f"models\\{GEN}\\genome.k", "wb")
+    visualize.draw_net(config, best_genome, False, filename=f"models\\{GEN}\\net")
     pickle.dump(best_genome, f)
     f.close()
         
         
     
 
-def run(config_path):
-    config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet, neat.DefaultStagnation, config_path)
-
+def run():
+    
+    global program_config
+    config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config'])
     p = neat.Population(config)
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
@@ -48,7 +55,7 @@ def run(config_path):
     #checkpoint = neat.Checkpointer(10)
     #p.add_reporter(checkpoint)
     
-    winner = p.run(simulation,100)
+    winner = p.run(simulation,program_config['generations'])
     
     print(winner)
     f = open('winner.p', 'wb')
@@ -58,8 +65,6 @@ def run(config_path):
     visualize.plot_species(stats, view=True)
     
 if __name__ == "__main__":
-    local_dir = os.path.dirname(__file__)
-    config_dir = os.path.join(local_dir, "config")
-    config_path = os.path.join(config_dir, "config-feedforward.txt")
-    run(config_path)
+    program_config = utils.training_configuration('training_config.ini')
+    run()
     

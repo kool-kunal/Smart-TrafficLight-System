@@ -3,22 +3,6 @@ from sumolib import checkBinary
 import traci
 import numpy as np
 
-sumocfg_file_name = "sumo_config.sumocfg"
-
-
-
-# sumo_cmd = [sumoBinary, "-c", os.path.join('environment', sumocfg_file_name), "--no-step-log", "true", "--waiting-time-memory", str(500)]
-
-# traci.start(sumo_cmd)
-# curr_step = 0
-# while curr_step < 500:
-#     curr_step +=1
-#     traci.simulationStep()
-
-
-YELLOW_LIGHT_TIME = 5
-GREEN_LIGHT_TIME = 15
-
 PHASE_N_GREEN = 0
 PHASE_N_YELLOW = 1
 
@@ -31,29 +15,20 @@ PHASE_S_YELLOW = 5
 PHASE_W_GREEN = 6
 PHASE_W_YELLOW = 7
 
-# PHASE_N_GREEN = 0
-# PHASE_E_GREEN = 1
-# PHASE_S_GREEN = 2
-# PHASE_W_GREEN = 3
-
     
 
 class Simulation:
-    def __init__(self) -> None:
-        self._max_steps = 400
-        self._n_cars_generated=100
-        self._sumoBinary = checkBinary('sumo')
-        self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name), "--no-step-log", "true", "--waiting-time-memory", str(400)]
-        self._num_states = 40
+    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show) -> None:
+        self._max_steps = max_steps
+        self._n_cars_generated= n_cars
+        self._sumoBinary = checkBinary('sumo-gui') if show else checkBinary('sumo')
+        self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name), "--no-step-log", "true", "-W", "--duration-log.disable", "--waiting-time-memory", str(max_steps)]
+        self._num_states = num_states
         self._queue_lengths = np.zeros(4)
+        self._yellow_light_dur = yellow_light_dur
+        self._green_light_dur = green_light_dur
 
-    def run(self, net, show = False) -> float:
-        if show:
-            self._sumoBinary = checkBinary('sumo-gui')
-            self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name), "--no-step-log", "true", "--waiting-time-memory", str(400)]
-        else:
-            self._sumoBinary = checkBinary('sumo')
-            self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name), "--no-step-log", "true","-W", "--duration-log.disable", "--waiting-time-memory", str(400)]
+    def run(self, net) -> float:
         traci.start(self._sumo_cmd)
         curr_step = 0
         last_light = 0
@@ -67,7 +42,7 @@ class Simulation:
             if output != last_light:
                 self._set_yellow_phase(last_light)
                 curr_yellow_step = 0
-                while curr_yellow_step < YELLOW_LIGHT_TIME and curr_step < self._max_steps:
+                while curr_yellow_step < self._yellow_light_dur and curr_step < self._max_steps:
                     traci.simulationStep()
                     curr_yellow_step +=1
                     curr_step +=1
@@ -77,12 +52,11 @@ class Simulation:
             self._set_green_phase(output)
             #traci.simulationStep()
             curr_green_step = 0
-            while curr_green_step < GREEN_LIGHT_TIME and curr_step < self._max_steps:
+            while curr_green_step < self._green_light_dur and curr_step < self._max_steps:
                 traci.simulationStep()
                 curr_green_step +=1
                 curr_step +=1
                 self._update_queue_lengths()
-                #fitness -= self._collect_waiting_times()
             
             last_light = output
 
@@ -106,17 +80,9 @@ class Simulation:
         fitness -= self._collect_waiting_times()/self._n_cars_generated
         
         return fitness
-        
-        
-        
-        
-        
-        
+      
             
     def _collect_waiting_times(self):
-        """
-        Retrieve the waiting time of every car in the incoming roads
-        """
         total_waiting_time = 0.0
         incoming_roads = ["E1", "E2", "E3", "E4"]
         car_list = traci.vehicle.getIDList()
@@ -129,10 +95,6 @@ class Simulation:
         return total_waiting_time
     
     def _set_yellow_phase(self, action_number):
-        """
-        Activate the correct yellow light combination in sumo
-        """
-         # obtain the yellow phase code, based on the old action (ref on environment.net.xml)
         if action_number == 0:
             traci.trafficlight.setPhase("N2", PHASE_N_YELLOW)
         elif action_number == 1:
@@ -144,9 +106,6 @@ class Simulation:
 
 
     def _set_green_phase(self, action_number):
-        """
-        Activate the correct green light combination in sumo
-        """
         if action_number == 0:
             traci.trafficlight.setPhase("N2", PHASE_N_GREEN)
         elif action_number == 1:
@@ -218,8 +177,6 @@ class Simulation:
         return state
         
     def TTL(self):
-        self._sumoBinary = checkBinary('sumo')
-        self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name), "--no-step-log", "true","-W", "--duration-log.disable", "--waiting-time-memory", str(400)]
         curr_step =  0
         traci.start(self._sumo_cmd)
         while curr_step < self._max_steps:
