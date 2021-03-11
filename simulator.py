@@ -34,11 +34,8 @@ class Simulation:
         last_light = 0
         
         while curr_step < self._max_steps:
-            
-            #curr_step +=1
-            
+             
             output = np.argmax(net.activate(self._get_state()))
-            #print(output)
             if output != last_light:
                 self._set_yellow_phase(last_light)
                 curr_yellow_step = 0
@@ -47,10 +44,8 @@ class Simulation:
                     curr_yellow_step +=1
                     curr_step +=1
                     self._update_queue_lengths()
-                    #fitness -= self._collect_waiting_times()
                 
             self._set_green_phase(output)
-            #traci.simulationStep()
             curr_green_step = 0
             while curr_green_step < self._green_light_dur and curr_step < self._max_steps:
                 traci.simulationStep()
@@ -125,9 +120,8 @@ class Simulation:
         for car_id in car_list:
             lane_pos = traci.vehicle.getLanePosition(car_id)
             lane_id = traci.vehicle.getLaneID(car_id)
-            lane_pos = 400 - lane_pos  # inversion of lane pos, so if the car is close to the traffic light -> lane_pos = 0 --- 750 = max len of a road
+            lane_pos = 400 - lane_pos 
 
-            # distance in meters from the traffic light -> mapping into cells
             if lane_pos < 7:
                 lane_cell = 0
             elif lane_pos < 14:
@@ -149,8 +143,6 @@ class Simulation:
             elif lane_pos <= 400:
                 lane_cell = 9
 
-            # finding the lane where the car is located 
-            # x2TL_3 are the "turn left only" lanes
             if lane_id == "E1_0":
                 lane_group = 0
             elif lane_id == "E2_0":
@@ -163,16 +155,16 @@ class Simulation:
                 lane_group = -1
 
             if lane_group >= 1 and lane_group <= 3:
-                car_position = int(str(lane_group) + str(lane_cell))  # composition of the two postion ID to create a number in interval 0-79
+                car_position = int(str(lane_group) + str(lane_cell)) 
                 valid_car = True
             elif lane_group == 0:
                 car_position = lane_cell
                 valid_car = True
             else:
-                valid_car = False  # flag for not detecting cars crossing the intersection or driving away from it
+                valid_car = False
 
             if valid_car:
-                state[car_position] += 1  # write the position of the car car_id in the state array in the form of "cell occupied"
+                state[car_position] += 1
 
         return state
         

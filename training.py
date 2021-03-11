@@ -23,7 +23,10 @@ def simulation(genomes, config):
     for _, genome in genomes:
         
         net = neat.nn.feed_forward.FeedForwardNetwork.create(genome,config)
-        genome.fitness = Simulation().run(net, False)
+        s=Simulation(program_config['max_steps'],program_config['n_cars'],program_config['num_states'],
+                    program_config['sumocfg_file_name'],program_config['green_duration'],program_config['yellow_duration'],
+                    program_config['gui'])
+        genome.fitness = s.run(net)
         if genome.fitness > curr_max_fitness :
             curr_max_fitness = genome.fitness
             best_genome = genome
@@ -52,9 +55,7 @@ def run():
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
-    #checkpoint = neat.Checkpointer(10)
-    #p.add_reporter(checkpoint)
-    
+
     winner = p.run(simulation,program_config['generations'])
     
     print(winner)
