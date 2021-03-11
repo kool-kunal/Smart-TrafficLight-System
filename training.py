@@ -9,7 +9,7 @@ import visualize
 def simulation(genomes, config):
     curr_max_fitness = -1000000000000.0
     best_genome = None
-    
+    best_genome_id = None
     tf = TrafficGenerator(400, 100)
     tf.generate_routefile(int(time.time()%1000))
     
@@ -20,18 +20,17 @@ def simulation(genomes, config):
         if genome.fitness > curr_max_fitness :
             curr_max_fitness = genome.fitness
             best_genome = genome
+            best_genome_id = _
             
-        if genome.fitness > -27:
-            if f"reward{genome.fitness}" not in os.listdir("models"):
-                os.makedirs(f"models\\reward{genome.fitness}")
-            f = open(f"models\\reward{genome.fitness}\\{_}.k", "wb")
-            visualize.draw_net(config, genome, False, filename=f"models\\reward{genome.fitness}\\net")
-            pickle.dump(genome, f)
         
         print(f"#{_}", genome.fitness)
-    
-    # net = neat.nn.FeedForwardNetwork.create(best_genome, config)
-    # print(Simulation().run(net, True))
+        
+    if best_genome_id not in os.listdir("models"):
+        os.makedirs(f"models\\{best_genome_id}")
+    f = open(f"models\\{best_genome_id}\\genome.k", "wb")
+    visualize.draw_net(config, best_genome, False, filename=f"models\\{best_genome_id}\\net")
+    pickle.dump(best_genome, f)
+    f.close()
         
         
     
