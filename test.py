@@ -21,7 +21,7 @@ configdir = currentdir +'\\config' + '\\config-feedforward.txt'
 config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet, neat.DefaultStagnation, configdir)
 genome  = pickle.load(open(currentdir + '\\winner.p', 'rb'))
 #visualize.draw_net(config, genome, True)
-    
+genome = pickle.load(open(currentdir + '\\' + 'models' + '\\' + 'reward-16.930000000000003' + '\\' + '3692.k', 'rb'))
 test(genome, config)
 
 

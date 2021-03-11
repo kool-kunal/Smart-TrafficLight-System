@@ -22,9 +22,10 @@ def simulation(genomes, config):
             best_genome = genome
             
         if genome.fitness > -27:
-            os.makedirs(f"models\\reward{genome.fitness}")
+            if f"reward{genome.fitness}" not in os.listdir("models"):
+                os.makedirs(f"models\\reward{genome.fitness}")
             f = open(f"models\\reward{genome.fitness}\\{_}.k", "wb")
-            visualize.draw_net(config, genome, False, filename=f"models\\reward{genome.fitness}\\net.gv.svg")
+            visualize.draw_net(config, genome, False, filename=f"models\\reward{genome.fitness}\\net")
             pickle.dump(genome, f)
         
         print(f"#{_}", genome.fitness)
