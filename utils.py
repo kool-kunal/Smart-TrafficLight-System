@@ -29,6 +29,7 @@ def testing_configuration(config_file):
     config['generations'] = content['simulation'].getint('total_episodes')
     config['green_duration'] = content['simulation'].getint('green_duration')
     config['yellow_duration'] = content['simulation'].getint('yellow_duration')
+    config['test_runs']=content['simulation'].getint('test_runs')
     config['sumocfg_file_name'] = content['dir']['sumocfg_file_name']
     config['neat_config'] = content['dir']['neat_config']
     config['num_states']=content['model'].getint('num_states')

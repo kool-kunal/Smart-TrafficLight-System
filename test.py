@@ -6,9 +6,10 @@ import visualize
 from generator import TrafficGenerator
 import time
 import utils
+import matplotlib.pyplot as plt
 
 
-def test(test_config,genome_path,simulation):
+def test(episode,test_config,genome_path):
     currentdir = os.getcwd()
     configdir = currentdir +f'/{test_config["neat_config"]}'
     config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet, neat.DefaultStagnation, configdir)
@@ -19,11 +20,20 @@ def test(test_config,genome_path,simulation):
     tf.generate_routefile(int(time.time()%1000))
 
     net = neat.nn.feed_forward.FeedForwardNetwork.create(genome,config)
-    fitness = simulation.run(net)
 
-    ttl_fitness = simulation.TTL()
-    print("loss:", fitness)
-    print("time based traffic light system loss: ", ttl_fitness)
+    s=Simulation(test_config['max_steps'],test_config['n_cars'],test_config['num_states'],
+                    test_config['sumocfg_file_name'],test_config['green_duration'],test_config['yellow_duration'],
+                    test_config['gui'])
+    fitness = s.run(net)
+
+    s=Simulation(test_config['max_steps'],test_config['n_cars'],test_config['num_states'],
+                test_config['sumocfg_file_name'],test_config['green_duration'],test_config['yellow_duration'],
+                test_config['gui'])
+    ttl_fitness = s.TTL()
+
+    print(f"Episode {episode} loss:", fitness)
+    print(f"Episode {episode} time based traffic light system loss: ", ttl_fitness)
+    return fitness,ttl_fitness
 
 if __name__ == '__main__':
 
@@ -38,11 +48,23 @@ if __name__ == '__main__':
     if genome_path[-1] == '\"':
         genome_path = genome_path[:-1]
 
-    s = Simulation(test_config['max_steps'],test_config['n_cars'],test_config['num_states'],
-                    test_config['sumocfg_file_name'],test_config['green_duration'],test_config['yellow_duration'],
-                    test_config['gui'])
     
+    test_runs=test_config['test_runs']
 
-    test(test_config,genome_path,s)
+    model_fitness=[]
+    ttl_fitness=[]
+    x=range(test_runs)
+
+    for _ in range(test_runs):
+        fitness,ttl_fitness_=test(_,test_config,genome_path)
+        model_fitness.append(-fitness)
+        ttl_fitness.append(-ttl_fitness_)
+
+    plt.plot(x,model_fitness,label="Model Fitness",color="blue")
+    plt.plot(x,ttl_fitness,label="TTL_Fitness",color="red")
+    plt.ylabel('Loss')
+    plt.xlabel('Episodes')
+    plt.legend()
+    plt.show()
 
 
