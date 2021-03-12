@@ -59,12 +59,15 @@ if __name__ == '__main__':
         fitness,ttl_fitness_=test(_,test_config,genome_path)
         model_fitness.append(-fitness)
         ttl_fitness.append(-ttl_fitness_)
-
-    plt.plot(x,model_fitness,label="Model Fitness",color="blue")
-    plt.plot(x,ttl_fitness,label="TTL_Fitness",color="red")
-    plt.ylabel('Loss')
-    plt.xlabel('Episodes')
-    plt.legend()
-    plt.show()
+        
+    
+    visualize.bar_graph_plot(model_loss=model_fitness, ttl_loss=ttl_fitness)
+    #visualize.pi_chart_plot(model_loss=model_fitness, ttl_loss=ttl_fitness)
+    # plt.bar(x,model_fitness,label="Model Fitness",color="blue")
+    # plt.bar(x,ttl_fitness,label="TTL_Fitness",color="red")
+    # plt.ylabel('Loss')
+    # plt.xlabel('Episodes')
+    # plt.legend()
+    # plt.show()
 
 
