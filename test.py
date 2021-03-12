@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     os.environ['PATH'] += "D:\softwares\Graphviz2.38\\bin"
 
-    test_config=utils.testing_configuration('testing_config.ini')
+    test_config=utils.testing_configuration('config/testing_config.ini')
 
     genome_path = input('Enter path of model you want to test: \n')
     if genome_path[0] == '\"':

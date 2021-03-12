@@ -66,6 +66,6 @@ def run():
     visualize.plot_species(stats, view=True)
     
 if __name__ == "__main__":
-    program_config = utils.training_configuration('training_config.ini')
+    program_config = utils.training_configuration('config/training_config.ini')
     run()
     
