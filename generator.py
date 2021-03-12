@@ -3,16 +3,15 @@ import math
 
 class TrafficGenerator:
     def __init__(self, max_steps, n_cars_generated):
-        self._n_cars_generated = n_cars_generated  # how many cars per episode
+        self._n_cars_generated = n_cars_generated
         self._max_steps = max_steps
 
     def generate_routefile(self, seed):
         """
         Generation of the route of every car for one episode
         """
-        np.random.seed(seed)  # make tests reproducible
+        np.random.seed(seed)
 
-        # the generation of cars is distributed according to a weibull distribution
         timings = np.random.weibull(2, self._n_cars_generated)
         timings = np.sort(timings)
 
@@ -77,7 +76,3 @@ class TrafficGenerator:
                         print('    <vehicle id="S_E_%i" type="standard_car" route="S_E" depart="%s" departLane="random" departSpeed="10" />' % (car_counter, step), file=routes)
 
             print("</routes>", file=routes)
-
-
-# tf = TrafficGenerator(400, 100)
-# tf.generate_routefile(69)

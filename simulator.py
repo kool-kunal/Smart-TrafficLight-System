@@ -111,9 +111,7 @@ class Simulation:
             traci.trafficlight.setPhase("N2", PHASE_W_GREEN)
             
     def _get_state(self):
-        """
-        Retrieve the state of the intersection from sumo, in the form of cell occupancy
-        """
+
         state = np.zeros(self._num_states)
         car_list = traci.vehicle.getIDList()
 
