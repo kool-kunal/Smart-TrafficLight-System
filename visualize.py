@@ -195,7 +195,7 @@ def draw_net(config, genome, view=False, filename=None, node_names=None, show_di
 def bar_graph_plot(model_loss, ttl_loss):
     X = range(1, len(model_loss)+1)
     bar_width = 0.25
-    fig = plt.subplots(figsize =(12, 8)) 
+    #fig = plt.subplots(figsize =(12, 8)) 
     br1 = X
     br2 = [x + bar_width for x in X]
     
@@ -211,15 +211,16 @@ def bar_graph_plot(model_loss, ttl_loss):
     plt.show()
 
 def pi_chart_plot(model_loss, ttl_loss):
-    counter = [0, 0]
+    counter = [int(0), int(0)]
     for i in range(len(model_loss)):
         if model_loss[i] < ttl_loss[i]:
-            counter[0]+=1
+            counter[0]+=int(1)
         else:
-            counter[1]+=1
+            counter[1]+=int(1)
     
-    print(counter)
-    labels = ['STLS', 'TTL']
-    plt.pie(counter, labels)
+    counter = tuple(counter)
+    labels = ('STLS', 'TTL')
+    plt.pie(x=counter, labels=labels)
+    plt.legend()
     plt.show()
         

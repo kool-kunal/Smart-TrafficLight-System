@@ -6,6 +6,7 @@ import time
 import pickle
 import visualize
 import utils
+import argparse
 
 
 GEN = 0
@@ -47,25 +48,39 @@ def simulation(genomes, config):
         
     
 
-def run():
+def run(checkpoint = None):
     
     global program_config
-    config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config'])
-    p = neat.Population(config)
+    p = None
+    if checkpoint == None:
+        config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config'])
+        p = neat.Population(config)
+    else :
+        p = neat.Checkpointer.restore_checkpoint(checkpoint)
+        print("loaded population from:", checkpoint)
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
+    p.add_reporter(neat.Checkpointer(1, filename_prefix="checkpoints/checkpoint-"))
 
     winner = p.run(simulation,program_config['generations'])
     
-    print(winner)
+    #print(winner)
     f = open('winner.p', 'wb')
     pickle.dump(winner, f)
+    f.close()
     visualize.draw_net(config, winner, True)
     visualize.plot_stats(stats, ylog=False, view=True)
     visualize.plot_species(stats, view=True)
     
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-load', metavar='-l')
+    args = parser.parse_args()
+    
     program_config = utils.training_configuration('config/training_config.ini')
-    run()
+    if args.load != None:
+        run(args.load)
+    else :
+        run()
     
