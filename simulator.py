@@ -15,14 +15,15 @@ PHASE_S_YELLOW = 5
 PHASE_W_GREEN = 6
 PHASE_W_YELLOW = 7
 
-    
 
 class Simulation:
     def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show) -> None:
         self._max_steps = max_steps
-        self._n_cars_generated= n_cars
-        self._sumoBinary = checkBinary('sumo-gui') if show else checkBinary('sumo')
-        self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name), "--no-step-log", "true", "-W", "--duration-log.disable", "--waiting-time-memory", str(max_steps)]
+        self._n_cars_generated = n_cars
+        self._sumoBinary = checkBinary(
+            'sumo-gui') if show else checkBinary('sumo')
+        self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name),
+                          "--no-step-log", "true", "-W", "--duration-log.disable", "--waiting-time-memory", str(max_steps)]
         self._num_states = num_states
         self._queue_lengths = np.zeros(4)
         self._yellow_light_dur = yellow_light_dur
@@ -32,63 +33,69 @@ class Simulation:
         traci.start(self._sumo_cmd)
         curr_step = 0
         last_light = 0
-        
+
+        current_light = np.zeros(shape=(4,))
+        current_light[0] = 1
+
         while curr_step < self._max_steps:
-             
-            output = np.argmax(net.activate(self._get_state()))
+
+            current_state = self._get_state()
+            network_input = np.concatenate((current_state, current_light))
+
+            net_output = net.activate(network_input)
+            output = np.argmax(current_light)
+            current_light = net_output
+
             if output != last_light:
                 self._set_yellow_phase(last_light)
                 curr_yellow_step = 0
                 while curr_yellow_step < self._yellow_light_dur and curr_step < self._max_steps:
                     traci.simulationStep()
-                    curr_yellow_step +=1
-                    curr_step +=1
+                    curr_yellow_step += 1
+                    curr_step += 1
                     self._update_queue_lengths()
-                
+
             self._set_green_phase(output)
             curr_green_step = 0
             while curr_green_step < self._green_light_dur and curr_step < self._max_steps:
                 traci.simulationStep()
-                curr_green_step +=1
-                curr_step +=1
+                curr_green_step += 1
+                curr_step += 1
                 self._update_queue_lengths()
-            
+
             last_light = output
 
-            
-        
         fitness = self._fitness()
         traci.close()
         return fitness
-    
+
     def _update_queue_lengths(self):
         self._queue_lengths[0] += traci.edge.getLastStepHaltingNumber("E1")
         self._queue_lengths[1] += traci.edge.getLastStepHaltingNumber("E4")
         self._queue_lengths[2] += traci.edge.getLastStepHaltingNumber("E2")
         self._queue_lengths[3] += traci.edge.getLastStepHaltingNumber("E3")
-        
-    
+
     def _fitness(self):
-        fitness = 0 
+        fitness = 0
         fitness -= np.sum(self._queue_lengths / self._max_steps)
-        
+
         fitness -= self._collect_waiting_times()/self._n_cars_generated
-        
+
         return fitness
-      
-            
+
     def _collect_waiting_times(self):
         total_waiting_time = 0.0
         incoming_roads = ["E1", "E2", "E3", "E4"]
         car_list = traci.vehicle.getIDList()
         for car_id in car_list:
             wait_time = traci.vehicle.getAccumulatedWaitingTime(car_id)
-            road_id = traci.vehicle.getRoadID(car_id)  # get the road id where the car is located
+            # get the road id where the car is located
+            road_id = traci.vehicle.getRoadID(car_id)
             if road_id in incoming_roads:  # consider only the waiting times of cars in incoming road
                 total_waiting_time += wait_time
-        
+
         return total_waiting_time
-    
+
     def _set_yellow_phase(self, action_number):
         if action_number == 0:
             traci.trafficlight.setPhase("N2", PHASE_N_YELLOW)
@@ -99,7 +106,6 @@ class Simulation:
         elif action_number == 3:
             traci.trafficlight.setPhase("N2", PHASE_W_YELLOW)
 
-
     def _set_green_phase(self, action_number):
         if action_number == 0:
             traci.trafficlight.setPhase("N2", PHASE_N_GREEN)
@@ -109,7 +115,7 @@ class Simulation:
             traci.trafficlight.setPhase("N2", PHASE_S_GREEN)
         elif action_number == 3:
             traci.trafficlight.setPhase("N2", PHASE_W_GREEN)
-            
+
     def _get_state(self):
 
         state = np.zeros(self._num_states)
@@ -118,7 +124,7 @@ class Simulation:
         for car_id in car_list:
             lane_pos = traci.vehicle.getLanePosition(car_id)
             lane_id = traci.vehicle.getLaneID(car_id)
-            lane_pos = 400 - lane_pos 
+            lane_pos = 400 - lane_pos
 
             if lane_pos < 7:
                 lane_cell = 0
@@ -153,7 +159,7 @@ class Simulation:
                 lane_group = -1
 
             if lane_group >= 1 and lane_group <= 3:
-                car_position = int(str(lane_group) + str(lane_cell)) 
+                car_position = int(str(lane_group) + str(lane_cell))
                 valid_car = True
             elif lane_group == 0:
                 car_position = lane_cell
@@ -165,18 +171,15 @@ class Simulation:
                 state[car_position] += 1
 
         return state
-        
+
     def TTL(self):
-        curr_step =  0
+        curr_step = 0
         traci.start(self._sumo_cmd)
         while curr_step < self._max_steps:
-            curr_step+=1
+            curr_step += 1
             traci.simulationStep()
             self._update_queue_lengths()
-        
+
         fitness = self._fitness()
         traci.close()
         return fitness
-            
-            
-        
