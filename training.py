@@ -7,10 +7,12 @@ import pickle
 import visualize
 import utils
 import argparse
+import reporter
 
 
 GEN = 0
 program_config = None
+
 
 
 def simulation_single(genome, config):
@@ -74,11 +76,12 @@ def run(checkpoint=None):
     else:
         p = neat.Checkpointer.restore_checkpoint(checkpoint)
         print("loaded population from:", checkpoint)
-    p.add_reporter(neat.StdOutReporter(True))
+    p.add_reporter(reporter.CustomReporter(True, checkpoint!=None))
+
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
     p.add_reporter(neat.Checkpointer(
-        20, filename_prefix="checkpoints/checkpoint-"))
+        program_config['checkpoint'], filename_prefix="checkpoints/checkpoint-"))
 
     pe = neat.ParallelEvaluator(8, simulation_single)
     winner = p.run(pe.evaluate, program_config['generations'])

@@ -15,6 +15,7 @@ def training_configuration(config_file):
     config['neat_config'] = content['dir']['neat_config']
     config['num_states']=content['model'].getint('num_states')
     config['actions']=content['model'].getint('actions')
+    config['checkpoint'] = content['model'].getint('checkpoint')
 
     return config
 

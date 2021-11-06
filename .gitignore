@@ -1,1 +1,4 @@
 /models
+/training
+/checkpoints
+/__pycache__
