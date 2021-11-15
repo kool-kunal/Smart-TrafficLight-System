@@ -7,6 +7,7 @@ from neat.six_util import itervalues, iterkeys
 import os
 import utils
 from generator import TrafficGenerator
+import pickle
 
 
 class ReporterSet(object):
@@ -102,6 +103,11 @@ class CustomReporter(BaseReporter):
             'config/training_config.ini')
 
     def start_generation(self, generation):
+
+        tf = TrafficGenerator(
+            self.program_config['max_steps'], self.program_config['n_cars'])
+        new_list = tf.generate_routefile(int(time.time() % 1000))
+
         self.generation = generation
         print('\n ****** Running generation {0} ****** \n'.format(generation))
         self.generation_start_time = time.time()
@@ -155,9 +161,6 @@ class CustomReporter(BaseReporter):
                                                                                  best_species_id,
                                                                                  best_genome.key))
 
-        tf = TrafficGenerator(self.program_config['max_steps'], self.program_config['n_cars'])
-        tf.generate_routefile(int(time.time() % 1000))
-
         self.data.append(
             f'Gen={self.generation},Mean={fit_mean},StdDev={fit_std},Best={best_genome.fitness}')
 
@@ -166,6 +169,10 @@ class CustomReporter(BaseReporter):
                 for d in self.data:
                     print(d, file=trainingInfo)
             self.data = []
+
+        f = open('winner.p', 'wb')
+        pickle.dump(best_genome, f)
+        f.close()
 
     def complete_extinction(self):
         self.num_extinctions += 1

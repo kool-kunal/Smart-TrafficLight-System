@@ -13,14 +13,11 @@ import reporter
 GEN = 0
 program_config = None
 
-
-
 def simulation_single(genome, config):
-
     net = neat.nn.FeedForwardNetwork.create(genome, config)
     simulator = Simulation(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
                            program_config['sumocfg_file_name'], program_config['green_duration'], program_config['yellow_duration'],
-                           program_config['gui'])
+                           program_config['gui'], genome_id= genome.key)
     fitness = simulator.run(net)
     genome.fitnes = simulator.run(net)
     # print(f"#{genome}", genome.fitness)
@@ -76,7 +73,7 @@ def run(checkpoint=None):
     else:
         p = neat.Checkpointer.restore_checkpoint(checkpoint)
         print("loaded population from:", checkpoint)
-    p.add_reporter(reporter.CustomReporter(True, checkpoint!=None))
+    p.add_reporter(reporter.CustomReporter(True, checkpoint != None))
 
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
@@ -92,6 +89,8 @@ def run(checkpoint=None):
     f = open('winner.p', 'wb')
     pickle.dump(winner, f)
     f.close()
+    config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
+                                neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config'])
     visualize.draw_net(config, winner, True)
     visualize.plot_stats(stats, ylog=False, view=True)
     visualize.plot_species(stats, view=True)

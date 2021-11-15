@@ -17,7 +17,7 @@ PHASE_W_YELLOW = 7
 
 
 class Simulation:
-    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show) -> None:
+    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id) -> None:
         self._max_steps = max_steps
         self._n_cars_generated = n_cars
         self._sumoBinary = checkBinary(
@@ -26,8 +26,10 @@ class Simulation:
                           "--no-step-log", "true", "-W", "--duration-log.disable", "--waiting-time-memory", str(max_steps)]
         self._num_states = num_states
         self._queue_lengths = np.zeros(4)
+        self._waiting_times = {}
         self._yellow_light_dur = yellow_light_dur
         self._green_light_dur = green_light_dur
+        self._genome_id = genome_id
 
     def run(self, net) -> float:
         traci.start(self._sumo_cmd)
@@ -62,12 +64,19 @@ class Simulation:
                 curr_green_step += 1
                 curr_step += 1
                 self._update_queue_lengths()
+                self._update_waiting_times()
 
             last_light = output
 
         fitness = self._fitness()
         traci.close()
         return fitness
+
+    def _update_waiting_times(self):
+        car_list = traci.vehicle.getIDList()
+        for car_id in car_list:
+            wait_time = traci.vehicle.getAccumulatedWaitingTime(car_id)
+            self._waiting_times[car_id] = wait_time
 
     def _update_queue_lengths(self):
         self._queue_lengths[0] += traci.edge.getLastStepHaltingNumber("E1")
@@ -77,24 +86,29 @@ class Simulation:
 
     def _fitness(self):
         fitness = 0
-        fitness -= np.sum(self._queue_lengths / self._max_steps)
+        # fitness -= np.sum(self._queue_lengths / self._max_steps)
 
         fitness -= self._collect_waiting_times()/self._n_cars_generated
-
+        print(f'#{self._genome_id}', fitness)
         return fitness
 
     def _collect_waiting_times(self):
-        total_waiting_time = 0.0
-        incoming_roads = ["E1", "E2", "E3", "E4"]
-        car_list = traci.vehicle.getIDList()
-        for car_id in car_list:
-            wait_time = traci.vehicle.getAccumulatedWaitingTime(car_id)
-            # get the road id where the car is located
-            road_id = traci.vehicle.getRoadID(car_id)
-            if road_id in incoming_roads:  # consider only the waiting times of cars in incoming road
-                total_waiting_time += wait_time
+        # total_waiting_time = 0.0
+        # incoming_roads = ["E1", "E2", "E3", "E4"]
+        # car_list = traci.vehicle.getIDList()
+        # for car_id in car_list:
+        #     wait_time = traci.vehicle.getAccumulatedWaitingTime(car_id)
+        #     # get the road id where the car is located
+        #     road_id = traci.vehicle.getRoadID(car_id)
+        #     if road_id in incoming_roads:  # consider only the waiting times of cars in incoming road
+        #         total_waiting_time += wait_time
 
-        return total_waiting_time
+        # return total_waiting_time
+        total_waiting = 0
+        for car_id, wait_time in self._waiting_times.items():
+            total_waiting += wait_time
+
+        return total_waiting
 
     def _set_yellow_phase(self, action_number):
         if action_number == 0:
@@ -179,6 +193,7 @@ class Simulation:
             curr_step += 1
             traci.simulationStep()
             self._update_queue_lengths()
+            self._update_waiting_times()
 
         fitness = self._fitness()
         traci.close()

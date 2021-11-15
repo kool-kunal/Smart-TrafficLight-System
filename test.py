@@ -26,12 +26,12 @@ def test(episode, test_config, genome_path):
 
     s = Simulation(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                    test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
-                   test_config['gui'])
+                   test_config['gui'], genome_id= genome.key)
     fitness = s.run(net)
 
     s = Simulation(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                    test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
-                   test_config['gui'])
+                   test_config['gui'], genome_id= genome.key)
     ttl_fitness = s.TTL()
 
     print(f"Episode {episode} loss:", fitness)
