@@ -1,6 +1,6 @@
 import os
 import neat
-from simulator import Simulation
+from simulator import Approach2, Simulation
 from generator import TrafficGenerator
 import time
 import pickle
@@ -15,13 +15,12 @@ program_config = None
 
 def simulation_single(genome, config):
     net = neat.nn.FeedForwardNetwork.create(genome, config)
-    simulator = Simulation(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
+    simulator = Approach2(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
                            program_config['sumocfg_file_name'], program_config['green_duration'], program_config['yellow_duration'],
                            program_config['gui'], genome_id= genome.key)
-    fitness = simulator.run(net)
-    genome.fitnes = simulator.run(net)
+    genome.fitness = simulator.run(net)
     # print(f"#{genome}", genome.fitness)
-    return fitness
+    return genome.fitness
 
 
 def simulation(genomes, config):
