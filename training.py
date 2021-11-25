@@ -1,6 +1,6 @@
 import os
 import neat
-from simulator import Simulation
+from simulator import Approach3, Simulation
 from generator import TrafficGenerator
 import time
 import pickle
@@ -8,62 +8,60 @@ import visualize
 import utils
 import argparse
 import reporter
-
+from evaluator import CustomParallelEvaluator
 
 GEN = 0
 program_config = None
 
-def simulation_single(genome, config):
+def simulation_single(genome, config,program_config):
     net = neat.nn.FeedForwardNetwork.create(genome, config)
-    simulator = Simulation(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
+    simulator = Approach3(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
                            program_config['sumocfg_file_name'], program_config['green_duration'], program_config['yellow_duration'],
                            program_config['gui'], genome_id= genome.key)
-    fitness = simulator.run(net)
-    genome.fitnes = simulator.run(net)
+    genome.fitness = simulator.run(net)
     # print(f"#{genome}", genome.fitness)
-    return fitness
+    return genome.fitness
 
 
-def simulation(genomes, config):
-    curr_max_fitness = -1000000000000.0
-    best_genome = None
-    global program_config
-    tf = TrafficGenerator(
-        program_config['max_steps'], program_config['n_cars'])
-    tf.generate_routefile(int(time.time() % 1000))
-    global GEN
-    GEN += 1
+# def simulation(genomes, config):
+#     curr_max_fitness = -1000000000000.0
+#     best_genome = None
+#     global program_config
+#     tf = TrafficGenerator(
+#         program_config['max_steps'], program_config['n_cars'])
+#     tf.generate_routefile(int(time.time() % 1000))
+#     global GEN
+#     GEN += 1
 
-    for _, genome in genomes:
+#     for _, genome in genomes:
 
-        net = neat.nn.feed_forward.FeedForwardNetwork.create(genome, config)
-        s = Simulation(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
-                       program_config['sumocfg_file_name'], program_config['green_duration'], program_config['yellow_duration'],
-                       program_config['gui'])
-        genome.fitness = s.run(net)
-        if genome.fitness > curr_max_fitness:
-            curr_max_fitness = genome.fitness
-            best_genome = genome
+#         net = neat.nn.feed_forward.FeedForwardNetwork.create(genome, config)
+#         s = Simulation(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
+#                        program_config['sumocfg_file_name'], program_config['green_duration'], program_config['yellow_duration'],
+#                        program_config['gui'])
+#         genome.fitness = s.run(net)
+#         if genome.fitness > curr_max_fitness:
+#             curr_max_fitness = genome.fitness
+#             best_genome = genome
 
-        print(f"#{_}", genome.fitness)
+#         print(f"#{_}", genome.fitness)
 
-    if 'models' not in os.listdir():
-        os.makedirs('models')
+#     if 'models' not in os.listdir():
+#         os.makedirs('models')
 
-    if f'{GEN}' not in os.listdir("models"):
-        try:
-            os.makedirs(f"models/{GEN}")
-        except:
-            pass
-    f = open(f"models/{GEN}/genome.k", "wb")
-    visualize.draw_net(config, best_genome, False,
-                       filename=f"models/{GEN}/net")
-    pickle.dump(best_genome, f)
-    f.close()
+#     if f'{GEN}' not in os.listdir("models"):
+#         try:
+#             os.makedirs(f"models/{GEN}")
+#         except:
+#             pass
+#     f = open(f"models/{GEN}/genome.k", "wb")
+#     visualize.draw_net(config, best_genome, False,
+#                        filename=f"models/{GEN}/net")
+#     pickle.dump(best_genome, f)
+#     f.close()
 
 
 def run(checkpoint=None):
-
     global program_config
     p = None
     if checkpoint == None:
@@ -80,7 +78,7 @@ def run(checkpoint=None):
     p.add_reporter(neat.Checkpointer(
         program_config['checkpoint'], filename_prefix="checkpoints/checkpoint-"))
 
-    pe = neat.ParallelEvaluator(8, simulation_single)
+    pe = CustomParallelEvaluator(8, simulation_single)
     winner = p.run(pe.evaluate, program_config['generations'])
 
     # winner = p.run(simulation, program_config['generations'])
@@ -101,7 +99,6 @@ if __name__ == "__main__":
     parser.add_argument('-load', metavar='-l')
     args = parser.parse_args()
     program_config = utils.training_configuration('config/training_config.ini')
-
     if args.load != None:
         run(args.load)
     else:

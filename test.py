@@ -8,7 +8,7 @@ import neat
 import utils
 import visualize
 from generator import TrafficGenerator
-from simulator import Simulation
+from simulator import Approach1, Simulation, TimeBasedTrafficLigthSystem
 
 
 def test(episode, test_config, genome_path):
@@ -24,15 +24,15 @@ def test(episode, test_config, genome_path):
 
     net = neat.nn.feed_forward.FeedForwardNetwork.create(genome, config)
 
-    s = Simulation(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
+    s = Approach1(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                    test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
                    test_config['gui'], genome_id= genome.key)
     fitness = s.run(net)
 
-    s = Simulation(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
+    s = TimeBasedTrafficLigthSystem(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                    test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
                    test_config['gui'], genome_id= genome.key)
-    ttl_fitness = s.TTL()
+    ttl_fitness = s.run()
 
     print(f"Episode {episode} loss:", fitness)
     print(
