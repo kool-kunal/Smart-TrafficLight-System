@@ -12,7 +12,8 @@ def training_configuration(config_file):
     config['green_duration'] = content['simulation'].getint('green_duration')
     config['yellow_duration'] = content['simulation'].getint('yellow_duration')
     config['sumocfg_file_name'] = content['dir']['sumocfg_file_name']
-    config['neat_config'] = content['dir']['neat_config']
+    config['neat_config_1'] = content['dir']['neat_config_1']
+    config['neat_config_2'] = content['dir']['neat_config_2']
     config['num_states']=content['model'].getint('num_states')
     config['actions']=content['model'].getint('actions')
     config['checkpoint'] = content['model'].getint('checkpoint')
@@ -32,8 +33,10 @@ def testing_configuration(config_file):
     config['yellow_duration'] = content['simulation'].getint('yellow_duration')
     config['test_runs']=content['simulation'].getint('test_runs')
     config['sumocfg_file_name'] = content['dir']['sumocfg_file_name']
-    config['neat_config'] = content['dir']['neat_config']
+    config['neat_config_1'] = content['dir']['neat_config_1']
+    config['neat_config_2'] = content['dir']['neat_config_2']
     config['num_states']=content['model'].getint('num_states')
     config['actions']=content['model'].getint('actions')
+    config['with_ttl'] = content['model'].getboolean('with_ttl')
 
     return config
