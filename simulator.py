@@ -400,8 +400,8 @@ class TimeBasedTrafficLigthSystem(Simulation):
         self._green_light_dur = green_light_dur
         self._genome_id = genome_id
 
-    def run_test(self,net):
-        _ = self.run(net)
+    def run_test(self):
+        _ = self.run()
         return -1*self._rms_waiting_time()
 
     def run(self) -> float:

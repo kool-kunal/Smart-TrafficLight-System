@@ -46,7 +46,7 @@ def test_with_model(episode,test_config,genome_path_1,genome_path_2):
 
 def test_with_ttl(episode, test_config, genome_path):
     currentdir = os.getcwd()
-    configdir = currentdir + f'/{test_config["neat_config_2"]}'
+    configdir = currentdir + f'/{test_config["neat_config_1"]}'
     config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
                                 neat.DefaultSpeciesSet, neat.DefaultStagnation, configdir)
 
@@ -56,12 +56,10 @@ def test_with_ttl(episode, test_config, genome_path):
     tf.generate_routefile(int(time.time() % 1000))
 
     net = neat.nn.feed_forward.FeedForwardNetwork.create(genome, config)
-    print(net)
-    print(genome)
-    s = Approach2(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
+    s = Approach1(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                    test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
                    test_config['gui'], genome_id= genome.key)
-    fitness = s.run(net)
+    fitness = s.run_test(net)
 
     s = TimeBasedTrafficLigthSystem(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                    test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
@@ -101,8 +99,8 @@ if __name__ == '__main__':
             model_fitness.append(-fitness)
             ttl_fitness.append(-ttl_fitness_)
 
-        visualize.bar_graph_plot(model_loss=model_fitness, ttl_loss=ttl_fitness)
-        visualize.pi_chart_plot(model_loss=model_fitness, ttl_loss=ttl_fitness)
+        visualize.bar_graph_plot(loss_1=model_fitness, loss_2=ttl_fitness,labels = ['Approach_1','ttl'])
+        visualize.pi_chart_plot(loss_1=model_fitness, loss_2=ttl_fitness,labels = ['Approach_1','ttl'])
 
     else:
         genome_path2 = input('Enter path of Approach 2 model you want to test: \n')
@@ -119,8 +117,8 @@ if __name__ == '__main__':
             model_fitness.append(-fitness_1)
             model_2_fitness.append(-fitness_2)
 
-        visualize.bar_graph_plot(model_loss=model_fitness, ttl_loss=model_2_fitness)
-        visualize.pi_chart_plot(model_loss=model_fitness, ttl_loss=model_2_fitness)
+        visualize.bar_graph_plot(loss_1=model_fitness, loss_2=model_2_fitness,labels = ['Approach_1','Approach_2'])
+        visualize.pi_chart_plot(loss_1=model_fitness, loss_2=model_2_fitness,labels = ['Approach_1','Approach_2'])
         
     # plt.bar(x,model_fitness,label="Model Fitness",color="blue")
     # plt.bar(x,ttl_fitness,label="TTL_Fitness",color="red")

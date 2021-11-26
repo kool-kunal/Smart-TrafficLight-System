@@ -91,6 +91,8 @@ class CustomReporter(BaseReporter):
         self.num_extinctions = 0
         self.file_name = None
         self.data = []
+        if not os.path.exists('training'):
+            os.mkdir('training')
         files = os.listdir('training')
         count = 0
         if len(files) > 0:
