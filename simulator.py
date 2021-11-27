@@ -51,7 +51,8 @@ class Simulation(ABC):
             traci.trafficlight.setPhase("N2", PHASE_W_GREEN)
 
     def _average_waiting_time(self):
-        avg_waiting_time = np.sum([wait_time for car_id,wait_time in self._waiting_times.items()])/self._n_cars_generated
+        avg_waiting_time = np.sum(
+            [wait_time for car_id, wait_time in self._waiting_times.items()])/self._n_cars_generated
         return avg_waiting_time
 
     def _average_queue_length(self):
@@ -59,18 +60,19 @@ class Simulation(ABC):
         return avg_queue_length
 
     def _rms_waiting_time(self):
-        squared_list = [x**2 for car_id,x in self._waiting_times.items()]
+        squared_list = [x**2 for car_id, x in self._waiting_times.items()]
         sum_squared = sum(squared_list)
         mean_squared = sum_squared/self._n_cars_generated
         root_mean_squared_waiting_time = mean_squared**0.5
-        return root_mean_squared_waiting_time
+        return self._penalize_for_starvation(root_mean_squared_waiting_time)
 
     def _harmonic_mean_fitness(self):
         avg_queue_length = self._average_queue_length()
         avg_waiting_time = self._average_waiting_time()
-        harmonice_mean = 2 * (avg_queue_length * avg_waiting_time)/(avg_queue_length + avg_waiting_time)
-        return harmonice_mean
-    
+        harmonic_mean = 2 * (avg_queue_length * avg_waiting_time) / \
+            (avg_queue_length + avg_waiting_time)
+        return self._penalize_for_starvation(harmonic_mean)
+
     def _update_waiting_times(self):
         car_list = traci.vehicle.getIDList()
         for car_id in car_list:
@@ -83,9 +85,20 @@ class Simulation(ABC):
         self._queue_lengths[2] += traci.edge.getLastStepHaltingNumber("E2")
         self._queue_lengths[3] += traci.edge.getLastStepHaltingNumber("E3")
 
+    def _penalize_for_starvation(self, fitness):
+        if self._number_of_cars_on_map > 0:
+            print(self._number_of_cars_on_map)
+            print('penalised', self._genome_id,'old_fitness=', fitness, ' new_fitness=', fitness*self._starvation_penalty)
+            return fitness * self._starvation_penalty
+
+        return fitness
+
+    def _check_cars(self):
+        self._number_of_cars_on_map = len(traci.vehicle.getIDList())
+
 
 class Approach1(Simulation):
-    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id) -> None:
+    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id, starvation_penalty=1) -> None:
         self._max_steps = max_steps
         self._n_cars_generated = n_cars
         self._sumoBinary = checkBinary(
@@ -98,11 +111,13 @@ class Approach1(Simulation):
         self._yellow_light_dur = yellow_light_dur
         self._green_light_dur = green_light_dur
         self._genome_id = genome_id
+        self._number_of_cars_on_map = 0
+        self._starvation_penalty = starvation_penalty
 
-    def run_test(self,net):
+    def run_test(self, net):
         _ = self.run(net)
         return -self._rms_waiting_time()
-    
+
     def run(self, net) -> float:
 
         traci.start(self._sumo_cmd)
@@ -152,6 +167,7 @@ class Approach1(Simulation):
 
             last_light = output
 
+        self._check_cars()
         fitness = self.fitness()
         traci.close()
         return fitness
@@ -220,8 +236,10 @@ class Approach1(Simulation):
 
 # Approach 1 + input flow on 4 lanes
 # Change num_input to 48 in config/config-feedforward.txt
-class Approach2(Simulation): 
-    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id) -> None:
+
+
+class Approach2(Simulation):
+    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id, starvation_penalty=1) -> None:
         self._max_steps = max_steps
         self._n_cars_generated = n_cars
         self._sumoBinary = checkBinary(
@@ -231,13 +249,14 @@ class Approach2(Simulation):
         self._num_states = num_states
         self._queue_lengths = np.zeros(4)
         self._waiting_times = {}
-        self._car_ids = { 0 : [] , 1: [] , 2: [], 3: []}
+        self._car_ids = {0: [], 1: [], 2: [], 3: []}
         self._yellow_light_dur = yellow_light_dur
         self._green_light_dur = green_light_dur
         self._genome_id = genome_id
+        self._starvation_penalty = starvation_penalty
 
-    def run_test(self,net):
-        _=self.run(net)
+    def run_test(self, net):
+        _ = self.run(net)
         return -1*self._rms_waiting_time()
 
     def run(self, net) -> float:
@@ -253,7 +272,7 @@ class Approach2(Simulation):
 
         while curr_step < self._max_steps:
 
-            current_state,input_flow = self._get_state()
+            current_state, input_flow = self._get_state()
             output = np.argmax(current_light)
             '''remove comments while testing.. to prevent starvation'''
             # if output == last_light:
@@ -266,7 +285,8 @@ class Approach2(Simulation):
             #     current_light[output] = -1.0
             #     output = np.argmax(current_light)
             #     counter = 0
-            network_input = np.concatenate((current_state,input_flow,current_light))
+            network_input = np.concatenate(
+                (current_state, input_flow, current_light))
             net_output = net.activate(network_input)
             current_light = net_output
 
@@ -291,6 +311,7 @@ class Approach2(Simulation):
 
             last_light = output
 
+        self._check_cars()
         fitness = self.fitness()
         traci.close()
         return fitness
@@ -307,7 +328,7 @@ class Approach2(Simulation):
 
         state = np.zeros(self._num_states)
         car_list = traci.vehicle.getIDList()
-        new_car_ids = { 0 : [], 1: [], 2: [], 3: []}
+        new_car_ids = {0: [], 1: [], 2: [], 3: []}
 
         for car_id in car_list:
             lane_pos = traci.vehicle.getLanePosition(car_id)
@@ -361,32 +382,32 @@ class Approach2(Simulation):
 
         input_flow = self._get_input_flow(new_car_ids)
         self._car_ids = new_car_ids
-        return state,input_flow
+        return state, input_flow
 
-    def _get_input_flow(self,new_car_ids):
+    def _get_input_flow(self, new_car_ids):
 
         def get_difference(list1, list2):
             present = {}
             count = 0
             for id in list1:
-                present[id]=True
+                present[id] = True
 
             for id in list2:
                 if id in present.keys():
                     continue
-                count=count+1
-        
+                count = count+1
+
             count2 = len(list1) - (len(list2)-count)
             return count - count2
 
         input_flow = np.zeros(4)
         for i in range(4):
-            input_flow[i] = get_difference(self._car_ids[i],new_car_ids[i])
+            input_flow[i] = get_difference(self._car_ids[i], new_car_ids[i])
         return input_flow
 
 
 class TimeBasedTrafficLigthSystem(Simulation):
-    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id) -> None:
+    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id, starvation_penalty = 1) -> None:
         self._max_steps = max_steps
         self._n_cars_generated = n_cars
         self._sumoBinary = checkBinary(
@@ -399,6 +420,7 @@ class TimeBasedTrafficLigthSystem(Simulation):
         self._yellow_light_dur = yellow_light_dur
         self._green_light_dur = green_light_dur
         self._genome_id = genome_id
+        self._starvation_penalty = starvation_penalty
 
     def run_test(self):
         _ = self.run()
