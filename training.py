@@ -28,7 +28,7 @@ def run(checkpoint=None):
     p = None
     if checkpoint == None:
         config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
-                                    neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config_1'])
+                                    neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config_2'])
         p = neat.Population(config)
     else:
         p = neat.Checkpointer.restore_checkpoint(checkpoint)
