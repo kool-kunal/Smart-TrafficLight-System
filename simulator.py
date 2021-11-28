@@ -117,7 +117,7 @@ class Approach1(Simulation):
 
     def run_test(self, net):
         _ = self.run(net)
-        return -self._rms_waiting_time()
+        return -1*self._rms_waiting_time(), -1*self._average_waiting_time(), -1*self._average_queue_length()
 
     def run(self, net) -> float:
 
@@ -258,7 +258,7 @@ class Approach2(Simulation):
 
     def run_test(self, net):
         _ = self.run(net)
-        return -1*self._rms_waiting_time()
+        return -1*self._rms_waiting_time(), -1*self._average_waiting_time(), -1*self._average_queue_length()
 
     def run(self, net) -> float:
 
@@ -425,7 +425,7 @@ class TimeBasedTrafficLigthSystem(Simulation):
 
     def run_test(self):
         _ = self.run()
-        return -1*self._rms_waiting_time()
+        return -1*self._rms_waiting_time(), -1*self._average_waiting_time(), -1*self._average_queue_length()
 
     def run(self) -> float:
 
