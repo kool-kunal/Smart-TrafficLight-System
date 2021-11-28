@@ -88,7 +88,8 @@ class Simulation(ABC):
     def _penalize_for_starvation(self, fitness):
         if self._number_of_cars_on_map > 0:
             print(self._number_of_cars_on_map)
-            print('penalised', self._genome_id,'old_fitness=', fitness, ' new_fitness=', fitness*self._starvation_penalty)
+            print('penalised', self._genome_id, 'old_fitness=', fitness,
+                  ' new_fitness=', fitness*self._starvation_penalty)
             return fitness * self._starvation_penalty
 
         return fitness
@@ -407,7 +408,7 @@ class Approach2(Simulation):
 
 
 class TimeBasedTrafficLigthSystem(Simulation):
-    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id, starvation_penalty = 1) -> None:
+    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id, starvation_penalty=1) -> None:
         self._max_steps = max_steps
         self._n_cars_generated = n_cars
         self._sumoBinary = checkBinary(
@@ -436,6 +437,7 @@ class TimeBasedTrafficLigthSystem(Simulation):
             self._update_queue_lengths()
             self._update_waiting_times()
 
+        self._check_cars()
         fitness = self.fitness()
         traci.close()
         return fitness

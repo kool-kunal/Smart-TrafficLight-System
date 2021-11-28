@@ -16,7 +16,7 @@ program_config = None
 
 def simulation_single(genome, config, program_config):
     net = neat.nn.FeedForwardNetwork.create(genome, config)
-    simulator = Approach2(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
+    simulator = Approach1(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
                           program_config['sumocfg_file_name'], program_config['green_duration'], program_config['yellow_duration'],
                           program_config['gui'], genome_id=genome.key, starvation_penalty=program_config['starvation_penalty'])
     genome.fitness = simulator.run(net)
@@ -28,7 +28,7 @@ def run(checkpoint=None):
     p = None
     if checkpoint == None:
         config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
-                                    neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config_2'])
+                                    neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config_1'])
         p = neat.Population(config)
     else:
         p = neat.Checkpointer.restore_checkpoint(checkpoint)
