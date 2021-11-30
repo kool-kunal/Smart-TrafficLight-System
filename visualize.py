@@ -194,18 +194,18 @@ def draw_net(config, genome, view=False, filename=None, node_names=None, show_di
 
 def bar_graph_plot(loss_1, loss_2,labels):
     X = range(1, len(loss_1)+1)
-    bar_width = 0.25
+    # bar_width = 0.25
     #fig = plt.subplots(figsize =(12, 8)) 
-    br1 = X
-    br2 = [x + bar_width for x in X]
+    # br1 = X
+    # br2 = [x + bar_width for x in X]
     
-    plt.bar(br1, loss_1, color = 'g', width=bar_width, label = labels[0])
-    plt.bar(br2, loss_2, color = 'b', width=bar_width, label = labels[1])
+    plt.plot(X,loss_1, color = 'g', label = labels[0])
+    plt.plot(X,loss_2, color = 'b', label = labels[1])
     
     plt.xlabel('episode')
     plt.ylabel('loss')
     
-    plt.xticks([x + bar_width for x in X], X)
+    # plt.xticks([x + bar_width for x in X], X)
     
     plt.legend()
     plt.show()

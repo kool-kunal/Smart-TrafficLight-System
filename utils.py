@@ -39,5 +39,6 @@ def testing_configuration(config_file):
     config['num_states']=content['model'].getint('num_states')
     config['actions']=content['model'].getint('actions')
     config['with_ttl'] = content['model'].getboolean('with_ttl')
+    config['starvation_penalty'] = content['simulation'].getfloat('starvation_penalty')
 
     return config
