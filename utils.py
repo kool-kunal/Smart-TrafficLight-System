@@ -14,6 +14,7 @@ def training_configuration(config_file):
     config['sumocfg_file_name'] = content['dir']['sumocfg_file_name']
     config['neat_config_1'] = content['dir']['neat_config_1']
     config['neat_config_2'] = content['dir']['neat_config_2']
+    config['neat_config_3'] = content['dir']['neat_config_3']
     config['num_states']=content['model'].getint('num_states')
     config['actions']=content['model'].getint('actions')
     config['checkpoint'] = content['model'].getint('checkpoint')

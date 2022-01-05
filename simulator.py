@@ -73,6 +73,9 @@ class Simulation(ABC):
             (avg_queue_length + avg_waiting_time)
         return self._penalize_for_starvation(harmonic_mean)
 
+    def _time_ratio(self):
+        return self._max_steps / self._last_step_with_no_car
+
     def _update_waiting_times(self):
         car_list = traci.vehicle.getIDList()
         for car_id in car_list:
@@ -96,6 +99,15 @@ class Simulation(ABC):
 
     def _check_cars(self):
         self._number_of_cars_on_map = len(traci.vehicle.getIDList())
+
+    def _check_last_time(self):
+        id_list = traci.vehicle.getIDList()
+        for id in id_list:
+            if id.split('_')[-1] == 99:
+                self._last_car_entered = True
+
+        if len(id_list) == 0 and self._last_car_entered:
+            self._last_step_with_no_car = self._curr_step
 
 
 class Approach1(Simulation):
@@ -405,6 +417,147 @@ class Approach2(Simulation):
         for i in range(4):
             input_flow[i] = get_difference(self._car_ids[i], new_car_ids[i])
         return input_flow
+
+
+class Approach3(Simulation):
+    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, genome_id, starvation_penalty=1) -> None:
+        self._max_steps = max_steps
+        self._n_cars_generated = n_cars
+        self._sumoBinary = checkBinary(
+            'sumo-gui') if show else checkBinary('sumo')
+        self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name),
+                          "--no-step-log", "true", "-W", "--duration-log.disable", "--waiting-time-memory", str(max_steps)]
+        self._num_states = num_states
+        self._queue_lengths = np.zeros(4)
+        self._waiting_times = {}
+        self._yellow_light_dur = yellow_light_dur
+        self._green_light_dur = green_light_dur
+        self._genome_id = genome_id
+        self._number_of_cars_on_map = 0
+        self._starvation_penalty = starvation_penalty
+        self._last_car_entered = False
+        self._last_step_with_no_car = self._max_steps
+
+    def run_test(self, net):
+        _ = self.run(net)
+        return -1*self._rms_waiting_time(), -1*self._average_waiting_time(), -1*self._average_queue_length()
+
+    def run(self, net) -> float:
+
+        traci.start(self._sumo_cmd)
+        self._curr_step = 0
+        last_light = 0
+        counter = 0
+        current_light = np.zeros(shape=(4,))
+        current_light[0] = 1
+
+        while self._curr_step < self._max_steps:
+
+            current_state = self._get_state()
+            output = np.argmax(current_light)
+            '''remove comments while testing.. to prevent starvation'''
+            # if output == last_light:
+            #     counter += 1
+            # else:
+            #     counter = 0
+
+            # if counter == 3:
+            #     print(output, current_light)
+            #     current_light[output] = -1.0
+            #     output = np.argmax(current_light)
+            #     counter = 0
+            network_input = np.concatenate((current_state, current_light))
+            net_output = net.activate(network_input)
+            current_light = net_output
+
+            if output != last_light:
+                self.setYellowPhase(last_light)
+                curr_yellow_step = 0
+                while curr_yellow_step < self._yellow_light_dur and self._curr_step < self._max_steps:
+                    traci.simulationStep()
+                    curr_yellow_step += 1
+                    self._curr_step += 1
+                    self._update_queue_lengths()
+                    self._update_waiting_times()
+                    self._check_last_time()
+
+            self.setGreenPhase(output)
+            curr_green_step = 0
+            while curr_green_step < self._green_light_dur and self._curr_step < self._max_steps:
+                traci.simulationStep()
+                curr_green_step += 1
+                self._curr_step += 1
+                self._update_queue_lengths()
+                self._update_waiting_times()
+                self._check_last_time()
+
+            last_light = output
+
+        fitness = self.fitness()
+        traci.close()
+        return fitness
+
+    def fitness(self):
+        fitness = self._time_ratio()
+        print(f'#{self._genome_id}', fitness, "avg_waiting_time=",
+              self._average_waiting_time(), "avg_queue_length=", self._average_queue_length())
+        return fitness
+
+    def _get_state(self):
+
+        state = np.zeros(self._num_states)
+        car_list = traci.vehicle.getIDList()
+
+        for car_id in car_list:
+            lane_pos = traci.vehicle.getLanePosition(car_id)
+            lane_id = traci.vehicle.getLaneID(car_id)
+            lane_pos = 400 - lane_pos
+
+            if lane_pos < 7:
+                lane_cell = 0
+            elif lane_pos < 14:
+                lane_cell = 1
+            elif lane_pos < 21:
+                lane_cell = 2
+            elif lane_pos < 28:
+                lane_cell = 3
+            elif lane_pos < 40:
+                lane_cell = 4
+            elif lane_pos < 60:
+                lane_cell = 5
+            elif lane_pos < 100:
+                lane_cell = 6
+            elif lane_pos < 160:
+                lane_cell = 7
+            elif lane_pos < 250:
+                lane_cell = 8
+            elif lane_pos <= 400:
+                lane_cell = 9
+
+            if lane_id == "E1_0":
+                lane_group = 0
+            elif lane_id == "E2_0":
+                lane_group = 1
+            elif lane_id == "E3_0":
+                lane_group = 2
+            elif lane_id == "E4_0":
+                lane_group = 3
+            else:
+                lane_group = -1
+
+            if lane_group >= 1 and lane_group <= 3:
+                car_position = int(str(lane_group) + str(lane_cell))
+                valid_car = True
+            elif lane_group == 0:
+                car_position = lane_cell
+                valid_car = True
+            else:
+                valid_car = False
+
+            if valid_car:
+                state[car_position] += 1
+
+        return state
 
 
 class TimeBasedTrafficLigthSystem(Simulation):
