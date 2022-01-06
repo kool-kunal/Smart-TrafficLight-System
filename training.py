@@ -1,5 +1,6 @@
 import os
 import neat
+from config_manager import TRAINING_CONFIG
 from simulator import Approach1, Approach2, Approach3
 from generator import TrafficGenerator
 import time
@@ -16,7 +17,7 @@ program_config = None
 
 def simulation_single(genome, config, program_config):
     net = neat.nn.FeedForwardNetwork.create(genome, config)
-    simulator = Approach3(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
+    simulator = Approach1(program_config['max_steps'], program_config['n_cars'], program_config['num_states'],
                           program_config['sumocfg_file_name'], program_config['green_duration'], program_config['yellow_duration'],
                           program_config['gui'], genome_id=genome.key, starvation_penalty=program_config['starvation_penalty'])
     genome.fitness = simulator.run(net)
@@ -28,12 +29,13 @@ def run(checkpoint=None):
     p = None
     if checkpoint == None:
         config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
-                                    neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config_3'])
+                                    neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config_1'])
         p = neat.Population(config)
     else:
         p = neat.Checkpointer.restore_checkpoint(checkpoint)
         print("loaded population from:", checkpoint)
-    p.add_reporter(reporter.CustomReporter(True, checkpoint != None))
+    p.add_reporter(reporter.CustomReporter(
+        True, checkpoint != None, program_config['n_cars']==-1))
 
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
@@ -58,7 +60,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-load', metavar='-l')
     args = parser.parse_args()
-    program_config = utils.training_configuration('config/training_config.ini')
+    program_config = TRAINING_CONFIG
     if args.load != None:
         run(args.load)
     else:

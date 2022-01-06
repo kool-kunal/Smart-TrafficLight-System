@@ -1,4 +1,5 @@
 from multiprocessing import Pool
+from config_manager import TRAINING_CONFIG
 import utils
 
 class CustomParallelEvaluator(object):
@@ -13,7 +14,7 @@ class CustomParallelEvaluator(object):
             self.eval_function = eval_function
             self.timeout = timeout
             self.pool = Pool(num_workers)
-            self._program_config = utils.training_configuration('config/training_config.ini')
+            self._program_config = TRAINING_CONFIG
 
     def __del__(self):
             self.pool.close() # should this be terminate?

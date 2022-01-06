@@ -5,9 +5,11 @@ import time
 from neat.math_util import mean, stdev
 from neat.six_util import itervalues, iterkeys
 import os
+from config_manager import TRAINING_CONFIG
 import utils
 from generator import TrafficGenerator
 import pickle
+import random
 
 
 class ReporterSet(object):
@@ -83,7 +85,7 @@ class BaseReporter(object):
 class CustomReporter(BaseReporter):
     """Uses `print` to output information about the run; an example reporter class."""
 
-    def __init__(self, show_species_detail, training_continued):
+    def __init__(self, show_species_detail, training_continued, is_random_density):
         self.show_species_detail = show_species_detail
         self.generation = None
         self.generation_start_time = None
@@ -101,10 +103,15 @@ class CustomReporter(BaseReporter):
                 count += 1
 
         self.file_name = f'training/trainingInfo-{count}.txt'
-        self.program_config = utils.training_configuration(
-            'config/training_config.ini')
+        self.program_config = TRAINING_CONFIG
+        self.random_density = is_random_density
 
     def start_generation(self, generation):
+
+        if self.random_density:
+            TRAINING_CONFIG['n_cars'] = random.randint(50, 200)
+
+        print(self.program_config['n_cars'])
 
         tf = TrafficGenerator(
             self.program_config['max_steps'], self.program_config['n_cars'])
@@ -162,9 +169,12 @@ class CustomReporter(BaseReporter):
                                                                                  best_genome.size(),
                                                                                  best_species_id,
                                                                                  best_genome.key))
-
-        self.data.append(
-            f'Gen={self.generation},Mean={fit_mean},StdDev={fit_std},Best={best_genome.fitness}')
+        if self.random_density:
+            self.data.append(
+                'Gen={},Mean={},StdDev={},Best={},Cars={}'.format(self.generation, fit_mean, fit_std, best_genome.fitness, self.program_config['n_cars']))
+        else:
+            self.data.append(
+                f'Gen={self.generation},Mean={fit_mean},StdDev={fit_std},Best={best_genome.fitness}')
 
         if(self.generation != 0 and self.generation % self.program_config['checkpoint'] == self.program_config['checkpoint']-1):
             with open(self.file_name, 'a') as trainingInfo:

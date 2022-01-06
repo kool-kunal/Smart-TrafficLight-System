@@ -25,7 +25,7 @@ def test_with_model(episode, test_config, genome_path_1, genome_path_2):
 
     s_1 = Approach1(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                     test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
-                    test_config['gui'], genome_id=genome_1.key)
+                    test_config['gui'], genome_id=genome_1.key,starvation_penalty=test_config['starvation_penalty'])
     fitness, avg_waiting_time, avg_queue_length = s_1.run_test(net_1)
 
     approach1_data = {'rms': fitness, 'avg_waiting_time': avg_waiting_time,
@@ -38,7 +38,7 @@ def test_with_model(episode, test_config, genome_path_1, genome_path_2):
 
     s_2 = Approach2(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                     test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
-                    test_config['gui'], genome_id=genome_2.key)
+                    test_config['gui'], genome_id=genome_2.key,starvation_penalty=test_config['starvation_penalty'])
     fitness, avg_waiting_time, avg_queue_length = s_2.run_test(net_2)
 
     approach2_data = {'rms': fitness, 'avg_waiting_time': avg_waiting_time,
@@ -53,7 +53,7 @@ def test_with_model(episode, test_config, genome_path_1, genome_path_2):
 
 def test_with_ttl(episode, test_config, genome_path):
     currentdir = os.getcwd()
-    configdir = currentdir + f'/{test_config["neat_config_1"]}'
+    configdir = currentdir + f'/{test_config["neat_config_2"]}'
     config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
                                 neat.DefaultSpeciesSet, neat.DefaultStagnation, configdir)
 
@@ -63,9 +63,9 @@ def test_with_ttl(episode, test_config, genome_path):
     tf.generate_routefile(int(time.time() % 1000))
 
     net = neat.nn.feed_forward.FeedForwardNetwork.create(genome, config)
-    s = Approach1(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
+    s = Approach2(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                   test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
-                  test_config['gui'], genome_id=genome.key)
+                  test_config['gui'], genome_id=genome.key,starvation_penalty=test_config['starvation_penalty'])
     fitness, avg_waiting_time, avg_queue_length = s.run_test(net)
 
     approach1_data = {'rms': fitness, 'avg_waiting_time': avg_waiting_time,
@@ -73,7 +73,7 @@ def test_with_ttl(episode, test_config, genome_path):
 
     s = TimeBasedTrafficLigthSystem(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                                     test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
-                                    test_config['gui'], genome_id=genome.key)
+                                    test_config['gui'], genome_id=genome.key,starvation_penalty=test_config['starvation_penalty'])
     fitness, avg_waiting_time, avg_queue_length = s.run_test()
 
     ttl_data = {'rms': fitness, 'avg_waiting_time': avg_waiting_time,
@@ -129,9 +129,9 @@ if __name__ == '__main__':
                 approach1_count += 1
 
         print('\n----------- testing result -----------')
-        print('number of times approach1 did better :', approach1_count,
+        print('number of times approach2 did better :', approach1_count,
               '', '', 'percentage = ', f'{(approach1_count/test_runs)*100}%')
-        print(f'mean of losses of approach1 over {test_runs} test runs :', sum(
+        print(f'mean of losses of approach2 over {test_runs} test runs :', sum(
             model_fitness)/test_runs)
         print(f'mean of average waiting times of approach1 over {test_runs} test runs :', sum(
             model_waiting_time)/test_runs)
@@ -146,9 +146,9 @@ if __name__ == '__main__':
             ttl_queue_length)/test_runs)
 
         visualize.bar_graph_plot(loss_1=model_fitness, loss_2=ttl_fitness, labels=[
-                                 'Approach_1', 'ttl'])
+                                 'Approach_2', 'ttl'])
         visualize.pi_chart_plot(loss_1=model_fitness, loss_2=ttl_fitness, labels=[
-                                'Approach_1', 'ttl'])
+                                'Approach_2', 'ttl'])
 
     else:
         genome_path2 = input(
@@ -186,7 +186,7 @@ if __name__ == '__main__':
         print(f'mean of average queue lengths of approach1 over {test_runs} test runs :', sum(
             model_queue_length)/test_runs)
         print()
-        print('number of times approach2 did better :', approach1_count,
+        print('number of times approach2 did better :', test_runs-approach1_count,
               '', '', 'percentage = ', f'{((test_runs-approach1_count)/test_runs)*100}%')
         print(f'mean of losses of approach2 over {test_runs} test runs :', sum(
             model2_fitness)/test_runs)
