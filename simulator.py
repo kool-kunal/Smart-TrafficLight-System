@@ -186,10 +186,17 @@ class Approach1(Simulation):
         return fitness
 
     def fitness(self):
-        fitness = -1*self._harmonic_mean_fitness()
+        # fitness = -1*self._harmonic_mean_fitness()
+        # print(f'#{self._genome_id}', fitness, "avg_waiting_time=",
+        #       self._average_waiting_time(), "avg_queue_length=", self._average_queue_length())
+        # return fitness
+        fitness = -1*self._rms_waiting_time()
+
         print(f'#{self._genome_id}', fitness, "avg_waiting_time=",
               self._average_waiting_time(), "avg_queue_length=", self._average_queue_length())
+
         return fitness
+
 
     def _get_state(self):
 
