@@ -6,6 +6,6 @@ program_config = TRAINING_CONFIG
 config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
                             neat.DefaultSpeciesSet, neat.DefaultStagnation, program_config['neat_config_1'])
 p = neat.Population(config)
-optimizer = RelativeOptimizer()
+optimizer = RelativeOptimizer(config)
 
-optimizer.optimize(p, config)
+optimizer.optimize(p.population)
