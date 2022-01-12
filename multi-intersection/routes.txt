@@ -1,56 +1,104 @@
-<route id=N1_L_N1_N1_N1_D edges=N1_L_N1 N1_N1_D/>
-<route id=N1_L_N1_N2_N2_R edges=N1_L_N1 N1_N2 N2_N2_R/>
-<route id=N1_L_N1_N2_N2_D edges=N1_L_N1 N1_N2 N2_N2_D/>
-<route id=N1_L_N1_N3_N3_U edges=N1_L_N1 N1_N2 N2_N3 N3_N3_U/>
-<route id=N1_L_N1_N3_N3_R edges=N1_L_N1 N1_N2 N2_N3 N3_N3_R/>
-<route id=N1_L_N1_N4_N4_U edges=N1_L_N1 N1_N2 N2_N3 N3_N4 N4_N4_U/>
-<route id=N1_L_N1_N4_N4_L edges=N1_L_N1 N1_N2 N2_N3 N3_N4 N4_N4_L/>
-<route id=N1_D_N1_N1_N1_L edges=N1_D_N1 N1_N1_L/>
-<route id=N1_D_N1_N2_N2_R edges=N1_D_N1 N1_N2 N2_N2_R/>
-<route id=N1_D_N1_N2_N2_D edges=N1_D_N1 N1_N2 N2_N2_D/>
-<route id=N1_D_N1_N3_N3_U edges=N1_D_N1 N1_N2 N2_N3 N3_N3_U/>
-<route id=N1_D_N1_N3_N3_R edges=N1_D_N1 N1_N2 N2_N3 N3_N3_R/>
-<route id=N1_D_N1_N4_N4_U edges=N1_D_N1 N1_N2 N2_N3 N3_N4 N4_N4_U/>
-<route id=N1_D_N1_N4_N4_L edges=N1_D_N1 N1_N2 N2_N3 N3_N4 N4_N4_L/>
-<route id=N2_D_N2_N2_N2_R edges=N2_D_N2 N2_N2_R/>
-<route id=N2_D_N2_N3_N3_U edges=N2_D_N2 N2_N3 N3_N3_U/>
-<route id=N2_D_N2_N3_N3_R edges=N2_D_N2 N2_N3 N3_N3_R/>
-<route id=N2_D_N2_N4_N4_U edges=N2_D_N2 N2_N3 N3_N4 N4_N4_U/>
-<route id=N2_D_N2_N4_N4_L edges=N2_D_N2 N2_N3 N3_N4 N4_N4_L/>
-<route id=N2_D_N2_N1_N1_L edges=N2_D_N2 N2_N3 N3_N4 N4_N1 N1_N1_L/>
-<route id=N2_D_N2_N1_N1_D edges=N2_D_N2 N2_N3 N3_N4 N4_N1 N1_N1_D/>
-<route id=N2_R_N2_N2_N2_D edges=N2_R_N2 N2_N2_D/>
-<route id=N2_R_N2_N3_N3_U edges=N2_R_N2 N2_N3 N3_N3_U/>
-<route id=N2_R_N2_N3_N3_R edges=N2_R_N2 N2_N3 N3_N3_R/>
-<route id=N2_R_N2_N4_N4_U edges=N2_R_N2 N2_N3 N3_N4 N4_N4_U/>
-<route id=N2_R_N2_N4_N4_L edges=N2_R_N2 N2_N3 N3_N4 N4_N4_L/>
-<route id=N2_R_N2_N1_N1_L edges=N2_R_N2 N2_N3 N3_N4 N4_N1 N1_N1_L/>
-<route id=N2_R_N2_N1_N1_D edges=N2_R_N2 N2_N3 N3_N4 N4_N1 N1_N1_D/>
-<route id=N3_R_N3_N3_N3_U edges=N3_R_N3 N3_N3_U/>
-<route id=N3_R_N3_N2_N2_R edges=N3_R_N3 N3_N2 N2_N2_R/>
-<route id=N3_R_N3_N2_N2_D edges=N3_R_N3 N3_N2 N2_N2_D/>
-<route id=N3_R_N3_N1_N1_L edges=N3_R_N3 N3_N2 N2_N1 N1_N1_L/>
-<route id=N3_R_N3_N1_N1_D edges=N3_R_N3 N3_N2 N2_N1 N1_N1_D/>
-<route id=N3_R_N3_N4_N4_U edges=N3_R_N3 N3_N2 N2_N1 N1_N4 N4_N4_U/>
-<route id=N3_R_N3_N4_N4_L edges=N3_R_N3 N3_N2 N2_N1 N1_N4 N4_N4_L/>
-<route id=N3_U_N3_N3_N3_R edges=N3_U_N3 N3_N3_R/>
-<route id=N3_U_N3_N2_N2_R edges=N3_U_N3 N3_N2 N2_N2_R/>
-<route id=N3_U_N3_N2_N2_D edges=N3_U_N3 N3_N2 N2_N2_D/>
-<route id=N3_U_N3_N1_N1_L edges=N3_U_N3 N3_N2 N2_N1 N1_N1_L/>
-<route id=N3_U_N3_N1_N1_D edges=N3_U_N3 N3_N2 N2_N1 N1_N1_D/>
-<route id=N3_U_N3_N4_N4_U edges=N3_U_N3 N3_N2 N2_N1 N1_N4 N4_N4_U/>
-<route id=N3_U_N3_N4_N4_L edges=N3_U_N3 N3_N2 N2_N1 N1_N4 N4_N4_L/>
-<route id=N4_U_N4_N4_N4_L edges=N4_U_N4 N4_N4_L/>
-<route id=N4_U_N4_N1_N1_L edges=N4_U_N4 N4_N1 N1_N1_L/>
-<route id=N4_U_N4_N1_N1_D edges=N4_U_N4 N4_N1 N1_N1_D/>
-<route id=N4_U_N4_N2_N2_R edges=N4_U_N4 N4_N1 N1_N2 N2_N2_R/>
-<route id=N4_U_N4_N2_N2_D edges=N4_U_N4 N4_N1 N1_N2 N2_N2_D/>
-<route id=N4_U_N4_N3_N3_U edges=N4_U_N4 N4_N1 N1_N2 N2_N3 N3_N3_U/>
-<route id=N4_U_N4_N3_N3_R edges=N4_U_N4 N4_N1 N1_N2 N2_N3 N3_N3_R/>
-<route id=N4_L_N4_N4_N4_U edges=N4_L_N4 N4_N4_U/>
-<route id=N4_L_N4_N1_N1_L edges=N4_L_N4 N4_N1 N1_N1_L/>
-<route id=N4_L_N4_N1_N1_D edges=N4_L_N4 N4_N1 N1_N1_D/>
-<route id=N4_L_N4_N2_N2_R edges=N4_L_N4 N4_N1 N1_N2 N2_N2_R/>
-<route id=N4_L_N4_N2_N2_D edges=N4_L_N4 N4_N1 N1_N2 N2_N2_D/>
-<route id=N4_L_N4_N3_N3_U edges=N4_L_N4 N4_N1 N1_N2 N2_N3 N3_N3_U/>
-<route id=N4_L_N4_N3_N3_R edges=N4_L_N4 N4_N1 N1_N2 N2_N3 N3_N3_R/>
+<route id="r0" edges="N1_L_N1 N1_N1_D"/>
+<route id="r1" edges="N1_L_N1 N1_N2 N2_N2_R"/>
+<route id="r2" edges="N1_L_N1 N1_N2 N2_N2_D"/>
+<route id="r3" edges="N1_L_N1 N1_N2 N2_N3 N3_N3_U"/>
+<route id="r4" edges="N1_L_N1 N1_N2 N2_N3 N3_N3_R"/>
+<route id="r5" edges="N1_L_N1 N1_N2 N2_N3 N3_N4 N4_N4_U"/>
+<route id="r6" edges="N1_L_N1 N1_N2 N2_N3 N3_N4 N4_N4_L"/>
+<route id="r7" edges="N1_L_N1 N1_N4 N4_N4_U"/>
+<route id="r8" edges="N1_L_N1 N1_N4 N4_N4_L"/>
+<route id="r9" edges="N1_L_N1 N1_N4 N4_N3 N3_N3_U"/>
+<route id="r10" edges="N1_L_N1 N1_N4 N4_N3 N3_N3_R"/>
+<route id="r11" edges="N1_L_N1 N1_N4 N4_N3 N3_N2 N2_N2_R"/>
+<route id="r12" edges="N1_L_N1 N1_N4 N4_N3 N3_N2 N2_N2_D"/>
+<route id="r13" edges="N1_D_N1 N1_N1_L"/>
+<route id="r14" edges="N1_D_N1 N1_N2 N2_N2_R"/>
+<route id="r15" edges="N1_D_N1 N1_N2 N2_N2_D"/>
+<route id="r16" edges="N1_D_N1 N1_N2 N2_N3 N3_N3_U"/>
+<route id="r17" edges="N1_D_N1 N1_N2 N2_N3 N3_N3_R"/>
+<route id="r18" edges="N1_D_N1 N1_N2 N2_N3 N3_N4 N4_N4_U"/>
+<route id="r19" edges="N1_D_N1 N1_N2 N2_N3 N3_N4 N4_N4_L"/>
+<route id="r20" edges="N1_D_N1 N1_N4 N4_N4_U"/>
+<route id="r21" edges="N1_D_N1 N1_N4 N4_N4_L"/>
+<route id="r22" edges="N1_D_N1 N1_N4 N4_N3 N3_N3_U"/>
+<route id="r23" edges="N1_D_N1 N1_N4 N4_N3 N3_N3_R"/>
+<route id="r24" edges="N1_D_N1 N1_N4 N4_N3 N3_N2 N2_N2_R"/>
+<route id="r25" edges="N1_D_N1 N1_N4 N4_N3 N3_N2 N2_N2_D"/>
+<route id="r26" edges="N2_D_N2 N2_N2_R"/>
+<route id="r27" edges="N2_D_N2 N2_N3 N3_N3_U"/>
+<route id="r28" edges="N2_D_N2 N2_N3 N3_N3_R"/>
+<route id="r29" edges="N2_D_N2 N2_N3 N3_N4 N4_N4_U"/>
+<route id="r30" edges="N2_D_N2 N2_N3 N3_N4 N4_N4_L"/>
+<route id="r31" edges="N2_D_N2 N2_N3 N3_N4 N4_N1 N1_N1_L"/>
+<route id="r32" edges="N2_D_N2 N2_N3 N3_N4 N4_N1 N1_N1_D"/>
+<route id="r33" edges="N2_D_N2 N2_N1 N1_N1_L"/>
+<route id="r34" edges="N2_D_N2 N2_N1 N1_N1_D"/>
+<route id="r35" edges="N2_D_N2 N2_N1 N1_N4 N4_N4_U"/>
+<route id="r36" edges="N2_D_N2 N2_N1 N1_N4 N4_N4_L"/>
+<route id="r37" edges="N2_D_N2 N2_N1 N1_N4 N4_N3 N3_N3_U"/>
+<route id="r38" edges="N2_D_N2 N2_N1 N1_N4 N4_N3 N3_N3_R"/>
+<route id="r39" edges="N2_R_N2 N2_N2_D"/>
+<route id="r40" edges="N2_R_N2 N2_N3 N3_N3_U"/>
+<route id="r41" edges="N2_R_N2 N2_N3 N3_N3_R"/>
+<route id="r42" edges="N2_R_N2 N2_N3 N3_N4 N4_N4_U"/>
+<route id="r43" edges="N2_R_N2 N2_N3 N3_N4 N4_N4_L"/>
+<route id="r44" edges="N2_R_N2 N2_N3 N3_N4 N4_N1 N1_N1_L"/>
+<route id="r45" edges="N2_R_N2 N2_N3 N3_N4 N4_N1 N1_N1_D"/>
+<route id="r46" edges="N2_R_N2 N2_N1 N1_N1_L"/>
+<route id="r47" edges="N2_R_N2 N2_N1 N1_N1_D"/>
+<route id="r48" edges="N2_R_N2 N2_N1 N1_N4 N4_N4_U"/>
+<route id="r49" edges="N2_R_N2 N2_N1 N1_N4 N4_N4_L"/>
+<route id="r50" edges="N2_R_N2 N2_N1 N1_N4 N4_N3 N3_N3_U"/>
+<route id="r51" edges="N2_R_N2 N2_N1 N1_N4 N4_N3 N3_N3_R"/>
+<route id="r52" edges="N3_R_N3 N3_N3_U"/>
+<route id="r53" edges="N3_R_N3 N3_N2 N2_N2_R"/>
+<route id="r54" edges="N3_R_N3 N3_N2 N2_N2_D"/>
+<route id="r55" edges="N3_R_N3 N3_N2 N2_N1 N1_N1_L"/>
+<route id="r56" edges="N3_R_N3 N3_N2 N2_N1 N1_N1_D"/>
+<route id="r57" edges="N3_R_N3 N3_N2 N2_N1 N1_N4 N4_N4_U"/>
+<route id="r58" edges="N3_R_N3 N3_N2 N2_N1 N1_N4 N4_N4_L"/>
+<route id="r59" edges="N3_R_N3 N3_N4 N4_N4_U"/>
+<route id="r60" edges="N3_R_N3 N3_N4 N4_N4_L"/>
+<route id="r61" edges="N3_R_N3 N3_N4 N4_N1 N1_N1_L"/>
+<route id="r62" edges="N3_R_N3 N3_N4 N4_N1 N1_N1_D"/>
+<route id="r63" edges="N3_R_N3 N3_N4 N4_N1 N1_N2 N2_N2_R"/>
+<route id="r64" edges="N3_R_N3 N3_N4 N4_N1 N1_N2 N2_N2_D"/>
+<route id="r65" edges="N3_U_N3 N3_N3_R"/>
+<route id="r66" edges="N3_U_N3 N3_N2 N2_N2_R"/>
+<route id="r67" edges="N3_U_N3 N3_N2 N2_N2_D"/>
+<route id="r68" edges="N3_U_N3 N3_N2 N2_N1 N1_N1_L"/>
+<route id="r69" edges="N3_U_N3 N3_N2 N2_N1 N1_N1_D"/>
+<route id="r70" edges="N3_U_N3 N3_N2 N2_N1 N1_N4 N4_N4_U"/>
+<route id="r71" edges="N3_U_N3 N3_N2 N2_N1 N1_N4 N4_N4_L"/>
+<route id="r72" edges="N3_U_N3 N3_N4 N4_N4_U"/>
+<route id="r73" edges="N3_U_N3 N3_N4 N4_N4_L"/>
+<route id="r74" edges="N3_U_N3 N3_N4 N4_N1 N1_N1_L"/>
+<route id="r75" edges="N3_U_N3 N3_N4 N4_N1 N1_N1_D"/>
+<route id="r76" edges="N3_U_N3 N3_N4 N4_N1 N1_N2 N2_N2_R"/>
+<route id="r77" edges="N3_U_N3 N3_N4 N4_N1 N1_N2 N2_N2_D"/>
+<route id="r78" edges="N4_U_N4 N4_N4_L"/>
+<route id="r79" edges="N4_U_N4 N4_N1 N1_N1_L"/>
+<route id="r80" edges="N4_U_N4 N4_N1 N1_N1_D"/>
+<route id="r81" edges="N4_U_N4 N4_N1 N1_N2 N2_N2_R"/>
+<route id="r82" edges="N4_U_N4 N4_N1 N1_N2 N2_N2_D"/>
+<route id="r83" edges="N4_U_N4 N4_N1 N1_N2 N2_N3 N3_N3_U"/>
+<route id="r84" edges="N4_U_N4 N4_N1 N1_N2 N2_N3 N3_N3_R"/>
+<route id="r85" edges="N4_U_N4 N4_N3 N3_N3_U"/>
+<route id="r86" edges="N4_U_N4 N4_N3 N3_N3_R"/>
+<route id="r87" edges="N4_U_N4 N4_N3 N3_N2 N2_N2_R"/>
+<route id="r88" edges="N4_U_N4 N4_N3 N3_N2 N2_N2_D"/>
+<route id="r89" edges="N4_U_N4 N4_N3 N3_N2 N2_N1 N1_N1_L"/>
+<route id="r90" edges="N4_U_N4 N4_N3 N3_N2 N2_N1 N1_N1_D"/>
+<route id="r91" edges="N4_L_N4 N4_N4_U"/>
+<route id="r92" edges="N4_L_N4 N4_N1 N1_N1_L"/>
+<route id="r93" edges="N4_L_N4 N4_N1 N1_N1_D"/>
+<route id="r94" edges="N4_L_N4 N4_N1 N1_N2 N2_N2_R"/>
+<route id="r95" edges="N4_L_N4 N4_N1 N1_N2 N2_N2_D"/>
+<route id="r96" edges="N4_L_N4 N4_N1 N1_N2 N2_N3 N3_N3_U"/>
+<route id="r97" edges="N4_L_N4 N4_N1 N1_N2 N2_N3 N3_N3_R"/>
+<route id="r98" edges="N4_L_N4 N4_N3 N3_N3_U"/>
+<route id="r99" edges="N4_L_N4 N4_N3 N3_N3_R"/>
+<route id="r100" edges="N4_L_N4 N4_N3 N3_N2 N2_N2_R"/>
+<route id="r101" edges="N4_L_N4 N4_N3 N3_N2 N2_N2_D"/>
+<route id="r102" edges="N4_L_N4 N4_N3 N3_N2 N2_N1 N1_N1_L"/>
+<route id="r103" edges="N4_L_N4 N4_N3 N3_N2 N2_N1 N1_N1_D"/>
