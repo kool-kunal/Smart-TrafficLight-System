@@ -37,110 +37,110 @@ class TrafficGenerator:
             print("""<routes>
             <vType accel="1.0" decel="4.5" id="standard_car" length="5.0" minGap="2.5" maxSpeed="25" sigma="0.5" />
 
-            <route id="r_0_0" edges="N1_L_N1 N1_N2 N2_N2_R"/>
-            <route id="r_0_1" edges="N3_U_N3 N3_N2 N2_N2_D"/>
-            <route id="r_0_2" edges="N4_L_N4 N4_N3 N3_N3_R"/>
-            <route id="r_0_3" edges="N4_U_N4 N4_N1 N1_N1_D"/>
-            <route id="r_1_4" edges="N1_D_N1 N1_N1_L"/>
-            <route id="r_1_5" edges="N1_D_N1 N1_N2 N2_N2_R"/>
-            <route id="r_1_6" edges="N1_L_N1 N1_N1_D"/>
-            <route id="r_1_7" edges="N1_L_N1 N1_N2 N2_N2_D"/>
-            <route id="r_1_8" edges="N2_D_N2 N2_N2_R"/>
-            <route id="r_1_9" edges="N2_R_N2 N2_N2_D"/>
-            <route id="r_1_10" edges="N3_R_N3 N3_N2 N2_N2_D"/>
-            <route id="r_1_11" edges="N3_R_N3 N3_N3_U"/>
-            <route id="r_1_12" edges="N3_U_N3 N3_N2 N2_N2_R"/>
-            <route id="r_1_13" edges="N3_U_N3 N3_N3_R"/>
-            <route id="r_1_14" edges="N4_L_N4 N4_N1 N1_N1_D"/>
-            <route id="r_1_15" edges="N4_L_N4 N4_N3 N3_N2 N2_N2_D"/>
-            <route id="r_1_16" edges="N4_L_N4 N4_N3 N3_N3_U"/>
-            <route id="r_1_17" edges="N4_L_N4 N4_N4_U"/>
-            <route id="r_1_18" edges="N4_U_N4 N4_N1 N1_N1_L"/>
-            <route id="r_1_19" edges="N4_U_N4 N4_N1 N1_N2 N2_N2_R"/>
-            <route id="r_1_20" edges="N4_U_N4 N4_N3 N3_N3_R"/>
-            <route id="r_1_21" edges="N4_U_N4 N4_N4_L"/>
-            <route id="r_2_22" edges="N1_D_N1 N1_N2 N2_N2_D"/>
-            <route id="r_2_23" edges="N1_D_N1 N1_N4 N4_N3 N3_N3_R"/>
-            <route id="r_2_24" edges="N1_D_N1 N1_N4 N4_N4_L"/>
-            <route id="r_2_25" edges="N1_D_N1 N1_N4 N4_N4_U"/>
-            <route id="r_2_26" edges="N1_L_N1 N1_N2 N2_N3 N3_N3_R"/>
-            <route id="r_2_27" edges="N1_L_N1 N1_N2 N2_N3 N3_N3_U"/>
-            <route id="r_2_28" edges="N1_L_N1 N1_N4 N4_N3 N3_N3_R"/>
-            <route id="r_2_29" edges="N1_L_N1 N1_N4 N4_N4_L"/>
-            <route id="r_2_30" edges="N1_L_N1 N1_N4 N4_N4_U"/>
-            <route id="r_2_31" edges="N2_D_N2 N2_N1 N1_N1_D"/>
-            <route id="r_2_32" edges="N2_D_N2 N2_N1 N1_N1_L"/>
-            <route id="r_2_33" edges="N2_D_N2 N2_N3 N3_N3_R"/>
-            <route id="r_2_34" edges="N2_D_N2 N2_N3 N3_N3_U"/>
-            <route id="r_2_35" edges="N2_R_N2 N2_N1 N1_N1_D"/>
-            <route id="r_2_36" edges="N2_R_N2 N2_N1 N1_N1_L"/>
-            <route id="r_2_37" edges="N2_R_N2 N2_N3 N3_N3_R"/>
-            <route id="r_2_38" edges="N2_R_N2 N2_N3 N3_N3_U"/>
-            <route id="r_2_39" edges="N3_R_N3 N3_N2 N2_N2_R"/>
-            <route id="r_2_40" edges="N3_R_N3 N3_N4 N4_N1 N1_N1_D"/>
-            <route id="r_2_41" edges="N3_R_N3 N3_N4 N4_N4_L"/>
-            <route id="r_2_42" edges="N3_R_N3 N3_N4 N4_N4_U"/>
-            <route id="r_2_43" edges="N3_U_N3 N3_N2 N2_N1 N1_N1_D"/>
-            <route id="r_2_44" edges="N3_U_N3 N3_N2 N2_N1 N1_N1_L"/>
-            <route id="r_2_45" edges="N3_U_N3 N3_N4 N4_N1 N1_N1_D"/>
-            <route id="r_2_46" edges="N3_U_N3 N3_N4 N4_N4_L"/>
-            <route id="r_2_47" edges="N3_U_N3 N3_N4 N4_N4_U"/>
-            <route id="r_2_48" edges="N4_L_N4 N4_N1 N1_N1_L"/>
-            <route id="r_2_49" edges="N4_L_N4 N4_N1 N1_N2 N2_N2_R"/>
-            <route id="r_2_50" edges="N4_L_N4 N4_N3 N3_N2 N2_N2_R"/>
-            <route id="r_2_51" edges="N4_U_N4 N4_N1 N1_N2 N2_N2_D"/>
-            <route id="r_2_52" edges="N4_U_N4 N4_N3 N3_N2 N2_N2_D"/>
-            <route id="r_2_53" edges="N4_U_N4 N4_N3 N3_N3_U"/>
-            <route id="r_3_54" edges="N1_D_N1 N1_N2 N2_N3 N3_N3_R"/>
-            <route id="r_3_55" edges="N1_D_N1 N1_N2 N2_N3 N3_N3_U"/>
-            <route id="r_3_56" edges="N1_D_N1 N1_N4 N4_N3 N3_N2 N2_N2_D"/>
-            <route id="r_3_57" edges="N1_D_N1 N1_N4 N4_N3 N3_N3_U"/>
-            <route id="r_3_58" edges="N1_L_N1 N1_N2 N2_N3 N3_N4 N4_N4_L"/>
-            <route id="r_3_59" edges="N1_L_N1 N1_N2 N2_N3 N3_N4 N4_N4_U"/>
-            <route id="r_3_60" edges="N1_L_N1 N1_N4 N4_N3 N3_N2 N2_N2_D"/>
-            <route id="r_3_61" edges="N1_L_N1 N1_N4 N4_N3 N3_N3_U"/>
-            <route id="r_3_62" edges="N2_D_N2 N2_N1 N1_N4 N4_N3 N3_N3_R"/>
-            <route id="r_3_63" edges="N2_D_N2 N2_N1 N1_N4 N4_N4_L"/>
-            <route id="r_3_64" edges="N2_D_N2 N2_N1 N1_N4 N4_N4_U"/>
-            <route id="r_3_65" edges="N2_D_N2 N2_N3 N3_N4 N4_N1 N1_N1_D"/>
-            <route id="r_3_66" edges="N2_D_N2 N2_N3 N3_N4 N4_N4_L"/>
-            <route id="r_3_67" edges="N2_D_N2 N2_N3 N3_N4 N4_N4_U"/>
-            <route id="r_3_68" edges="N2_R_N2 N2_N1 N1_N4 N4_N3 N3_N3_R"/>
-            <route id="r_3_69" edges="N2_R_N2 N2_N1 N1_N4 N4_N4_L"/>
-            <route id="r_3_70" edges="N2_R_N2 N2_N1 N1_N4 N4_N4_U"/>
-            <route id="r_3_71" edges="N2_R_N2 N2_N3 N3_N4 N4_N1 N1_N1_D"/>
-            <route id="r_3_72" edges="N2_R_N2 N2_N3 N3_N4 N4_N4_L"/>
-            <route id="r_3_73" edges="N2_R_N2 N2_N3 N3_N4 N4_N4_U"/>
-            <route id="r_3_74" edges="N3_R_N3 N3_N2 N2_N1 N1_N1_D"/>
-            <route id="r_3_75" edges="N3_R_N3 N3_N2 N2_N1 N1_N1_L"/>
-            <route id="r_3_76" edges="N3_R_N3 N3_N4 N4_N1 N1_N1_L"/>
-            <route id="r_3_77" edges="N3_R_N3 N3_N4 N4_N1 N1_N2 N2_N2_R"/>
-            <route id="r_3_78" edges="N3_U_N3 N3_N2 N2_N1 N1_N4 N4_N4_L"/>
-            <route id="r_3_79" edges="N3_U_N3 N3_N2 N2_N1 N1_N4 N4_N4_U"/>
-            <route id="r_3_80" edges="N3_U_N3 N3_N4 N4_N1 N1_N1_L"/>
-            <route id="r_3_81" edges="N3_U_N3 N3_N4 N4_N1 N1_N2 N2_N2_R"/>
-            <route id="r_3_82" edges="N4_L_N4 N4_N1 N1_N2 N2_N2_D"/>
-            <route id="r_3_83" edges="N4_L_N4 N4_N3 N3_N2 N2_N1 N1_N1_D"/>
-            <route id="r_3_84" edges="N4_L_N4 N4_N3 N3_N2 N2_N1 N1_N1_L"/>
-            <route id="r_3_85" edges="N4_U_N4 N4_N1 N1_N2 N2_N3 N3_N3_R"/>
-            <route id="r_3_86" edges="N4_U_N4 N4_N1 N1_N2 N2_N3 N3_N3_U"/>
-            <route id="r_3_87" edges="N4_U_N4 N4_N3 N3_N2 N2_N2_R"/>
-            <route id="r_4_88" edges="N1_D_N1 N1_N2 N2_N3 N3_N4 N4_N4_L"/>
-            <route id="r_4_89" edges="N1_D_N1 N1_N2 N2_N3 N3_N4 N4_N4_U"/>
-            <route id="r_4_90" edges="N1_D_N1 N1_N4 N4_N3 N3_N2 N2_N2_R"/>
-            <route id="r_4_91" edges="N1_L_N1 N1_N4 N4_N3 N3_N2 N2_N2_R"/>
-            <route id="r_4_92" edges="N2_D_N2 N2_N1 N1_N4 N4_N3 N3_N3_U"/>
-            <route id="r_4_93" edges="N2_D_N2 N2_N3 N3_N4 N4_N1 N1_N1_L"/>
-            <route id="r_4_94" edges="N2_R_N2 N2_N1 N1_N4 N4_N3 N3_N3_U"/>
-            <route id="r_4_95" edges="N2_R_N2 N2_N3 N3_N4 N4_N1 N1_N1_L"/>
-            <route id="r_4_96" edges="N3_R_N3 N3_N2 N2_N1 N1_N4 N4_N4_L"/>
-            <route id="r_4_97" edges="N3_R_N3 N3_N2 N2_N1 N1_N4 N4_N4_U"/>
-            <route id="r_4_98" edges="N3_R_N3 N3_N4 N4_N1 N1_N2 N2_N2_D"/>
-            <route id="r_4_99" edges="N3_U_N3 N3_N4 N4_N1 N1_N2 N2_N2_D"/>
-            <route id="r_4_100" edges="N4_L_N4 N4_N1 N1_N2 N2_N3 N3_N3_R"/>
-            <route id="r_4_101" edges="N4_L_N4 N4_N1 N1_N2 N2_N3 N3_N3_U"/>
-            <route id="r_4_102" edges="N4_U_N4 N4_N3 N3_N2 N2_N1 N1_N1_D"/>
-            <route id="r_4_103" edges="N4_U_N4 N4_N3 N3_N2 N2_N1 N1_N1_L"/>""", file=routes)
+            <route id="r_0_2_0" edges="N1_L_N1 N1_N2 N2_N2_R"/>
+            <route id="r_0_2_1" edges="N3_U_N3 N3_N2 N2_N2_D"/>
+            <route id="r_0_2_2" edges="N4_L_N4 N4_N3 N3_N3_R"/>
+            <route id="r_0_2_3" edges="N4_U_N4 N4_N1 N1_N1_D"/>
+            <route id="r_1_0_4" edges="N1_D_N1 N1_N1_L"/>
+            <route id="r_1_0_5" edges="N1_L_N1 N1_N1_D"/>
+            <route id="r_1_0_6" edges="N2_D_N2 N2_N2_R"/>
+            <route id="r_1_0_7" edges="N2_R_N2 N2_N2_D"/>
+            <route id="r_1_0_8" edges="N3_R_N3 N3_N3_U"/>
+            <route id="r_1_0_9" edges="N3_U_N3 N3_N3_R"/>
+            <route id="r_1_0_10" edges="N4_L_N4 N4_N4_U"/>
+            <route id="r_1_0_11" edges="N4_U_N4 N4_N4_L"/>
+            <route id="r_1_1_12" edges="N1_D_N1 N1_N2 N2_N2_R"/>
+            <route id="r_1_1_13" edges="N1_L_N1 N1_N2 N2_N2_D"/>
+            <route id="r_1_1_14" edges="N3_R_N3 N3_N2 N2_N2_D"/>
+            <route id="r_1_1_15" edges="N3_U_N3 N3_N2 N2_N2_R"/>
+            <route id="r_1_1_16" edges="N4_L_N4 N4_N1 N1_N1_D"/>
+            <route id="r_1_1_17" edges="N4_L_N4 N4_N3 N3_N3_U"/>
+            <route id="r_1_1_18" edges="N4_U_N4 N4_N1 N1_N1_L"/>
+            <route id="r_1_1_19" edges="N4_U_N4 N4_N3 N3_N3_R"/>
+            <route id="r_1_2_20" edges="N4_L_N4 N4_N3 N3_N2 N2_N2_D"/>
+            <route id="r_1_2_21" edges="N4_U_N4 N4_N1 N1_N2 N2_N2_R"/>
+            <route id="r_2_0_22" edges="N1_D_N1 N1_N2 N2_N2_D"/>
+            <route id="r_2_0_23" edges="N1_D_N1 N1_N4 N4_N4_L"/>
+            <route id="r_2_0_24" edges="N1_D_N1 N1_N4 N4_N4_U"/>
+            <route id="r_2_0_25" edges="N1_L_N1 N1_N4 N4_N4_L"/>
+            <route id="r_2_0_26" edges="N1_L_N1 N1_N4 N4_N4_U"/>
+            <route id="r_2_0_27" edges="N2_D_N2 N2_N1 N1_N1_D"/>
+            <route id="r_2_0_28" edges="N2_D_N2 N2_N1 N1_N1_L"/>
+            <route id="r_2_0_29" edges="N2_D_N2 N2_N3 N3_N3_R"/>
+            <route id="r_2_0_30" edges="N2_D_N2 N2_N3 N3_N3_U"/>
+            <route id="r_2_0_31" edges="N2_R_N2 N2_N1 N1_N1_D"/>
+            <route id="r_2_0_32" edges="N2_R_N2 N2_N1 N1_N1_L"/>
+            <route id="r_2_0_33" edges="N2_R_N2 N2_N3 N3_N3_R"/>
+            <route id="r_2_0_34" edges="N2_R_N2 N2_N3 N3_N3_U"/>
+            <route id="r_2_0_35" edges="N3_R_N3 N3_N2 N2_N2_R"/>
+            <route id="r_2_0_36" edges="N3_R_N3 N3_N4 N4_N4_L"/>
+            <route id="r_2_0_37" edges="N3_R_N3 N3_N4 N4_N4_U"/>
+            <route id="r_2_0_38" edges="N3_U_N3 N3_N4 N4_N4_L"/>
+            <route id="r_2_0_39" edges="N3_U_N3 N3_N4 N4_N4_U"/>
+            <route id="r_2_0_40" edges="N4_L_N4 N4_N1 N1_N1_L"/>
+            <route id="r_2_0_41" edges="N4_U_N4 N4_N3 N3_N3_U"/>
+            <route id="r_2_1_42" edges="N1_D_N1 N1_N4 N4_N3 N3_N3_R"/>
+            <route id="r_2_1_43" edges="N1_L_N1 N1_N2 N2_N3 N3_N3_R"/>
+            <route id="r_2_1_44" edges="N1_L_N1 N1_N2 N2_N3 N3_N3_U"/>
+            <route id="r_2_1_45" edges="N1_L_N1 N1_N4 N4_N3 N3_N3_R"/>
+            <route id="r_2_1_46" edges="N3_R_N3 N3_N4 N4_N1 N1_N1_D"/>
+            <route id="r_2_1_47" edges="N3_U_N3 N3_N2 N2_N1 N1_N1_D"/>
+            <route id="r_2_1_48" edges="N3_U_N3 N3_N2 N2_N1 N1_N1_L"/>
+            <route id="r_2_1_49" edges="N3_U_N3 N3_N4 N4_N1 N1_N1_D"/>
+            <route id="r_2_1_50" edges="N4_L_N4 N4_N1 N1_N2 N2_N2_R"/>
+            <route id="r_2_1_51" edges="N4_L_N4 N4_N3 N3_N2 N2_N2_R"/>
+            <route id="r_2_1_52" edges="N4_U_N4 N4_N1 N1_N2 N2_N2_D"/>
+            <route id="r_2_1_53" edges="N4_U_N4 N4_N3 N3_N2 N2_N2_D"/>
+            <route id="r_3_0_54" edges="N1_D_N1 N1_N2 N2_N3 N3_N3_R"/>
+            <route id="r_3_0_55" edges="N1_D_N1 N1_N2 N2_N3 N3_N3_U"/>
+            <route id="r_3_0_56" edges="N1_D_N1 N1_N4 N4_N3 N3_N3_U"/>
+            <route id="r_3_0_57" edges="N1_L_N1 N1_N4 N4_N3 N3_N3_U"/>
+            <route id="r_3_0_58" edges="N2_D_N2 N2_N1 N1_N4 N4_N4_L"/>
+            <route id="r_3_0_59" edges="N2_D_N2 N2_N1 N1_N4 N4_N4_U"/>
+            <route id="r_3_0_60" edges="N2_D_N2 N2_N3 N3_N4 N4_N4_L"/>
+            <route id="r_3_0_61" edges="N2_D_N2 N2_N3 N3_N4 N4_N4_U"/>
+            <route id="r_3_0_62" edges="N2_R_N2 N2_N1 N1_N4 N4_N4_L"/>
+            <route id="r_3_0_63" edges="N2_R_N2 N2_N1 N1_N4 N4_N4_U"/>
+            <route id="r_3_0_64" edges="N2_R_N2 N2_N3 N3_N4 N4_N4_L"/>
+            <route id="r_3_0_65" edges="N2_R_N2 N2_N3 N3_N4 N4_N4_U"/>
+            <route id="r_3_0_66" edges="N3_R_N3 N3_N2 N2_N1 N1_N1_D"/>
+            <route id="r_3_0_67" edges="N3_R_N3 N3_N2 N2_N1 N1_N1_L"/>
+            <route id="r_3_0_68" edges="N3_R_N3 N3_N4 N4_N1 N1_N1_L"/>
+            <route id="r_3_0_69" edges="N3_U_N3 N3_N4 N4_N1 N1_N1_L"/>
+            <route id="r_3_0_70" edges="N4_L_N4 N4_N1 N1_N2 N2_N2_D"/>
+            <route id="r_3_0_71" edges="N4_U_N4 N4_N3 N3_N2 N2_N2_R"/>
+            <route id="r_3_1_72" edges="N1_D_N1 N1_N4 N4_N3 N3_N2 N2_N2_D"/>
+            <route id="r_3_1_73" edges="N1_L_N1 N1_N2 N2_N3 N3_N4 N4_N4_L"/>
+            <route id="r_3_1_74" edges="N1_L_N1 N1_N2 N2_N3 N3_N4 N4_N4_U"/>
+            <route id="r_3_1_75" edges="N1_L_N1 N1_N4 N4_N3 N3_N2 N2_N2_D"/>
+            <route id="r_3_1_76" edges="N2_D_N2 N2_N1 N1_N4 N4_N3 N3_N3_R"/>
+            <route id="r_3_1_77" edges="N2_D_N2 N2_N3 N3_N4 N4_N1 N1_N1_D"/>
+            <route id="r_3_1_78" edges="N2_R_N2 N2_N1 N1_N4 N4_N3 N3_N3_R"/>
+            <route id="r_3_1_79" edges="N2_R_N2 N2_N3 N3_N4 N4_N1 N1_N1_D"/>
+            <route id="r_3_1_80" edges="N3_R_N3 N3_N4 N4_N1 N1_N2 N2_N2_R"/>
+            <route id="r_3_1_81" edges="N3_U_N3 N3_N2 N2_N1 N1_N4 N4_N4_L"/>
+            <route id="r_3_1_82" edges="N3_U_N3 N3_N2 N2_N1 N1_N4 N4_N4_U"/>
+            <route id="r_3_1_83" edges="N3_U_N3 N3_N4 N4_N1 N1_N2 N2_N2_R"/>
+            <route id="r_3_1_84" edges="N4_L_N4 N4_N3 N3_N2 N2_N1 N1_N1_D"/>
+            <route id="r_3_1_85" edges="N4_L_N4 N4_N3 N3_N2 N2_N1 N1_N1_L"/>
+            <route id="r_3_1_86" edges="N4_U_N4 N4_N1 N1_N2 N2_N3 N3_N3_R"/>
+            <route id="r_3_1_87" edges="N4_U_N4 N4_N1 N1_N2 N2_N3 N3_N3_U"/>
+            <route id="r_4_0_88" edges="N1_D_N1 N1_N2 N2_N3 N3_N4 N4_N4_L"/>
+            <route id="r_4_0_89" edges="N1_D_N1 N1_N2 N2_N3 N3_N4 N4_N4_U"/>
+            <route id="r_4_0_90" edges="N1_D_N1 N1_N4 N4_N3 N3_N2 N2_N2_R"/>
+            <route id="r_4_0_91" edges="N1_L_N1 N1_N4 N4_N3 N3_N2 N2_N2_R"/>
+            <route id="r_4_0_92" edges="N2_D_N2 N2_N1 N1_N4 N4_N3 N3_N3_U"/>
+            <route id="r_4_0_93" edges="N2_D_N2 N2_N3 N3_N4 N4_N1 N1_N1_L"/>
+            <route id="r_4_0_94" edges="N2_R_N2 N2_N1 N1_N4 N4_N3 N3_N3_U"/>
+            <route id="r_4_0_95" edges="N2_R_N2 N2_N3 N3_N4 N4_N1 N1_N1_L"/>
+            <route id="r_4_0_96" edges="N3_R_N3 N3_N2 N2_N1 N1_N4 N4_N4_L"/>
+            <route id="r_4_0_97" edges="N3_R_N3 N3_N2 N2_N1 N1_N4 N4_N4_U"/>
+            <route id="r_4_0_98" edges="N3_R_N3 N3_N4 N4_N1 N1_N2 N2_N2_D"/>
+            <route id="r_4_0_99" edges="N3_U_N3 N3_N4 N4_N1 N1_N2 N2_N2_D"/>
+            <route id="r_4_0_100" edges="N4_L_N4 N4_N1 N1_N2 N2_N3 N3_N3_R"/>
+            <route id="r_4_0_101" edges="N4_L_N4 N4_N1 N1_N2 N2_N3 N3_N3_U"/>
+            <route id="r_4_0_102" edges="N4_U_N4 N4_N3 N3_N2 N2_N1 N1_N1_D"/>
+            <route id="r_4_0_103" edges="N4_U_N4 N4_N3 N3_N2 N2_N1 N1_N1_L"/>""", file=routes)
 
             for car_counter, step in enumerate(car_gen_steps):
                 straight_or_turn = np.random.uniform()
@@ -285,6 +285,7 @@ class TrafficGenerator:
 #     for path in paths:
 #         edges = path.split(" ")
 #         turn = 0
+#         straight = 0
 #         for i in range(1,len(edges)):
 #             d = directions[edges[i]]
 #             d_prev = directions[edges[i-1]]
@@ -292,16 +293,18 @@ class TrafficGenerator:
 #             if d=="N" or d=="S" and (d_prev == "W" or d_prev == "E"):
 #                 turn = turn+1
 #             elif d=="W" or d=="E" and (d_prev == "N" or d_prev=="S"):
-#                 turn = turn +1
+#                 turn = turn+1
+#             else:
+#                 straight = straight + 1
         
-#         routes.append((turn,path))
+#         routes.append((turn,straight,path))
 
 #     routes = sorted(routes)
 #     print(routes)
 
 #     for id,route in enumerate(routes):
-#         route_id = "r_" + str(route[0]) + "_" + str(id)
-#         route = f"""<route id="{route_id}" edges="{route[1]}"/>"""
+#         route_id = "r_" + str(route[0]) + "_" + str(route[1]) + "_" + str(id)
+#         route = f"""<route id="{route_id}" edges="{route[2]}"/>"""
 #         with open("routes.txt","a") as f:
 #             print(route,file=f)
     
