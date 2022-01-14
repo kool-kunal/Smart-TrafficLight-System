@@ -150,7 +150,6 @@ class ModelSimulation:
             lane_pos = traci.vehicle.getLanePosition(car_id)
             lane_id = traci.vehicle.getLaneID(car_id)
             lane_pos = 200 - lane_pos
-
             if lane_pos < 7:
                 lane_cell = 0
             elif lane_pos < 7:
@@ -173,49 +172,49 @@ class ModelSimulation:
                 lane_cell = 9
 
             if junction_id == 'N1':
-                if lane_id == 'N1_L_N1':
+                if lane_id == 'N1_L_N1_0':
                     lane_group = 0
-                elif lane_id == 'N2_N1':
+                elif lane_id == 'N2_N1_0':
                     lane_group = 1
-                elif lane_id == 'N4_N1':
+                elif lane_id == 'N4_N1_0':
                     lane_group = 2
-                elif lane_id == 'N1_D_N1':
+                elif lane_id == 'N1_D_N1_0':
                     lane_group = 3
                 else:
                     lane_group = -1
 
             elif junction_id == 'N2':
-                if lane_id == 'N1_N2':
+                if lane_id == 'N1_N2_0':
                     lane_group = 0
-                elif lane_id == 'N2_R_N2':
+                elif lane_id == 'N2_R_N2_0':
                     lane_group = 1
-                elif lane_id == 'N3_N2':
+                elif lane_id == 'N3_N2_0':
                     lane_group = 2
-                elif lane_id == 'N2_D_N2':
+                elif lane_id == 'N2_D_N2_0':
                     lane_group = 3
                 else:
                     lane_group = -1
 
             elif junction_id == 'N3':
-                if lane_id == 'N4_N3':
+                if lane_id == 'N4_N3_0':
                     lane_group = 0
-                elif lane_id == 'N3_R_N3':
+                elif lane_id == 'N3_R_N3_0':
                     lane_group = 1
-                elif lane_id == 'N3_U_N3':
+                elif lane_id == 'N3_U_N3_0':
                     lane_group = 2
-                elif lane_id == 'N2_N3':
+                elif lane_id == 'N2_N3_0':
                     lane_group = 3
                 else:
                     lane_group = -1
 
             else:
-                if lane_id == 'N4_L_N4':
+                if lane_id == 'N4_L_N4_0':
                     lane_group = 0
-                elif lane_id == 'N3_N4':
+                elif lane_id == 'N3_N4_0':
                     lane_group = 1
-                elif lane_id == 'N4_U_N4':
+                elif lane_id == 'N4_U_N4_0':
                     lane_group = 2
-                elif lane_id == 'N1_N4':
+                elif lane_id == 'N1_N4_0':
                     lane_group = 3
                 else:
                     lane_group = -1
