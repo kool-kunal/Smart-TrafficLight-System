@@ -5,7 +5,6 @@ import traci
 import numpy as np
 from enum import Enum
 
-
 PHASE_N_GREEN = 0
 PHASE_N_YELLOW = 1
 
@@ -25,7 +24,7 @@ class LightType(Enum):
 
 
 class ModelSimulation:
-    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, node_graph=None, junctions=None) -> None:
+    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, node_graph=None, junctions=None, starvation_penalty = 1.0) -> None:
         self._max_steps = max_steps
         self._n_cars_generated = n_cars
         self._num_states = num_states
@@ -33,11 +32,12 @@ class ModelSimulation:
             'sumo-gui') if show else checkBinary('sumo')
         self._sumo_cmd = [self._sumoBinary, "-c", os.path.join('environment', sumocfg_file_name),
                           "--no-step-log", "true", "-W", "--duration-log.disable", "--waiting-time-memory", str(max_steps)]
-        self._queue_lengths = np.zeros(4)
+        self._queue_lengths = np.zeros(16)
         self._waiting_times = {}
         self._yellow_light_dur = yellow_light_dur
         self._green_light_dur = green_light_dur
         self._number_of_cars_on_map = 0
+        self._starvation_penalty = starvation_penalty
         self._graph = {
             "N1_L": [{"N1": "N1_L_N1"}],
             "N1_D": [{"N1": "N1_D_N1"}],
@@ -58,7 +58,76 @@ class ModelSimulation:
 
         # print(self._green_light_dur)
 
-    def run(self, net):
+    def _update_queue_length(self):
+        self._queue_lengths[0] += traci.edge.getLastStepHaltingNumber("N1_L_N1")
+        self._queue_lengths[1] += traci.edge.getLastStepHaltingNumber("N1_D_N1")
+        self._queue_lengths[2] += traci.edge.getLastStepHaltingNumber("N2_N1")
+        self._queue_lengths[3] += traci.edge.getLastStepHaltingNumber("N4_N1")
+        self._queue_lengths[4] += traci.edge.getLastStepHaltingNumber("N1_N2")
+        self._queue_lengths[5] += traci.edge.getLastStepHaltingNumber("N2_D_N2")
+        self._queue_lengths[6] += traci.edge.getLastStepHaltingNumber("N2_R_N2")
+        self._queue_lengths[7] += traci.edge.getLastStepHaltingNumber("N3_N2")
+        self._queue_lengths[8] += traci.edge.getLastStepHaltingNumber("N4_N3")
+        self._queue_lengths[9] += traci.edge.getLastStepHaltingNumber("N2_N3")
+        self._queue_lengths[10] += traci.edge.getLastStepHaltingNumber("N3_R_N3")
+        self._queue_lengths[11] += traci.edge.getLastStepHaltingNumber("N3_U_N3")
+        self._queue_lengths[12] += traci.edge.getLastStepHaltingNumber("N4_L_N4")
+        self._queue_lengths[13] += traci.edge.getLastStepHaltingNumber("N1_N4")
+        self._queue_lengths[14] += traci.edge.getLastStepHaltingNumber("N4_U_N4")
+        self._queue_lengths[15] += traci.edge.getLastStepHaltingNumber("N3_N4")
+
+    def _average_queue_length(self):
+        return np.sum(self._queue_lengths/self._max_steps)
+
+    def _update_waiting_time(self):
+        car_list = traci.vehicle.getIDList()
+        for car_id in car_list:
+            wait_time = traci.vehicle.getAccumulatedWaitingTime(car_id)
+            self._waiting_times[car_id] = wait_time
+
+    def _average_waiting_time(self):
+        avg_waiting_time = np.sum(
+            [wait_time for car_id, wait_time in self._waiting_times.items()])/self._n_cars_generated
+        return avg_waiting_time
+
+
+    def _check_cars(self):
+        self._number_of_cars_on_map = len(traci.vehicle.getIDList())
+
+    def _penalize_for_starvation(self, fitness):
+        if self._number_of_cars_on_map > 0:
+            return fitness * self._starvation_penalty
+
+        return fitness
+
+    def _rms_waiting_time(self):
+        squared_list = [x**2 for car_id, x in self._waiting_times.items()]
+        sum_squared = sum(squared_list)
+        mean_squared = sum_squared/self._n_cars_generated
+        root_mean_squared_waiting_time = mean_squared**0.5
+        return self._penalize_for_starvation(root_mean_squared_waiting_time)
+
+    def _harmonic_mean_fitness(self):
+        avg_queue_length = self._average_queue_length()
+        avg_waiting_time = self._average_waiting_time()
+        harmonic_mean = 2 * (avg_queue_length * avg_waiting_time) / \
+            (avg_queue_length + avg_waiting_time)
+        return self._penalize_for_starvation(harmonic_mean)
+
+    def _run_ttl(self):
+        traci.start(self._sumo_cmd)
+        current_step = 0
+
+        while current_step <= self._max_steps:
+            traci.simulationStep()
+            current_step += 1
+            self._update_waiting_time()
+            self._update_queue_length()
+
+        self._check_cars()
+        traci.close()
+
+    def _run(self, net):
         starvation_counter = 1.0
         traci.start(self._sumo_cmd)
 
@@ -130,7 +199,10 @@ class ModelSimulation:
 
             current_step += 1
             traci.simulationStep()
-
+            self._update_queue_length()
+            self._update_waiting_time()
+        
+        self._check_cars()
         traci.close()
 
     def _predict_next_state(self, junction, light_state, net):
@@ -263,3 +335,19 @@ class ModelSimulation:
             traci.trafficlight.setPhase(junction_id, PHASE_S_GREEN)
         elif action_number == 3:
             traci.trafficlight.setPhase(junction_id, PHASE_W_GREEN)
+
+
+    def _refersh_params(self):
+        self._queue_lengths = np.zeros(16)
+        self._waiting_times = {}
+        self._number_of_cars_on_map = 0
+
+    def run_test_ttl(self):
+        self._refersh_params()
+        self._run_ttl()
+        return -1*self._rms_waiting_time(),-1*self._harmonic_mean_fitness(),self._average_queue_length(),self._average_waiting_time()
+
+    def run_test_net(self,net):
+        self._refersh_params()
+        self._run(net)
+        return -1*self._rms_waiting_time(),-1*self._harmonic_mean_fitness(),self._average_queue_length(),self._average_waiting_time()
