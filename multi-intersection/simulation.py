@@ -24,7 +24,7 @@ class LightType(Enum):
 
 
 class ModelSimulation:
-    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, node_graph=None, junctions=None, starvation_penalty = 1.0) -> None:
+    def __init__(self, max_steps, n_cars, num_states, sumocfg_file_name, green_light_dur, yellow_light_dur, show, node_graph=None, junctions=None, starvation_penalty=1.0) -> None:
         self._max_steps = max_steps
         self._n_cars_generated = n_cars
         self._num_states = num_states
@@ -59,21 +59,29 @@ class ModelSimulation:
         # print(self._green_light_dur)
 
     def _update_queue_length(self):
-        self._queue_lengths[0] += traci.edge.getLastStepHaltingNumber("N1_L_N1")
-        self._queue_lengths[1] += traci.edge.getLastStepHaltingNumber("N1_D_N1")
+        self._queue_lengths[0] += traci.edge.getLastStepHaltingNumber(
+            "N1_L_N1")
+        self._queue_lengths[1] += traci.edge.getLastStepHaltingNumber(
+            "N1_D_N1")
         self._queue_lengths[2] += traci.edge.getLastStepHaltingNumber("N2_N1")
         self._queue_lengths[3] += traci.edge.getLastStepHaltingNumber("N4_N1")
         self._queue_lengths[4] += traci.edge.getLastStepHaltingNumber("N1_N2")
-        self._queue_lengths[5] += traci.edge.getLastStepHaltingNumber("N2_D_N2")
-        self._queue_lengths[6] += traci.edge.getLastStepHaltingNumber("N2_R_N2")
+        self._queue_lengths[5] += traci.edge.getLastStepHaltingNumber(
+            "N2_D_N2")
+        self._queue_lengths[6] += traci.edge.getLastStepHaltingNumber(
+            "N2_R_N2")
         self._queue_lengths[7] += traci.edge.getLastStepHaltingNumber("N3_N2")
         self._queue_lengths[8] += traci.edge.getLastStepHaltingNumber("N4_N3")
         self._queue_lengths[9] += traci.edge.getLastStepHaltingNumber("N2_N3")
-        self._queue_lengths[10] += traci.edge.getLastStepHaltingNumber("N3_R_N3")
-        self._queue_lengths[11] += traci.edge.getLastStepHaltingNumber("N3_U_N3")
-        self._queue_lengths[12] += traci.edge.getLastStepHaltingNumber("N4_L_N4")
+        self._queue_lengths[10] += traci.edge.getLastStepHaltingNumber(
+            "N3_R_N3")
+        self._queue_lengths[11] += traci.edge.getLastStepHaltingNumber(
+            "N3_U_N3")
+        self._queue_lengths[12] += traci.edge.getLastStepHaltingNumber(
+            "N4_L_N4")
         self._queue_lengths[13] += traci.edge.getLastStepHaltingNumber("N1_N4")
-        self._queue_lengths[14] += traci.edge.getLastStepHaltingNumber("N4_U_N4")
+        self._queue_lengths[14] += traci.edge.getLastStepHaltingNumber(
+            "N4_U_N4")
         self._queue_lengths[15] += traci.edge.getLastStepHaltingNumber("N3_N4")
 
     def _average_queue_length(self):
@@ -89,7 +97,6 @@ class ModelSimulation:
         avg_waiting_time = np.sum(
             [wait_time for car_id, wait_time in self._waiting_times.items()])/self._n_cars_generated
         return avg_waiting_time
-
 
     def _check_cars(self):
         self._number_of_cars_on_map = len(traci.vehicle.getIDList())
@@ -127,9 +134,22 @@ class ModelSimulation:
         self._check_cars()
         traci.close()
 
+    def _check_starvation(self,last_steps, current_step):
+        t = -1
+        max_val = 120
+        for key, value in last_steps.items():
+            if current_step - value > max_val:
+                t = key
+                max_val = current_step - value
+
+        return t
+
     def _run(self, net):
-        starvation_counter = 1.0
+        starvation_counter = dict(
+            (key, dict((small_key, 0) for small_key in range(4))) for key in self._junctions)
         traci.start(self._sumo_cmd)
+
+        print(starvation_counter)
 
         initial_state = np.zeros(shape=(4,))
         initial_state[0] = 1
@@ -140,11 +160,11 @@ class ModelSimulation:
         # print(junction_record)
         current_step = 0
         while current_step <= self._max_steps:
-            print(current_step)
+            # print(current_step)
             for junction_id, junction in junction_record.items():
 
                 if junction['next_time'] == current_step:
-                    print('\t', junction_id, junction['light_type'])
+                    #print('\t', junction_id, junction['light_type'])
                     if junction['light_type'] == LightType.Yellow:
 
                         action = np.argmax(junction['last_state'])
@@ -166,6 +186,12 @@ class ModelSimulation:
                         predicted_state = self._predict_next_state(
                             junction_id, junction['next_state'], net)
 
+                        starvation_check = self._check_starvation(
+                            starvation_counter[junction_id], current_step)
+
+                        if starvation_check != -1:
+                            predicted_state[starvation_check] = 1.0
+
                         #print('\t', np.argmax(predicted_state))
 
                         previous_action = np.argmax(junction['last_state'])
@@ -177,12 +203,10 @@ class ModelSimulation:
                         #print('\t', action)
 
                         if action == previous_action:
-                            junction_record[junction_id]['next_state'][action] *=starvation_counter
-                            starvation_counter -= 0.05
                             junction_record[junction_id]['next_time'] = junction['next_time'] + \
                                 self._green_light_dur
                         else:
-                            starvation_counter = 1.0
+                            starvation_counter[junction_id][action] = current_step
                             junction_record[junction_id]['next_time'] = junction['next_time'] + \
                                 self._yellow_light_dur
                             junction_record[junction_id]['light_type'] = LightType.Yellow
@@ -201,7 +225,7 @@ class ModelSimulation:
             traci.simulationStep()
             self._update_queue_length()
             self._update_waiting_time()
-        
+
         self._check_cars()
         traci.close()
 
@@ -336,7 +360,6 @@ class ModelSimulation:
         elif action_number == 3:
             traci.trafficlight.setPhase(junction_id, PHASE_W_GREEN)
 
-
     def _refersh_params(self):
         self._queue_lengths = np.zeros(16)
         self._waiting_times = {}
@@ -345,9 +368,9 @@ class ModelSimulation:
     def run_test_ttl(self):
         self._refersh_params()
         self._run_ttl()
-        return -1*self._rms_waiting_time(),-1*self._harmonic_mean_fitness(),self._average_queue_length(),self._average_waiting_time()
+        return -1*self._rms_waiting_time(), -1*self._harmonic_mean_fitness(), self._average_queue_length(), self._average_waiting_time()
 
-    def run_test_net(self,net):
+    def run_test_net(self, net):
         self._refersh_params()
         self._run(net)
-        return -1*self._rms_waiting_time(),-1*self._harmonic_mean_fitness(),self._average_queue_length(),self._average_waiting_time()
+        return -1*self._rms_waiting_time(), -1*self._harmonic_mean_fitness(), self._average_queue_length(), self._average_waiting_time()

@@ -3,16 +3,16 @@ import pickle
 import neat
 from new_generator import TrafficGenerator
 
-MAX_STEPS = 300
+MAX_STEPS = 3000
 N_CARS = 300
 NUM_STATES = 40
 SUMO_CONFIG_FILE_NAME = 'sumo_config.sumocfg'
-NEAT_CONFIG_FILE_PATH =  'C:\\Users\\karti\\Desktop\\New_Training\\Smart-TrafficLight-System\\multi-intersection\\config\\config-feedforward.txt'
-TEST_MODEL_PATH = 'C:\\Users\\karti\\Desktop\\New_Training\\Smart-TrafficLight-System\\winner.p'
+NEAT_CONFIG_FILE_PATH =  'config/config-feedforward.txt'
+TEST_MODEL_PATH = '/home/kunal/Desktop/college/major_project/Smart-TrafficLight-System/checkpoints/training_with_avg_waiting_time_only/winner_1110.p'
 GREEN_DURATION = 15
 YELLOW_DURATION = 3
 TEST_RUNS = 2
-GUI = False
+GUI = True
 
 def run_test(simulator : simulation.ModelSimulation,net):
     results = {}
@@ -44,4 +44,11 @@ if __name__ == "__main__":
         result = run_test(simulator,net)
         results[i+1] = result
 
-    print(results)
+    for key, value in results.items():
+        print('=======TEST %i======='%key)
+        print('net              ttl')
+
+        for net_v, ttl_v in zip(value['net'], value['ttl']):
+            print("%.2f           %.2f"% (net_v, ttl_v))
+
+        print('\n')
