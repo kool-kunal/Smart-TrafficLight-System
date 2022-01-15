@@ -56,32 +56,27 @@ class ModelSimulation:
         self._junctions = ['N1', 'N2', 'N3',
                            'N4'] if junctions == None else junctions
 
+        self._car_ids = dict(
+            (key, dict((small_key, []) for small_key in range(4))) for key in self._junctions)
+
         # print(self._green_light_dur)
 
     def _update_queue_length(self):
-        self._queue_lengths[0] += traci.edge.getLastStepHaltingNumber(
-            "N1_L_N1")
-        self._queue_lengths[1] += traci.edge.getLastStepHaltingNumber(
-            "N1_D_N1")
+        self._queue_lengths[0] += traci.edge.getLastStepHaltingNumber("N1_L_N1")
+        self._queue_lengths[1] += traci.edge.getLastStepHaltingNumber("N1_D_N1")
         self._queue_lengths[2] += traci.edge.getLastStepHaltingNumber("N2_N1")
         self._queue_lengths[3] += traci.edge.getLastStepHaltingNumber("N4_N1")
         self._queue_lengths[4] += traci.edge.getLastStepHaltingNumber("N1_N2")
-        self._queue_lengths[5] += traci.edge.getLastStepHaltingNumber(
-            "N2_D_N2")
-        self._queue_lengths[6] += traci.edge.getLastStepHaltingNumber(
-            "N2_R_N2")
+        self._queue_lengths[5] += traci.edge.getLastStepHaltingNumber("N2_D_N2")
+        self._queue_lengths[6] += traci.edge.getLastStepHaltingNumber("N2_R_N2")
         self._queue_lengths[7] += traci.edge.getLastStepHaltingNumber("N3_N2")
         self._queue_lengths[8] += traci.edge.getLastStepHaltingNumber("N4_N3")
         self._queue_lengths[9] += traci.edge.getLastStepHaltingNumber("N2_N3")
-        self._queue_lengths[10] += traci.edge.getLastStepHaltingNumber(
-            "N3_R_N3")
-        self._queue_lengths[11] += traci.edge.getLastStepHaltingNumber(
-            "N3_U_N3")
-        self._queue_lengths[12] += traci.edge.getLastStepHaltingNumber(
-            "N4_L_N4")
+        self._queue_lengths[10] += traci.edge.getLastStepHaltingNumber("N3_R_N3")
+        self._queue_lengths[11] += traci.edge.getLastStepHaltingNumber("N3_U_N3")
+        self._queue_lengths[12] += traci.edge.getLastStepHaltingNumber("N4_L_N4")
         self._queue_lengths[13] += traci.edge.getLastStepHaltingNumber("N1_N4")
-        self._queue_lengths[14] += traci.edge.getLastStepHaltingNumber(
-            "N4_U_N4")
+        self._queue_lengths[14] += traci.edge.getLastStepHaltingNumber("N4_U_N4")
         self._queue_lengths[15] += traci.edge.getLastStepHaltingNumber("N3_N4")
 
     def _average_queue_length(self):
@@ -149,8 +144,6 @@ class ModelSimulation:
             (key, dict((small_key, 0) for small_key in range(4))) for key in self._junctions)
         traci.start(self._sumo_cmd)
 
-        print(starvation_counter)
-
         initial_state = np.zeros(shape=(4,))
         initial_state[0] = 1
 
@@ -183,7 +176,7 @@ class ModelSimulation:
                         #     self._green_light_dur
                         # junction_record[junction_id]['light_type'] = LightType.Green
                     else:
-                        predicted_state = self._predict_next_state(
+                        predicted_state,input_flow = self._predict_next_state(
                             junction_id, junction['next_state'], net)
 
                         starvation_check = self._check_starvation(
@@ -237,10 +230,34 @@ class ModelSimulation:
 
         return output
 
+    def _get_input_flow(self,new_car_ids):
+
+        def get_difference(list1, list2):
+            present = {}
+            count = 0
+            for id in list1:
+                present[id] = True
+
+            for id in list2:
+                if id in present.keys():
+                    continue
+                count = count+1
+
+            count2 = len(list1) - (len(list2)-count)
+            return count - count2
+
+        input_flow = dict( (key,dict((small_key,0) for small_key in range(4))) for key in self._junctions)
+        for junction in input_flow:
+            for i in range(4):
+                input_flow[junction][i] = get_difference(self._car_ids[junction][i], new_car_ids[junction][i])
+        return input_flow
+
     def _get_state(self, junction_id):
 
         state = np.zeros(self._num_states)
         car_list = traci.vehicle.getIDList()
+        new_car_ids = dict(
+            (key, dict((small_key, []) for small_key in range(4))) for key in self._junctions)
 
         for car_id in car_list:
             lane_pos = traci.vehicle.getLanePosition(car_id)
@@ -337,8 +354,11 @@ class ModelSimulation:
 
             if valid_car:
                 state[car_position] += 1
-
-        return state
+                new_car_ids[junction_id][lane_group].append(car_id)
+                      
+        input_flow = self._get_input_flow(new_car_ids)
+        self._car_ids = new_car_ids
+        return state,input_flow
 
     def _setYellowPhase(self, action_number, junction_id):
         if action_number == 0:

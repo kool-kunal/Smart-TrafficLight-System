@@ -1,18 +1,18 @@
 import simulation
 import pickle
 import neat
-from new_generator import TrafficGenerator
+from traffic_generator import TrafficGenerator
 
-MAX_STEPS = 3000
+MAX_STEPS = 300
 N_CARS = 300
 NUM_STATES = 40
 SUMO_CONFIG_FILE_NAME = 'sumo_config.sumocfg'
 NEAT_CONFIG_FILE_PATH =  'config/config-feedforward.txt'
-TEST_MODEL_PATH = '/home/kunal/Desktop/college/major_project/Smart-TrafficLight-System/checkpoints/training_with_avg_waiting_time_only/winner_1110.p'
+TEST_MODEL_PATH = 'C:/Users/karti/Desktop/New_Training/Smart-TrafficLight-System/checkpoints/training_with_avg_waiting_time_only/winner_1110.p'
 GREEN_DURATION = 15
 YELLOW_DURATION = 3
-TEST_RUNS = 2
-GUI = True
+TEST_RUNS = 1
+GUI = False
 
 def run_test(simulator : simulation.ModelSimulation,net):
     results = {}
@@ -39,16 +39,19 @@ if __name__ == "__main__":
 
     results = {}
 
+    parameters = ['RMS_WAITING_TIME_FITNESS','HARMONIC_MEAN_FITNESS','AVERAGE_QUEUE_LENGTH','AVERAGE_WAITING_TIME']
+
     for i in range(TEST_RUNS):
         generator.generate_routefile(i)
         result = run_test(simulator,net)
         results[i+1] = result
 
-    for key, value in results.items():
-        print('=======TEST %i======='%key)
-        print('net              ttl')
+    with open("test_results.txt","w") as test:
+        for key, value in results.items():
+            print('=======TEST %i======='%key,file=test)
+            print('net              ttl                     Parameter',file=test)
 
-        for net_v, ttl_v in zip(value['net'], value['ttl']):
-            print("%.2f           %.2f"% (net_v, ttl_v))
+            for param,net_v, ttl_v in zip(parameters,value['net'], value['ttl']):
+                print("%.2f           %.2f                      %s"% (net_v, ttl_v,param),file=test)
 
-        print('\n')
+            print('\n',file=test)
