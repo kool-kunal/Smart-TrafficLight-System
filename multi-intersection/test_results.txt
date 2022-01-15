@@ -1,8 +1,0 @@
-=======TEST 1=======
-net              ttl                     Parameter
--158.01           -161.78                      RMS_WAITING_TIME_FITNESS
--147.17           -147.33                      HARMONIC_MEAN_FITNESS
-147.17           147.33                      AVERAGE_QUEUE_LENGTH
-147.17           147.33                      AVERAGE_WAITING_TIME
-
-

@@ -2,8 +2,9 @@ import simulation
 import pickle
 import neat
 from traffic_generator import TrafficGenerator
+import json
 
-MAX_STEPS = 300
+MAX_STEPS = 3000
 N_CARS = 300
 NUM_STATES = 40
 SUMO_CONFIG_FILE_NAME = 'sumo_config.sumocfg'
@@ -46,12 +47,6 @@ if __name__ == "__main__":
         result = run_test(simulator,net)
         results[i+1] = result
 
-    with open("test_results.txt","w") as test:
-        for key, value in results.items():
-            print('=======TEST %i======='%key,file=test)
-            print('net              ttl                     Parameter',file=test)
 
-            for param,net_v, ttl_v in zip(parameters,value['net'], value['ttl']):
-                print("%.2f           %.2f                      %s"% (net_v, ttl_v,param),file=test)
-
-            print('\n',file=test)
+    with open("test_results.json","w") as test:
+        json.dump(results,test,indent=4)

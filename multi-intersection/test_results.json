@@ -1,0 +1,16 @@
+{
+    "1": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 217.0372779040504,
+            "HARMONIC_MEAN_LOSS": 30.14787878787879,
+            "AVERAGE QUEUE LENGTH": 16.581333333333333,
+            "AVERAGE WAITING TIME": 165.81333333333333
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 296.7291301282479,
+            "HARMONIC_MEAN_LOSS": 44.754545454545465,
+            "AVERAGE QUEUE LENGTH": 24.615000000000002,
+            "AVERAGE WAITING TIME": 246.15
+        }
+    }
+}

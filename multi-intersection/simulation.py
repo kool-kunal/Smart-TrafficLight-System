@@ -223,12 +223,12 @@ class ModelSimulation:
         traci.close()
 
     def _predict_next_state(self, junction, light_state, net):
-        state = self._get_state(junction)
+        state,input_flow = self._get_state(junction)
 
         network_input = np.concatenate((state, light_state))
         output = net.activate(network_input)
 
-        return output
+        return output,input_flow
 
     def _get_input_flow(self,new_car_ids):
 
@@ -388,9 +388,20 @@ class ModelSimulation:
     def run_test_ttl(self):
         self._refersh_params()
         self._run_ttl()
-        return -1*self._rms_waiting_time(), -1*self._harmonic_mean_fitness(), self._average_queue_length(), self._average_waiting_time()
+        return {
+            "RMS_WAITING_TIME_LOSS" : self._rms_waiting_time(), 
+            "HARMONIC_MEAN_LOSS" : self._harmonic_mean_fitness(), 
+            "AVERAGE QUEUE LENGTH" : self._average_queue_length(), 
+            "AVERAGE WAITING TIME" : self._average_waiting_time(),
+        }
 
     def run_test_net(self, net):
         self._refersh_params()
         self._run(net)
-        return -1*self._rms_waiting_time(), -1*self._harmonic_mean_fitness(), self._average_queue_length(), self._average_waiting_time()
+        return {
+            "RMS_WAITING_TIME_LOSS" : self._rms_waiting_time(), 
+            "HARMONIC_MEAN_LOSS" : self._harmonic_mean_fitness(), 
+            "AVERAGE QUEUE LENGTH" : self._average_queue_length(), 
+            "AVERAGE WAITING TIME" : self._average_waiting_time(),
+        }
+
