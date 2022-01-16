@@ -196,9 +196,9 @@ class ModelSimulation:
 
                         # updating on the basis of input flow
 
-                        for k, v in self._direction_graph[junction_id].items():
-                            if v != None:
-                                predicted_state[k] += input_flow[v]
+                        # for k, v in self._direction_graph[junction_id].items():
+                        #     if v != None:
+                        #         predicted_state[k] = (input_flow[v]*0.25 + predicted_state[k]*0.75)
                         
                         # curr_flow = input_flow[junction_id]
                         # max_input_flow = max(max_input_flow, curr_flow)
@@ -227,7 +227,6 @@ class ModelSimulation:
             self._update_waiting_time()
 
         self._check_cars()
-        print(max_input_flow, min_input_flow)
         traci.close()
 
     def _predict_next_state(self, junction, light_state, net):
@@ -259,7 +258,7 @@ class ModelSimulation:
             for i in range(4):
                 input_flow[junction] += get_difference(
                     self._car_ids[junction][i], new_car_ids[junction][i])
-            input_flow[junction] /= 100.0
+            input_flow[junction] /= 50.0
         return input_flow
 
     def _get_state(self, junction_id):
