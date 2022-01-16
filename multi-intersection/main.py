@@ -1,14 +1,15 @@
 import simulation
 import pickle
 import neat
-from new_generator import TrafficGenerator
+from traffic_generator import TrafficGenerator
+import json
 
 MAX_STEPS = 3000
 N_CARS = 300
 NUM_STATES = 40
 SUMO_CONFIG_FILE_NAME = 'sumo_config.sumocfg'
 NEAT_CONFIG_FILE_PATH =  'config/config-feedforward.txt'
-TEST_MODEL_PATH = '/home/kunal/Desktop/college/major_project/Smart-TrafficLight-System/winner.p'
+TEST_MODEL_PATH = '/home/kunal/Desktop/college/major_project/Smart-TrafficLight-System/checkpoints/training_with_avg_waiting_time_only/winner_1110.p'
 GREEN_DURATION = 15
 YELLOW_DURATION = 3
 TEST_RUNS = 2
@@ -39,16 +40,13 @@ if __name__ == "__main__":
 
     results = {}
 
+    parameters = ['RMS_WAITING_TIME_FITNESS','HARMONIC_MEAN_FITNESS','AVERAGE_QUEUE_LENGTH','AVERAGE_WAITING_TIME']
+
     for i in range(TEST_RUNS):
         generator.generate_routefile(i)
         result = run_test(simulator,net)
         results[i+1] = result
 
-    for key, value in results.items():
-        print('=======TEST %i======='%key)
-        print('net              ttl')
 
-        for net_v, ttl_v in zip(value['net'], value['ttl']):
-            print("%.2f           %.2f"% (net_v, ttl_v))
-
-        print('\n')
+    with open("test_results.json","w") as test:
+        json.dump(results,test,indent=4)

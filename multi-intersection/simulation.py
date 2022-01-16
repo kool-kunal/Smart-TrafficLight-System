@@ -53,8 +53,18 @@ class ModelSimulation:
             "N4_L": [{"N4": "N4_L_N4"}],
         } if node_graph == None else node_graph
 
+        self._direction_graph = {
+            'N1': {0: 'N4', 1: 'N2', 2: None, 3: None},
+            'N2': {0: 'N3', 1: None, 2: None, 3: 'N1'},
+            'N3': {0: None, 1: None, 2: 'N2', 3: 'N4'},
+            'N4': {0: None, 1: 'N3', 2: 'N1', 3: None}
+        }
+
         self._junctions = ['N1', 'N2', 'N3',
                            'N4'] if junctions == None else junctions
+
+        self._car_ids = dict(
+            (key, dict((small_key, []) for small_key in range(4))) for key in self._junctions)
 
         # print(self._green_light_dur)
 
@@ -134,7 +144,7 @@ class ModelSimulation:
         self._check_cars()
         traci.close()
 
-    def _check_starvation(self,last_steps, current_step):
+    def _check_starvation(self, last_steps, current_step):
         t = -1
         max_val = 120
         for key, value in last_steps.items():
@@ -149,22 +159,22 @@ class ModelSimulation:
             (key, dict((small_key, 0) for small_key in range(4))) for key in self._junctions)
         traci.start(self._sumo_cmd)
 
-        print(starvation_counter)
-
         initial_state = np.zeros(shape=(4,))
         initial_state[0] = 1
 
         junction_record = dict((key, {'next_time': 0, 'next_state': initial_state,
                                'light_type': LightType.Green, 'last_state': initial_state}) for key in self._junctions)
 
-        # print(junction_record)
         current_step = 0
+
+        max_input_flow = -1000
+        min_input_flow = 1000
+
         while current_step <= self._max_steps:
-            # print(current_step)
+
             for junction_id, junction in junction_record.items():
 
                 if junction['next_time'] == current_step:
-                    #print('\t', junction_id, junction['light_type'])
                     if junction['light_type'] == LightType.Yellow:
 
                         action = np.argmax(junction['last_state'])
@@ -173,26 +183,26 @@ class ModelSimulation:
                         junction_record[junction_id]['light_type'] = LightType.Green
                         self._setGreenPhase(action, junction_id)
 
-                        # predicted_state = self._predict_next_state(
-                        #     junction_id, junction['next_state'], net)
-                        # action = np.argmax(junction['next_state'])
-
-                        # self._setGreenPhase(action, junction_id)
-                        # junction_record[junction_id]['next_state'] = predicted_state
-                        # junction_record[junction_id]['next_time'] = junction['next_time'] + \
-                        #     self._green_light_dur
-                        # junction_record[junction_id]['light_type'] = LightType.Green
                     else:
-                        predicted_state = self._predict_next_state(
+                        predicted_state, input_flow = self._predict_next_state(
                             junction_id, junction['next_state'], net)
 
                         starvation_check = self._check_starvation(
                             starvation_counter[junction_id], current_step)
 
+                        # checking for starvation
                         if starvation_check != -1:
                             predicted_state[starvation_check] = 1.0
 
-                        #print('\t', np.argmax(predicted_state))
+                        # updating on the basis of input flow
+
+                        for k, v in self._direction_graph[junction_id].items():
+                            if v != None:
+                                predicted_state[k] += input_flow[v]
+                        
+                        # curr_flow = input_flow[junction_id]
+                        # max_input_flow = max(max_input_flow, curr_flow)
+                        # min_input_flow = min(min_input_flow, curr_flow)
 
                         previous_action = np.argmax(junction['last_state'])
 
@@ -200,7 +210,6 @@ class ModelSimulation:
                         junction_record[junction_id]['next_state'] = predicted_state
 
                         action = np.argmax(junction['last_state'])
-                        #print('\t', action)
 
                         if action == previous_action:
                             junction_record[junction_id]['next_time'] = junction['next_time'] + \
@@ -212,35 +221,53 @@ class ModelSimulation:
                             junction_record[junction_id]['light_type'] = LightType.Yellow
                             self._setYellowPhase(previous_action, junction_id)
 
-                        # if action == np.argmax(junction['last_light']):
-                        #     junction_record[junction_id]['next_time'] = junction['next_time'] + \
-                        #         self._green_light_dur
-                        # else:
-                        #     junction_record[junction_id]['next_time'] = junction['next_time'] + \
-                        #         self._yellow_light_dur
-                        #     junction_record[junction_id]['light_type'] = LightType.Yellow
-                        #     self._setYellowPhase(action, junction_id)
-
             current_step += 1
             traci.simulationStep()
             self._update_queue_length()
             self._update_waiting_time()
 
         self._check_cars()
+        print(max_input_flow, min_input_flow)
         traci.close()
 
     def _predict_next_state(self, junction, light_state, net):
-        state = self._get_state(junction)
+        state, input_flow = self._get_state(junction)
 
         network_input = np.concatenate((state, light_state))
         output = net.activate(network_input)
 
-        return output
+        return output, input_flow
+
+    def _get_input_flow(self, new_car_ids):
+
+        def get_difference(list1, list2):
+            present = {}
+            count = 0
+            for id in list1:
+                present[id] = True
+
+            for id in list2:
+                if id in present.keys():
+                    continue
+                count = count+1
+
+            count2 = len(list1) - (len(list2)-count)
+            return count - count2
+
+        input_flow = dict((key, 0) for key in self._junctions)
+        for junction in input_flow:
+            for i in range(4):
+                input_flow[junction] += get_difference(
+                    self._car_ids[junction][i], new_car_ids[junction][i])
+            input_flow[junction] /= 100.0
+        return input_flow
 
     def _get_state(self, junction_id):
 
         state = np.zeros(self._num_states)
         car_list = traci.vehicle.getIDList()
+        new_car_ids = dict(
+            (key, dict((small_key, []) for small_key in range(4))) for key in self._junctions)
 
         for car_id in car_list:
             lane_pos = traci.vehicle.getLanePosition(car_id)
@@ -337,8 +364,11 @@ class ModelSimulation:
 
             if valid_car:
                 state[car_position] += 1
+                new_car_ids[junction_id][lane_group].append(car_id)
 
-        return state
+        input_flow = self._get_input_flow(new_car_ids)
+        self._car_ids = new_car_ids
+        return state, input_flow
 
     def _setYellowPhase(self, action_number, junction_id):
         if action_number == 0:
@@ -368,9 +398,19 @@ class ModelSimulation:
     def run_test_ttl(self):
         self._refersh_params()
         self._run_ttl()
-        return -1*self._rms_waiting_time(), -1*self._harmonic_mean_fitness(), self._average_queue_length(), self._average_waiting_time()
+        return {
+            "RMS_WAITING_TIME_LOSS": self._rms_waiting_time(),
+            "HARMONIC_MEAN_LOSS": self._harmonic_mean_fitness(),
+            "AVERAGE QUEUE LENGTH": self._average_queue_length(),
+            "AVERAGE WAITING TIME": self._average_waiting_time(),
+        }
 
     def run_test_net(self, net):
         self._refersh_params()
         self._run(net)
-        return -1*self._rms_waiting_time(), -1*self._harmonic_mean_fitness(), self._average_queue_length(), self._average_waiting_time()
+        return {
+            "RMS_WAITING_TIME_LOSS": self._rms_waiting_time(),
+            "HARMONIC_MEAN_LOSS": self._harmonic_mean_fitness(),
+            "AVERAGE QUEUE LENGTH": self._average_queue_length(),
+            "AVERAGE WAITING TIME": self._average_waiting_time(),
+        }
