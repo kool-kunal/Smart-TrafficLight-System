@@ -3,6 +3,8 @@ import pickle
 import neat
 from traffic_generator import TrafficGenerator
 import json
+import os
+from visualise import generate_test_plots
 
 MAX_STEPS = 3000
 N_CARS = 300
@@ -22,6 +24,16 @@ def run_test(simulator : simulation.ModelSimulation,net):
     results['ttl'] = simulator.run_test_ttl()
 
     return results
+
+def allocate_new_dir():
+    last_test = 0
+    for file in os.listdir('test_results'):
+        curr_test = int(file.split('_')[-1])
+        last_test = max(last_test,curr_test)
+
+    new_dir_path = 'test_results/' + 'test_' + str(last_test+1)
+    os.mkdir(new_dir_path)
+    return new_dir_path
     
 if __name__ == "__main__":
     simulator = simulation.ModelSimulation(
@@ -47,6 +59,9 @@ if __name__ == "__main__":
         result = run_test(simulator,net)
         results[i+1] = result
 
+    new_dir_path = allocate_new_dir()
 
-    with open("test_results.json","w") as test:
+    with open(new_dir_path + "/test_results.json","w") as test:
         json.dump(results,test,indent=4)
+
+    generate_test_plots(new_dir_path)
