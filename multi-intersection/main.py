@@ -31,8 +31,11 @@ def run_test(net):
 
 
 def allocate_new_dir(folder_name):
+    if 'test_results' not in os.listdir():
+        os.mkdir('test_results')
     new_dir_path = 'test_results/' + folder_name
-    os.mkdir(new_dir_path)
+    if folder_name not in os.listdir('test_results'):
+        os.mkdir(new_dir_path)
     return new_dir_path
 
 
