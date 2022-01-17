@@ -131,6 +131,16 @@ class Approach1(Simulation):
         _ = self.run(net)
         return -1*self._rms_waiting_time(), -1*self._average_waiting_time(), -1*self._average_queue_length()
 
+    def _check_starvation(self, last_steps, current_step):
+        t = -1
+        max_val = 60
+        for key, value in last_steps.items():
+            if current_step - value > max_val:
+                t = key
+                max_val = current_step - value
+
+        return t
+
     def run(self, net) -> float:
 
         traci.start(self._sumo_cmd)
@@ -139,6 +149,8 @@ class Approach1(Simulation):
         counter = 0
         current_light = np.zeros(shape=(4,))
         current_light[0] = 1
+
+        starvation_counter = dict((key, 0) for key in range(4))
 
         while curr_step < self._max_steps:
 
@@ -155,8 +167,17 @@ class Approach1(Simulation):
             #     current_light[output] = -1.0
             #     output = np.argmax(current_light)
             #     counter = 0
+
+            starvation_counter[output] = curr_step
             network_input = np.concatenate((current_state, current_light))
             net_output = net.activate(network_input)
+
+            # checking for starvation
+            starvation_check = self._check_starvation(
+                starvation_counter, curr_step)
+            if starvation_check != -1:
+                #print(starvation_check)
+                net_output[starvation_check] = 1.0
             current_light = net_output
 
             if output != last_light:

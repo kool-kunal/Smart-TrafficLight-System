@@ -53,7 +53,7 @@ def test_with_model(episode, test_config, genome_path_1, genome_path_2):
 
 def test_with_ttl(episode, test_config, genome_path):
     currentdir = os.getcwd()
-    configdir = currentdir + f'/{test_config["neat_config_2"]}'
+    configdir = currentdir + f'/{test_config["neat_config_1"]}'
     config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
                                 neat.DefaultSpeciesSet, neat.DefaultStagnation, configdir)
 
@@ -63,7 +63,7 @@ def test_with_ttl(episode, test_config, genome_path):
     tf.generate_routefile(int(time.time() % 1000))
 
     net = neat.nn.feed_forward.FeedForwardNetwork.create(genome, config)
-    s = Approach2(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
+    s = Approach1(test_config['max_steps'], test_config['n_cars'], test_config['num_states'],
                   test_config['sumocfg_file_name'], test_config['green_duration'], test_config['yellow_duration'],
                   test_config['gui'], genome_id=genome.key,starvation_penalty=test_config['starvation_penalty'])
     fitness, avg_waiting_time, avg_queue_length = s.run_test(net)
