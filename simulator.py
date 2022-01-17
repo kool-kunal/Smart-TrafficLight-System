@@ -90,9 +90,6 @@ class Simulation(ABC):
 
     def _penalize_for_starvation(self, fitness):
         if self._number_of_cars_on_map > 0:
-            print(self._number_of_cars_on_map)
-            print('penalised', self._genome_id, 'old_fitness=', fitness,
-                  ' new_fitness=', fitness*self._starvation_penalty)
             return fitness * self._starvation_penalty
 
         return fitness
@@ -129,11 +126,16 @@ class Approach1(Simulation):
 
     def run_test(self, net):
         _ = self.run(net)
-        return -1*self._rms_waiting_time(), -1*self._average_waiting_time(), -1*self._average_queue_length()
+        return {
+            "RMS_WAITING_TIME_LOSS": self._rms_waiting_time(),
+            "HARMONIC_MEAN_LOSS": self._harmonic_mean_fitness(),
+            "AVERAGE QUEUE LENGTH": self._average_queue_length(),
+            "AVERAGE WAITING TIME": self._average_waiting_time(),
+        }
 
     def _check_starvation(self, last_steps, current_step):
         t = -1
-        max_val = 60
+        max_val = 90
         for key, value in last_steps.items():
             if current_step - value > max_val:
                 t = key
@@ -212,10 +214,6 @@ class Approach1(Simulation):
         #       self._average_waiting_time(), "avg_queue_length=", self._average_queue_length())
         # return fitness
         fitness = -1*self._rms_waiting_time()
-
-        print(f'#{self._genome_id}', fitness, "avg_waiting_time=",
-              self._average_waiting_time(), "avg_queue_length=", self._average_queue_length())
-
         return fitness
 
 
@@ -606,7 +604,12 @@ class TimeBasedTrafficLigthSystem(Simulation):
 
     def run_test(self):
         _ = self.run()
-        return -1*self._rms_waiting_time(), -1*self._average_waiting_time(), -1*self._average_queue_length()
+        return {
+            "RMS_WAITING_TIME_LOSS": self._rms_waiting_time(),
+            "HARMONIC_MEAN_LOSS": self._harmonic_mean_fitness(),
+            "AVERAGE QUEUE LENGTH": self._average_queue_length(),
+            "AVERAGE WAITING TIME": self._average_waiting_time(),
+        }
 
     def run(self) -> float:
 

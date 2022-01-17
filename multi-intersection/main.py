@@ -7,11 +7,11 @@ import os
 from visualise import generate_test_plots
 
 MAX_STEPS = 3000
-N_CARS = 300
+N_CARS = 200
 NUM_STATES = 40
 SUMO_CONFIG_FILE_NAME = 'sumo_config.sumocfg'
 NEAT_CONFIG_FILE_PATH =  'config/config-feedforward.txt'
-TEST_MODEL_PATH = '/home/kunal/Desktop/college/major_project/Smart-TrafficLight-System/checkpoints/training_with_avg_waiting_time_only/winner_1110.p'
+TEST_MODEL_PATH = 'C:/Users/karti/Desktop/New_Training/Smart-TrafficLight-System/checkpoints/training_with_avg_waiting_time_only/winner_1110.p'
 GREEN_DURATION = 15
 YELLOW_DURATION = 3
 TEST_RUNS = 100
@@ -25,13 +25,8 @@ def run_test(simulator : simulation.ModelSimulation,net):
 
     return results
 
-def allocate_new_dir():
-    last_test = 0
-    for file in os.listdir('test_results'):
-        curr_test = int(file.split('_')[-1])
-        last_test = max(last_test,curr_test)
-
-    new_dir_path = 'test_results/' + 'test_' + str(last_test+1)
+def allocate_new_dir(folder_name):
+    new_dir_path = 'test_results/' + folder_name
     os.mkdir(new_dir_path)
     return new_dir_path
     
@@ -59,7 +54,7 @@ if __name__ == "__main__":
         result = run_test(simulator,net)
         results[i+1] = result
 
-    new_dir_path = allocate_new_dir()
+    new_dir_path = allocate_new_dir('car_200_ttl_120')
 
     with open(new_dir_path + "/test_results.json","w") as test:
         json.dump(results,test,indent=4)
