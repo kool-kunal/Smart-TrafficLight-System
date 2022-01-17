@@ -7,7 +7,7 @@ import os
 from visualise import generate_test_plots
 
 MAX_STEPS = 3000
-N_CARS = 200
+N_CARS = 400
 NUM_STATES = 40
 SUMO_CONFIG_FILE_NAME = 'sumo_config.sumocfg'
 NEAT_CONFIG_FILE_PATH = 'config/config-feedforward.txt'
@@ -62,7 +62,7 @@ if __name__ == "__main__":
         result = run_test(net)
         results[i+1] = result
 
-    new_dir_path = allocate_new_dir('car_200_ttl_15')
+    new_dir_path = allocate_new_dir('car_400_ttl_60')
 
     with open(new_dir_path + "/test_results.json", "w") as test:
         json.dump(results, test, indent=4)

@@ -1,0 +1,1402 @@
+{
+    "1": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1366.1988974889418,
+            "HARMONIC_MEAN_LOSS": 233.29235294117652,
+            "AVERAGE QUEUE LENGTH": 132.199,
+            "AVERAGE WAITING TIME": 991.4925
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 927.4278759019485,
+            "HARMONIC_MEAN_LOSS": 160.55058823529413,
+            "AVERAGE QUEUE LENGTH": 90.97866666666667,
+            "AVERAGE WAITING TIME": 682.34
+        }
+    },
+    "2": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 398.5760341515782,
+            "HARMONIC_MEAN_LOSS": 71.80941176470589,
+            "AVERAGE QUEUE LENGTH": 40.692,
+            "AVERAGE WAITING TIME": 305.19
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 593.0628676624427,
+            "HARMONIC_MEAN_LOSS": 105.77411764705882,
+            "AVERAGE QUEUE LENGTH": 59.93866666666666,
+            "AVERAGE WAITING TIME": 449.54
+        }
+    },
+    "3": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1391.9007238305467,
+            "HARMONIC_MEAN_LOSS": 235.5211764705882,
+            "AVERAGE QUEUE LENGTH": 133.462,
+            "AVERAGE WAITING TIME": 1000.965
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 668.2585614864953,
+            "HARMONIC_MEAN_LOSS": 115.03882352941179,
+            "AVERAGE QUEUE LENGTH": 65.18866666666668,
+            "AVERAGE WAITING TIME": 488.915
+        }
+    },
+    "4": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 460.3903371053741,
+            "HARMONIC_MEAN_LOSS": 81.51705882352941,
+            "AVERAGE QUEUE LENGTH": 46.193,
+            "AVERAGE WAITING TIME": 346.4475
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 636.4027105536242,
+            "HARMONIC_MEAN_LOSS": 108.23294117647058,
+            "AVERAGE QUEUE LENGTH": 61.331999999999994,
+            "AVERAGE WAITING TIME": 459.99
+        }
+    },
+    "5": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1064.9414702226597,
+            "HARMONIC_MEAN_LOSS": 158.12588235294118,
+            "AVERAGE QUEUE LENGTH": 89.60466666666667,
+            "AVERAGE WAITING TIME": 672.035
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 621.2678468261495,
+            "HARMONIC_MEAN_LOSS": 103.57117647058823,
+            "AVERAGE QUEUE LENGTH": 58.690333333333335,
+            "AVERAGE WAITING TIME": 440.1775
+        }
+    },
+    "6": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1216.0208273298613,
+            "HARMONIC_MEAN_LOSS": 200.51470588235298,
+            "AVERAGE QUEUE LENGTH": 113.62500000000001,
+            "AVERAGE WAITING TIME": 852.1875
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 683.8057637224185,
+            "HARMONIC_MEAN_LOSS": 116.93117647058824,
+            "AVERAGE QUEUE LENGTH": 66.261,
+            "AVERAGE WAITING TIME": 496.9575
+        }
+    },
+    "7": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1216.870455307384,
+            "HARMONIC_MEAN_LOSS": 196.75529411764705,
+            "AVERAGE QUEUE LENGTH": 111.49466666666666,
+            "AVERAGE WAITING TIME": 836.21
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 725.4484664674673,
+            "HARMONIC_MEAN_LOSS": 120.52882352941177,
+            "AVERAGE QUEUE LENGTH": 68.29966666666667,
+            "AVERAGE WAITING TIME": 512.2475
+        }
+    },
+    "8": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1238.2613143032452,
+            "HARMONIC_MEAN_LOSS": 204.17169550155418,
+            "AVERAGE QUEUE LENGTH": 115.69733333333333,
+            "AVERAGE WAITING TIME": 867.7275
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 613.3198288821258,
+            "HARMONIC_MEAN_LOSS": 104.79235294117647,
+            "AVERAGE QUEUE LENGTH": 59.382333333333335,
+            "AVERAGE WAITING TIME": 445.3675
+        }
+    },
+    "9": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 551.2937556330563,
+            "HARMONIC_MEAN_LOSS": 93.26823529411766,
+            "AVERAGE QUEUE LENGTH": 52.852000000000004,
+            "AVERAGE WAITING TIME": 396.39
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 707.4450455689121,
+            "HARMONIC_MEAN_LOSS": 118.55,
+            "AVERAGE QUEUE LENGTH": 67.17833333333334,
+            "AVERAGE WAITING TIME": 503.8375
+        }
+    },
+    "10": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1341.0594105035018,
+            "HARMONIC_MEAN_LOSS": 226.55117647058825,
+            "AVERAGE QUEUE LENGTH": 128.37900000000002,
+            "AVERAGE WAITING TIME": 962.8425
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 874.9362505348604,
+            "HARMONIC_MEAN_LOSS": 150.45823529411763,
+            "AVERAGE QUEUE LENGTH": 85.25966666666666,
+            "AVERAGE WAITING TIME": 639.4475
+        }
+    },
+    "11": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1515.6620261456708,
+            "HARMONIC_MEAN_LOSS": 264.36529411764707,
+            "AVERAGE QUEUE LENGTH": 149.80700000000002,
+            "AVERAGE WAITING TIME": 1123.5525
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 851.1385418955012,
+            "HARMONIC_MEAN_LOSS": 145.83588235294118,
+            "AVERAGE QUEUE LENGTH": 82.64033333333333,
+            "AVERAGE WAITING TIME": 619.8025
+        }
+    },
+    "12": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 778.7661828174101,
+            "HARMONIC_MEAN_LOSS": 137.5869896191161,
+            "AVERAGE QUEUE LENGTH": 77.96600000000001,
+            "AVERAGE WAITING TIME": 584.7425
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 832.8965737112862,
+            "HARMONIC_MEAN_LOSS": 144.36882352941177,
+            "AVERAGE QUEUE LENGTH": 81.809,
+            "AVERAGE WAITING TIME": 613.5675
+        }
+    },
+    "13": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1418.4736973239933,
+            "HARMONIC_MEAN_LOSS": 241.52705882352942,
+            "AVERAGE QUEUE LENGTH": 136.86533333333335,
+            "AVERAGE WAITING TIME": 1026.49
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 677.0759909345479,
+            "HARMONIC_MEAN_LOSS": 113.77588235294117,
+            "AVERAGE QUEUE LENGTH": 64.47299999999998,
+            "AVERAGE WAITING TIME": 483.5475
+        }
+    },
+    "14": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 645.7121843360244,
+            "HARMONIC_MEAN_LOSS": 113.54470588235293,
+            "AVERAGE QUEUE LENGTH": 64.342,
+            "AVERAGE WAITING TIME": 482.565
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 729.8453140905955,
+            "HARMONIC_MEAN_LOSS": 123.17,
+            "AVERAGE QUEUE LENGTH": 69.79633333333334,
+            "AVERAGE WAITING TIME": 523.4725
+        }
+    },
+    "15": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1182.4559368111777,
+            "HARMONIC_MEAN_LOSS": 192.27470588235295,
+            "AVERAGE QUEUE LENGTH": 108.95566666666667,
+            "AVERAGE WAITING TIME": 817.1675
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 741.9007025876172,
+            "HARMONIC_MEAN_LOSS": 124.86294117647057,
+            "AVERAGE QUEUE LENGTH": 70.75566666666666,
+            "AVERAGE WAITING TIME": 530.6675
+        }
+    },
+    "16": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 502.5738602434472,
+            "HARMONIC_MEAN_LOSS": 86.82117647058823,
+            "AVERAGE QUEUE LENGTH": 49.19866666666667,
+            "AVERAGE WAITING TIME": 368.99
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 749.5378976409398,
+            "HARMONIC_MEAN_LOSS": 128.95411764705884,
+            "AVERAGE QUEUE LENGTH": 73.074,
+            "AVERAGE WAITING TIME": 548.055
+        }
+    },
+    "17": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1335.6965523650947,
+            "HARMONIC_MEAN_LOSS": 221.96875432509768,
+            "AVERAGE QUEUE LENGTH": 125.78233333333333,
+            "AVERAGE WAITING TIME": 943.365
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 733.7657647369493,
+            "HARMONIC_MEAN_LOSS": 129.18882352941174,
+            "AVERAGE QUEUE LENGTH": 73.207,
+            "AVERAGE WAITING TIME": 549.0525
+        }
+    },
+    "18": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1295.2580756358943,
+            "HARMONIC_MEAN_LOSS": 214.8335294117647,
+            "AVERAGE QUEUE LENGTH": 121.739,
+            "AVERAGE WAITING TIME": 913.0425
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 502.8085918120334,
+            "HARMONIC_MEAN_LOSS": 86.22117647058822,
+            "AVERAGE QUEUE LENGTH": 48.858666666666664,
+            "AVERAGE WAITING TIME": 366.44
+        }
+    },
+    "19": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1340.797114592659,
+            "HARMONIC_MEAN_LOSS": 225.86411764705886,
+            "AVERAGE QUEUE LENGTH": 127.9896666666667,
+            "AVERAGE WAITING TIME": 959.9225
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 641.5725816304808,
+            "HARMONIC_MEAN_LOSS": 106.89588235294117,
+            "AVERAGE QUEUE LENGTH": 60.574333333333335,
+            "AVERAGE WAITING TIME": 454.3075
+        }
+    },
+    "20": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1355.2622974907847,
+            "HARMONIC_MEAN_LOSS": 230.55411764705877,
+            "AVERAGE QUEUE LENGTH": 130.6473333333333,
+            "AVERAGE WAITING TIME": 979.855
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 821.4736316522886,
+            "HARMONIC_MEAN_LOSS": 142.0935294117647,
+            "AVERAGE QUEUE LENGTH": 80.51966666666667,
+            "AVERAGE WAITING TIME": 603.8975
+        }
+    },
+    "21": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1119.4715862852438,
+            "HARMONIC_MEAN_LOSS": 183.06176470588235,
+            "AVERAGE QUEUE LENGTH": 103.735,
+            "AVERAGE WAITING TIME": 778.0125
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 635.4775487772955,
+            "HARMONIC_MEAN_LOSS": 112.93176470588236,
+            "AVERAGE QUEUE LENGTH": 63.99466666666667,
+            "AVERAGE WAITING TIME": 479.96
+        }
+    },
+    "22": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1405.947821755843,
+            "HARMONIC_MEAN_LOSS": 238.9458131486386,
+            "AVERAGE QUEUE LENGTH": 135.40266666666668,
+            "AVERAGE WAITING TIME": 1015.5175
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 618.992419178135,
+            "HARMONIC_MEAN_LOSS": 104.99176470588236,
+            "AVERAGE QUEUE LENGTH": 59.495333333333335,
+            "AVERAGE WAITING TIME": 446.215
+        }
+    },
+    "23": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1345.9669349579135,
+            "HARMONIC_MEAN_LOSS": 222.63764705882355,
+            "AVERAGE QUEUE LENGTH": 126.16133333333333,
+            "AVERAGE WAITING TIME": 946.21
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 829.9397011229189,
+            "HARMONIC_MEAN_LOSS": 142.8723529411765,
+            "AVERAGE QUEUE LENGTH": 80.96100000000001,
+            "AVERAGE WAITING TIME": 607.2075
+        }
+    },
+    "24": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 661.5957281452171,
+            "HARMONIC_MEAN_LOSS": 113.30882352941175,
+            "AVERAGE QUEUE LENGTH": 64.20833333333333,
+            "AVERAGE WAITING TIME": 481.5625
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 767.9448466524142,
+            "HARMONIC_MEAN_LOSS": 133.26764705882354,
+            "AVERAGE QUEUE LENGTH": 75.51833333333335,
+            "AVERAGE WAITING TIME": 566.3875
+        }
+    },
+    "25": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1355.2603310803427,
+            "HARMONIC_MEAN_LOSS": 228.83529411764707,
+            "AVERAGE QUEUE LENGTH": 129.67333333333335,
+            "AVERAGE WAITING TIME": 972.55
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 703.4587958793322,
+            "HARMONIC_MEAN_LOSS": 119.85235294117648,
+            "AVERAGE QUEUE LENGTH": 67.91633333333333,
+            "AVERAGE WAITING TIME": 509.3725
+        }
+    },
+    "26": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 768.9058053493939,
+            "HARMONIC_MEAN_LOSS": 135.04176470588234,
+            "AVERAGE QUEUE LENGTH": 76.52366666666667,
+            "AVERAGE WAITING TIME": 573.9275
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 867.0208446167832,
+            "HARMONIC_MEAN_LOSS": 151.05058823529416,
+            "AVERAGE QUEUE LENGTH": 85.59533333333334,
+            "AVERAGE WAITING TIME": 641.965
+        }
+    },
+    "27": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 911.3536813444053,
+            "HARMONIC_MEAN_LOSS": 150.7858131485507,
+            "AVERAGE QUEUE LENGTH": 85.44533333333332,
+            "AVERAGE WAITING TIME": 640.8375
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 597.4280228613318,
+            "HARMONIC_MEAN_LOSS": 100.68529411764706,
+            "AVERAGE QUEUE LENGTH": 57.055,
+            "AVERAGE WAITING TIME": 427.9125
+        }
+    },
+    "28": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 458.43867092556667,
+            "HARMONIC_MEAN_LOSS": 80.0729411764706,
+            "AVERAGE QUEUE LENGTH": 45.37466666666667,
+            "AVERAGE WAITING TIME": 340.31
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 642.9657825265665,
+            "HARMONIC_MEAN_LOSS": 108.5664705882353,
+            "AVERAGE QUEUE LENGTH": 61.521,
+            "AVERAGE WAITING TIME": 461.4075
+        }
+    },
+    "29": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 436.720688770294,
+            "HARMONIC_MEAN_LOSS": 72.11058823529412,
+            "AVERAGE QUEUE LENGTH": 40.86266666666666,
+            "AVERAGE WAITING TIME": 306.47
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 591.8390237218225,
+            "HARMONIC_MEAN_LOSS": 96.94470588235293,
+            "AVERAGE QUEUE LENGTH": 54.93533333333333,
+            "AVERAGE WAITING TIME": 412.015
+        }
+    },
+    "30": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1339.0323773157988,
+            "HARMONIC_MEAN_LOSS": 234.59235294117653,
+            "AVERAGE QUEUE LENGTH": 132.9356666666667,
+            "AVERAGE WAITING TIME": 997.0175
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 777.6917062692645,
+            "HARMONIC_MEAN_LOSS": 135.18,
+            "AVERAGE QUEUE LENGTH": 76.602,
+            "AVERAGE WAITING TIME": 574.515
+        }
+    },
+    "31": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 448.0454580731737,
+            "HARMONIC_MEAN_LOSS": 81.78647058823528,
+            "AVERAGE QUEUE LENGTH": 46.34566666666666,
+            "AVERAGE WAITING TIME": 347.5925
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 718.9387230494683,
+            "HARMONIC_MEAN_LOSS": 123.49235294117646,
+            "AVERAGE QUEUE LENGTH": 69.979,
+            "AVERAGE WAITING TIME": 524.8425
+        }
+    },
+    "32": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1510.2877540389447,
+            "HARMONIC_MEAN_LOSS": 263.65529411764714,
+            "AVERAGE QUEUE LENGTH": 149.40466666666669,
+            "AVERAGE WAITING TIME": 1120.535
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 730.7941057507238,
+            "HARMONIC_MEAN_LOSS": 126.16235294117647,
+            "AVERAGE QUEUE LENGTH": 71.49199999999999,
+            "AVERAGE WAITING TIME": 536.19
+        }
+    },
+    "33": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1484.0150849974539,
+            "HARMONIC_MEAN_LOSS": 263.2900000000001,
+            "AVERAGE QUEUE LENGTH": 149.1976666666667,
+            "AVERAGE WAITING TIME": 1118.9825
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 823.1046637578966,
+            "HARMONIC_MEAN_LOSS": 141.84411764705882,
+            "AVERAGE QUEUE LENGTH": 80.37833333333333,
+            "AVERAGE WAITING TIME": 602.8375
+        }
+    },
+    "34": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 617.439806782815,
+            "HARMONIC_MEAN_LOSS": 108.19764705882353,
+            "AVERAGE QUEUE LENGTH": 61.312,
+            "AVERAGE WAITING TIME": 459.84
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 595.6286217098705,
+            "HARMONIC_MEAN_LOSS": 104.36588235294116,
+            "AVERAGE QUEUE LENGTH": 59.14066666666666,
+            "AVERAGE WAITING TIME": 443.555
+        }
+    },
+    "35": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 630.6668811662779,
+            "HARMONIC_MEAN_LOSS": 113.335813148472,
+            "AVERAGE QUEUE LENGTH": 64.22366666666667,
+            "AVERAGE WAITING TIME": 481.675
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 614.6985338358959,
+            "HARMONIC_MEAN_LOSS": 105.27588235294117,
+            "AVERAGE QUEUE LENGTH": 59.656333333333336,
+            "AVERAGE WAITING TIME": 447.4225
+        }
+    },
+    "36": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1250.1800140379785,
+            "HARMONIC_MEAN_LOSS": 201.52411764705883,
+            "AVERAGE QUEUE LENGTH": 114.197,
+            "AVERAGE WAITING TIME": 856.4775
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 649.9787784997292,
+            "HARMONIC_MEAN_LOSS": 110.26294117647059,
+            "AVERAGE QUEUE LENGTH": 62.48233333333333,
+            "AVERAGE WAITING TIME": 468.6175
+        }
+    },
+    "37": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 473.68282109445346,
+            "HARMONIC_MEAN_LOSS": 84.55176470588236,
+            "AVERAGE QUEUE LENGTH": 47.91266666666667,
+            "AVERAGE WAITING TIME": 359.345
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 645.1887592015223,
+            "HARMONIC_MEAN_LOSS": 111.36117647058822,
+            "AVERAGE QUEUE LENGTH": 63.10466666666666,
+            "AVERAGE WAITING TIME": 473.285
+        }
+    },
+    "38": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1518.6654157516066,
+            "HARMONIC_MEAN_LOSS": 263.1341176470588,
+            "AVERAGE QUEUE LENGTH": 149.10933333333332,
+            "AVERAGE WAITING TIME": 1118.32
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 735.2124981935494,
+            "HARMONIC_MEAN_LOSS": 123.67117647058822,
+            "AVERAGE QUEUE LENGTH": 70.08033333333333,
+            "AVERAGE WAITING TIME": 525.6025
+        }
+    },
+    "39": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1459.4044478827655,
+            "HARMONIC_MEAN_LOSS": 253.60529411764705,
+            "AVERAGE QUEUE LENGTH": 143.70966666666666,
+            "AVERAGE WAITING TIME": 1077.8225
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 694.5500521920649,
+            "HARMONIC_MEAN_LOSS": 119.94352941176473,
+            "AVERAGE QUEUE LENGTH": 67.968,
+            "AVERAGE WAITING TIME": 509.76
+        }
+    },
+    "40": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1655.6946578400257,
+            "HARMONIC_MEAN_LOSS": 301.22941176470584,
+            "AVERAGE QUEUE LENGTH": 170.69666666666666,
+            "AVERAGE WAITING TIME": 1280.225
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 1040.5727281165887,
+            "HARMONIC_MEAN_LOSS": 187.7264705882353,
+            "AVERAGE QUEUE LENGTH": 106.37833333333333,
+            "AVERAGE WAITING TIME": 797.8375
+        }
+    },
+    "41": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1333.1040403884463,
+            "HARMONIC_MEAN_LOSS": 224.8164013839233,
+            "AVERAGE QUEUE LENGTH": 127.396,
+            "AVERAGE WAITING TIME": 955.4675
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 665.0699737621599,
+            "HARMONIC_MEAN_LOSS": 117.42470588235294,
+            "AVERAGE QUEUE LENGTH": 66.54066666666667,
+            "AVERAGE WAITING TIME": 499.055
+        }
+    },
+    "42": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1308.2687768574162,
+            "HARMONIC_MEAN_LOSS": 212.88176470588235,
+            "AVERAGE QUEUE LENGTH": 120.633,
+            "AVERAGE WAITING TIME": 904.7475
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 687.6002017888011,
+            "HARMONIC_MEAN_LOSS": 117.08882352941178,
+            "AVERAGE QUEUE LENGTH": 66.35033333333334,
+            "AVERAGE WAITING TIME": 497.6275
+        }
+    },
+    "43": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1100.534816577831,
+            "HARMONIC_MEAN_LOSS": 176.4217647058823,
+            "AVERAGE QUEUE LENGTH": 99.97233333333332,
+            "AVERAGE WAITING TIME": 749.7925
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 669.8092191064558,
+            "HARMONIC_MEAN_LOSS": 116.02588235294117,
+            "AVERAGE QUEUE LENGTH": 65.74799999999999,
+            "AVERAGE WAITING TIME": 493.11
+        }
+    },
+    "44": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1195.7890553939687,
+            "HARMONIC_MEAN_LOSS": 192.57882352941175,
+            "AVERAGE QUEUE LENGTH": 109.12799999999999,
+            "AVERAGE WAITING TIME": 818.46
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 609.0767706127036,
+            "HARMONIC_MEAN_LOSS": 105.60764705882355,
+            "AVERAGE QUEUE LENGTH": 59.84433333333334,
+            "AVERAGE WAITING TIME": 448.8325
+        }
+    },
+    "45": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1112.6567282859526,
+            "HARMONIC_MEAN_LOSS": 184.5329411764706,
+            "AVERAGE QUEUE LENGTH": 104.56866666666667,
+            "AVERAGE WAITING TIME": 784.265
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 788.0061310040677,
+            "HARMONIC_MEAN_LOSS": 137.3029411764706,
+            "AVERAGE QUEUE LENGTH": 77.805,
+            "AVERAGE WAITING TIME": 583.5375
+        }
+    },
+    "46": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1276.3839116817478,
+            "HARMONIC_MEAN_LOSS": 211.6729411764706,
+            "AVERAGE QUEUE LENGTH": 119.94800000000001,
+            "AVERAGE WAITING TIME": 899.61
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 710.4240881332784,
+            "HARMONIC_MEAN_LOSS": 120.27882352941177,
+            "AVERAGE QUEUE LENGTH": 68.158,
+            "AVERAGE WAITING TIME": 511.185
+        }
+    },
+    "47": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1294.7199600685856,
+            "HARMONIC_MEAN_LOSS": 213.40823529411762,
+            "AVERAGE QUEUE LENGTH": 120.93133333333333,
+            "AVERAGE WAITING TIME": 906.985
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 803.5059116148431,
+            "HARMONIC_MEAN_LOSS": 135.4505882352941,
+            "AVERAGE QUEUE LENGTH": 76.75533333333333,
+            "AVERAGE WAITING TIME": 575.665
+        }
+    },
+    "48": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1298.9925124880435,
+            "HARMONIC_MEAN_LOSS": 212.96294117647054,
+            "AVERAGE QUEUE LENGTH": 120.67899999999999,
+            "AVERAGE WAITING TIME": 905.0925
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 754.2578521301584,
+            "HARMONIC_MEAN_LOSS": 126.88176470588235,
+            "AVERAGE QUEUE LENGTH": 71.89966666666666,
+            "AVERAGE WAITING TIME": 539.2475
+        }
+    },
+    "49": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 554.080332623348,
+            "HARMONIC_MEAN_LOSS": 97.06235294117646,
+            "AVERAGE QUEUE LENGTH": 55.001999999999995,
+            "AVERAGE WAITING TIME": 412.515
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 761.5335186319772,
+            "HARMONIC_MEAN_LOSS": 128.69764705882352,
+            "AVERAGE QUEUE LENGTH": 72.92866666666667,
+            "AVERAGE WAITING TIME": 546.965
+        }
+    },
+    "50": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 599.7540391693915,
+            "HARMONIC_MEAN_LOSS": 99.63235294117648,
+            "AVERAGE QUEUE LENGTH": 56.458333333333336,
+            "AVERAGE WAITING TIME": 423.4375
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 633.8192920699086,
+            "HARMONIC_MEAN_LOSS": 107.88000000000001,
+            "AVERAGE QUEUE LENGTH": 61.132,
+            "AVERAGE WAITING TIME": 458.49
+        }
+    },
+    "51": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1389.8604876029824,
+            "HARMONIC_MEAN_LOSS": 240.54352941176472,
+            "AVERAGE QUEUE LENGTH": 136.30800000000002,
+            "AVERAGE WAITING TIME": 1022.31
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 733.8375007452263,
+            "HARMONIC_MEAN_LOSS": 131.7170588235294,
+            "AVERAGE QUEUE LENGTH": 74.63966666666667,
+            "AVERAGE WAITING TIME": 559.7975
+        }
+    },
+    "52": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1311.1092507872866,
+            "HARMONIC_MEAN_LOSS": 217.27352941176468,
+            "AVERAGE QUEUE LENGTH": 123.12166666666667,
+            "AVERAGE WAITING TIME": 923.4125
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 729.7831664268504,
+            "HARMONIC_MEAN_LOSS": 125.44941176470589,
+            "AVERAGE QUEUE LENGTH": 71.088,
+            "AVERAGE WAITING TIME": 533.16
+        }
+    },
+    "53": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1365.915125474493,
+            "HARMONIC_MEAN_LOSS": 233.15058823529418,
+            "AVERAGE QUEUE LENGTH": 132.11866666666668,
+            "AVERAGE WAITING TIME": 990.89
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 802.442745621144,
+            "HARMONIC_MEAN_LOSS": 140.86235294117648,
+            "AVERAGE QUEUE LENGTH": 79.822,
+            "AVERAGE WAITING TIME": 598.665
+        }
+    },
+    "54": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1323.8131335275382,
+            "HARMONIC_MEAN_LOSS": 221.7935294117647,
+            "AVERAGE QUEUE LENGTH": 125.68299999999999,
+            "AVERAGE WAITING TIME": 942.6225
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 677.6877156921173,
+            "HARMONIC_MEAN_LOSS": 115.81764705882352,
+            "AVERAGE QUEUE LENGTH": 65.63,
+            "AVERAGE WAITING TIME": 492.225
+        }
+    },
+    "55": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1244.1488837755712,
+            "HARMONIC_MEAN_LOSS": 206.85647058823528,
+            "AVERAGE QUEUE LENGTH": 117.21866666666666,
+            "AVERAGE WAITING TIME": 879.14
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 836.8383759723259,
+            "HARMONIC_MEAN_LOSS": 144.24058823529413,
+            "AVERAGE QUEUE LENGTH": 81.73633333333333,
+            "AVERAGE WAITING TIME": 613.0225
+        }
+    },
+    "56": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 434.4919274278867,
+            "HARMONIC_MEAN_LOSS": 75.26470588235294,
+            "AVERAGE QUEUE LENGTH": 42.65,
+            "AVERAGE WAITING TIME": 319.875
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 506.24100979671726,
+            "HARMONIC_MEAN_LOSS": 86.85058823529413,
+            "AVERAGE QUEUE LENGTH": 49.215333333333334,
+            "AVERAGE WAITING TIME": 369.115
+        }
+    },
+    "57": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 691.5423595124163,
+            "HARMONIC_MEAN_LOSS": 123.27058823529411,
+            "AVERAGE QUEUE LENGTH": 69.85333333333332,
+            "AVERAGE WAITING TIME": 523.9
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 745.3999228602053,
+            "HARMONIC_MEAN_LOSS": 131.42235294117648,
+            "AVERAGE QUEUE LENGTH": 74.47266666666667,
+            "AVERAGE WAITING TIME": 558.545
+        }
+    },
+    "58": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 769.7413153131382,
+            "HARMONIC_MEAN_LOSS": 129.96764705882356,
+            "AVERAGE QUEUE LENGTH": 73.64833333333334,
+            "AVERAGE WAITING TIME": 552.3625
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 724.6971677880355,
+            "HARMONIC_MEAN_LOSS": 123.08470588235294,
+            "AVERAGE QUEUE LENGTH": 69.74799999999999,
+            "AVERAGE WAITING TIME": 523.11
+        }
+    },
+    "59": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 501.13847886587195,
+            "HARMONIC_MEAN_LOSS": 88.80941176470589,
+            "AVERAGE QUEUE LENGTH": 50.32533333333333,
+            "AVERAGE WAITING TIME": 377.44
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 694.7109200955459,
+            "HARMONIC_MEAN_LOSS": 117.97235294117644,
+            "AVERAGE QUEUE LENGTH": 66.851,
+            "AVERAGE WAITING TIME": 501.3825
+        }
+    },
+    "60": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1342.8751179837982,
+            "HARMONIC_MEAN_LOSS": 225.94647456267654,
+            "AVERAGE QUEUE LENGTH": 127.90766666666667,
+            "AVERAGE WAITING TIME": 967.5725
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 674.0933095647812,
+            "HARMONIC_MEAN_LOSS": 113.71529411764706,
+            "AVERAGE QUEUE LENGTH": 64.43866666666666,
+            "AVERAGE WAITING TIME": 483.29
+        }
+    },
+    "61": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1642.2263204260246,
+            "HARMONIC_MEAN_LOSS": 283.6511764705882,
+            "AVERAGE QUEUE LENGTH": 160.73566666666665,
+            "AVERAGE WAITING TIME": 1205.5175
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 869.6742766691447,
+            "HARMONIC_MEAN_LOSS": 152.37470588235294,
+            "AVERAGE QUEUE LENGTH": 86.34566666666667,
+            "AVERAGE WAITING TIME": 647.5925
+        }
+    },
+    "62": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1498.6189066937598,
+            "HARMONIC_MEAN_LOSS": 264.9170588235294,
+            "AVERAGE QUEUE LENGTH": 150.11966666666666,
+            "AVERAGE WAITING TIME": 1125.8975
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 713.2081515939088,
+            "HARMONIC_MEAN_LOSS": 125.08058823529409,
+            "AVERAGE QUEUE LENGTH": 70.87899999999999,
+            "AVERAGE WAITING TIME": 531.5925
+        }
+    },
+    "63": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1064.1759417502353,
+            "HARMONIC_MEAN_LOSS": 167.94941176470587,
+            "AVERAGE QUEUE LENGTH": 95.17133333333334,
+            "AVERAGE WAITING TIME": 713.785
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 703.5720325595667,
+            "HARMONIC_MEAN_LOSS": 122.08941176470589,
+            "AVERAGE QUEUE LENGTH": 69.184,
+            "AVERAGE WAITING TIME": 518.88
+        }
+    },
+    "64": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 656.6611169393236,
+            "HARMONIC_MEAN_LOSS": 110.72176470588235,
+            "AVERAGE QUEUE LENGTH": 62.742333333333335,
+            "AVERAGE WAITING TIME": 470.5675
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 808.71097742024,
+            "HARMONIC_MEAN_LOSS": 136.2835294117647,
+            "AVERAGE QUEUE LENGTH": 77.22733333333333,
+            "AVERAGE WAITING TIME": 579.205
+        }
+    },
+    "65": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1614.4752553074327,
+            "HARMONIC_MEAN_LOSS": 293.38,
+            "AVERAGE QUEUE LENGTH": 166.24866666666665,
+            "AVERAGE WAITING TIME": 1246.865
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 842.1877284786332,
+            "HARMONIC_MEAN_LOSS": 144.18,
+            "AVERAGE QUEUE LENGTH": 81.702,
+            "AVERAGE WAITING TIME": 612.765
+        }
+    },
+    "66": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 645.0060212897241,
+            "HARMONIC_MEAN_LOSS": 111.57117647058823,
+            "AVERAGE QUEUE LENGTH": 63.22366666666666,
+            "AVERAGE WAITING TIME": 474.1775
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 807.925191462675,
+            "HARMONIC_MEAN_LOSS": 138.4105882352941,
+            "AVERAGE QUEUE LENGTH": 78.43266666666666,
+            "AVERAGE WAITING TIME": 588.245
+        }
+    },
+    "67": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1301.7715486981576,
+            "HARMONIC_MEAN_LOSS": 216.89176470588234,
+            "AVERAGE QUEUE LENGTH": 122.90533333333333,
+            "AVERAGE WAITING TIME": 921.79
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 758.6681636262325,
+            "HARMONIC_MEAN_LOSS": 131.54176470588234,
+            "AVERAGE QUEUE LENGTH": 74.54033333333334,
+            "AVERAGE WAITING TIME": 559.0525
+        }
+    },
+    "68": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1128.4055786817078,
+            "HARMONIC_MEAN_LOSS": 179.07934256035304,
+            "AVERAGE QUEUE LENGTH": 101.47833333333332,
+            "AVERAGE WAITING TIME": 761.085
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 746.5074480539361,
+            "HARMONIC_MEAN_LOSS": 125.85529411764706,
+            "AVERAGE QUEUE LENGTH": 71.318,
+            "AVERAGE WAITING TIME": 534.885
+        }
+    },
+    "69": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1227.875028250025,
+            "HARMONIC_MEAN_LOSS": 195.69176470588235,
+            "AVERAGE QUEUE LENGTH": 110.892,
+            "AVERAGE WAITING TIME": 831.69
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 578.519031666202,
+            "HARMONIC_MEAN_LOSS": 97.83882352941175,
+            "AVERAGE QUEUE LENGTH": 55.442,
+            "AVERAGE WAITING TIME": 415.815
+        }
+    },
+    "70": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1087.684395861226,
+            "HARMONIC_MEAN_LOSS": 168.97176470588232,
+            "AVERAGE QUEUE LENGTH": 95.75066666666666,
+            "AVERAGE WAITING TIME": 718.13
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 1095.2513604191506,
+            "HARMONIC_MEAN_LOSS": 194.47941176470587,
+            "AVERAGE QUEUE LENGTH": 110.205,
+            "AVERAGE WAITING TIME": 826.5375
+        }
+    },
+    "71": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 513.486053851514,
+            "HARMONIC_MEAN_LOSS": 89.86882352941178,
+            "AVERAGE QUEUE LENGTH": 50.92566666666667,
+            "AVERAGE WAITING TIME": 381.9425
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 582.7535392427917,
+            "HARMONIC_MEAN_LOSS": 97.61117647058825,
+            "AVERAGE QUEUE LENGTH": 55.313,
+            "AVERAGE WAITING TIME": 414.8475
+        }
+    },
+    "72": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 466.61024152926603,
+            "HARMONIC_MEAN_LOSS": 82.68294117647058,
+            "AVERAGE QUEUE LENGTH": 46.85366666666667,
+            "AVERAGE WAITING TIME": 351.4025
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 826.7566177539796,
+            "HARMONIC_MEAN_LOSS": 144.5729411764706,
+            "AVERAGE QUEUE LENGTH": 81.92466666666667,
+            "AVERAGE WAITING TIME": 614.435
+        }
+    },
+    "73": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1198.836285737131,
+            "HARMONIC_MEAN_LOSS": 199.0964705882353,
+            "AVERAGE QUEUE LENGTH": 112.82133333333334,
+            "AVERAGE WAITING TIME": 846.16
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 750.6490791308546,
+            "HARMONIC_MEAN_LOSS": 133.3270588235294,
+            "AVERAGE QUEUE LENGTH": 75.55199999999999,
+            "AVERAGE WAITING TIME": 566.64
+        }
+    },
+    "74": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 593.3818121580741,
+            "HARMONIC_MEAN_LOSS": 103.51058823529412,
+            "AVERAGE QUEUE LENGTH": 58.656,
+            "AVERAGE WAITING TIME": 439.92
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 567.0810634292068,
+            "HARMONIC_MEAN_LOSS": 99.11117647058823,
+            "AVERAGE QUEUE LENGTH": 56.163000000000004,
+            "AVERAGE WAITING TIME": 421.2225
+        }
+    },
+    "75": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1384.4890384181451,
+            "HARMONIC_MEAN_LOSS": 231.09470588235294,
+            "AVERAGE QUEUE LENGTH": 130.95366666666666,
+            "AVERAGE WAITING TIME": 982.1525
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 684.037720085669,
+            "HARMONIC_MEAN_LOSS": 116.15705882352943,
+            "AVERAGE QUEUE LENGTH": 65.82233333333333,
+            "AVERAGE WAITING TIME": 493.6675
+        }
+    },
+    "76": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1324.0799447163301,
+            "HARMONIC_MEAN_LOSS": 222.55176470588236,
+            "AVERAGE QUEUE LENGTH": 126.11266666666667,
+            "AVERAGE WAITING TIME": 945.845
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 689.1744300247942,
+            "HARMONIC_MEAN_LOSS": 119.02941176470588,
+            "AVERAGE QUEUE LENGTH": 67.45,
+            "AVERAGE WAITING TIME": 505.875
+        }
+    },
+    "77": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 753.8127867713574,
+            "HARMONIC_MEAN_LOSS": 124.92882352941179,
+            "AVERAGE QUEUE LENGTH": 70.793,
+            "AVERAGE WAITING TIME": 530.9475
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 799.8766311125735,
+            "HARMONIC_MEAN_LOSS": 137.4964705882353,
+            "AVERAGE QUEUE LENGTH": 77.91466666666668,
+            "AVERAGE WAITING TIME": 584.36
+        }
+    },
+    "78": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1509.2275077005454,
+            "HARMONIC_MEAN_LOSS": 263.08404844277004,
+            "AVERAGE QUEUE LENGTH": 149.08100000000002,
+            "AVERAGE WAITING TIME": 1118.105
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 723.2081978932484,
+            "HARMONIC_MEAN_LOSS": 127.93705882352941,
+            "AVERAGE QUEUE LENGTH": 72.49766666666666,
+            "AVERAGE WAITING TIME": 543.7325
+        }
+    },
+    "79": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 491.13235486984564,
+            "HARMONIC_MEAN_LOSS": 87.15176470588234,
+            "AVERAGE QUEUE LENGTH": 49.385999999999996,
+            "AVERAGE WAITING TIME": 370.395
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 636.3438732320757,
+            "HARMONIC_MEAN_LOSS": 109.72235294117647,
+            "AVERAGE QUEUE LENGTH": 62.176,
+            "AVERAGE WAITING TIME": 466.32
+        }
+    },
+    "80": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 406.32595597623344,
+            "HARMONIC_MEAN_LOSS": 74.06294117647059,
+            "AVERAGE QUEUE LENGTH": 41.968999999999994,
+            "AVERAGE WAITING TIME": 314.7675
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 542.7621325221575,
+            "HARMONIC_MEAN_LOSS": 92.92294117647059,
+            "AVERAGE QUEUE LENGTH": 52.656333333333336,
+            "AVERAGE WAITING TIME": 394.9225
+        }
+    },
+    "81": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1158.1287676679135,
+            "HARMONIC_MEAN_LOSS": 193.16816608977945,
+            "AVERAGE QUEUE LENGTH": 109.462,
+            "AVERAGE WAITING TIME": 820.9625
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 709.1174356197992,
+            "HARMONIC_MEAN_LOSS": 123.08294117647058,
+            "AVERAGE QUEUE LENGTH": 69.74699999999999,
+            "AVERAGE WAITING TIME": 523.1025
+        }
+    },
+    "82": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1417.9565164348305,
+            "HARMONIC_MEAN_LOSS": 245.66228373687798,
+            "AVERAGE QUEUE LENGTH": 139.20866666666666,
+            "AVERAGE WAITING TIME": 1044.0625
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 819.6096997961896,
+            "HARMONIC_MEAN_LOSS": 142.39294117647057,
+            "AVERAGE QUEUE LENGTH": 80.68933333333334,
+            "AVERAGE WAITING TIME": 605.17
+        }
+    },
+    "83": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 606.0031311800294,
+            "HARMONIC_MEAN_LOSS": 106.56941176470589,
+            "AVERAGE QUEUE LENGTH": 60.38933333333334,
+            "AVERAGE WAITING TIME": 452.92
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 744.8872649602757,
+            "HARMONIC_MEAN_LOSS": 126.75823529411767,
+            "AVERAGE QUEUE LENGTH": 71.82966666666667,
+            "AVERAGE WAITING TIME": 538.7225
+        }
+    },
+    "84": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1416.377335846631,
+            "HARMONIC_MEAN_LOSS": 244.46176470588233,
+            "AVERAGE QUEUE LENGTH": 138.5283333333333,
+            "AVERAGE WAITING TIME": 1038.9625
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 763.01260802165,
+            "HARMONIC_MEAN_LOSS": 134.57764705882352,
+            "AVERAGE QUEUE LENGTH": 76.26066666666667,
+            "AVERAGE WAITING TIME": 571.955
+        }
+    },
+    "85": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1475.4324281375953,
+            "HARMONIC_MEAN_LOSS": 254.1435294117647,
+            "AVERAGE QUEUE LENGTH": 144.01466666666667,
+            "AVERAGE WAITING TIME": 1080.11
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 856.6237359541235,
+            "HARMONIC_MEAN_LOSS": 147.23176470588237,
+            "AVERAGE QUEUE LENGTH": 83.43133333333334,
+            "AVERAGE WAITING TIME": 625.735
+        }
+    },
+    "86": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 475.5375510934967,
+            "HARMONIC_MEAN_LOSS": 85.71117647058823,
+            "AVERAGE QUEUE LENGTH": 48.56966666666666,
+            "AVERAGE WAITING TIME": 364.2725
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 674.4028154597221,
+            "HARMONIC_MEAN_LOSS": 117.50764705882351,
+            "AVERAGE QUEUE LENGTH": 66.58766666666666,
+            "AVERAGE WAITING TIME": 499.4075
+        }
+    },
+    "87": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 675.9842416802333,
+            "HARMONIC_MEAN_LOSS": 117.56287197201279,
+            "AVERAGE QUEUE LENGTH": 66.619,
+            "AVERAGE WAITING TIME": 499.64
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 679.5033517209463,
+            "HARMONIC_MEAN_LOSS": 114.99294117647061,
+            "AVERAGE QUEUE LENGTH": 65.16266666666667,
+            "AVERAGE WAITING TIME": 488.72
+        }
+    },
+    "88": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1264.237340256963,
+            "HARMONIC_MEAN_LOSS": 207.49,
+            "AVERAGE QUEUE LENGTH": 117.57766666666667,
+            "AVERAGE WAITING TIME": 881.8325
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 777.6673598010913,
+            "HARMONIC_MEAN_LOSS": 136.24176470588236,
+            "AVERAGE QUEUE LENGTH": 77.20366666666666,
+            "AVERAGE WAITING TIME": 579.0275
+        }
+    },
+    "89": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 546.518311678575,
+            "HARMONIC_MEAN_LOSS": 95.68235294117646,
+            "AVERAGE QUEUE LENGTH": 54.22,
+            "AVERAGE WAITING TIME": 406.65
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 598.5397689377039,
+            "HARMONIC_MEAN_LOSS": 100.42,
+            "AVERAGE QUEUE LENGTH": 56.90466666666667,
+            "AVERAGE WAITING TIME": 426.785
+        }
+    },
+    "90": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 715.9922503072223,
+            "HARMONIC_MEAN_LOSS": 122.98647058823528,
+            "AVERAGE QUEUE LENGTH": 69.69233333333332,
+            "AVERAGE WAITING TIME": 522.6925
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 696.712935863832,
+            "HARMONIC_MEAN_LOSS": 117.97411764705883,
+            "AVERAGE QUEUE LENGTH": 66.852,
+            "AVERAGE WAITING TIME": 501.39
+        }
+    },
+    "91": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1504.9568266232754,
+            "HARMONIC_MEAN_LOSS": 262.73764705882354,
+            "AVERAGE QUEUE LENGTH": 148.88466666666667,
+            "AVERAGE WAITING TIME": 1116.635
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 916.3895459901319,
+            "HARMONIC_MEAN_LOSS": 161.8164705882353,
+            "AVERAGE QUEUE LENGTH": 91.696,
+            "AVERAGE WAITING TIME": 687.72
+        }
+    },
+    "92": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 398.66927082482795,
+            "HARMONIC_MEAN_LOSS": 70.88868511908046,
+            "AVERAGE QUEUE LENGTH": 40.17033333333333,
+            "AVERAGE WAITING TIME": 301.2725
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 555.5823183831537,
+            "HARMONIC_MEAN_LOSS": 93.67941176470589,
+            "AVERAGE QUEUE LENGTH": 53.085,
+            "AVERAGE WAITING TIME": 398.1375
+        }
+    },
+    "93": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 546.3538985858892,
+            "HARMONIC_MEAN_LOSS": 93.47640138369879,
+            "AVERAGE QUEUE LENGTH": 52.97,
+            "AVERAGE WAITING TIME": 397.2725
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 673.2965468499003,
+            "HARMONIC_MEAN_LOSS": 117.07058823529414,
+            "AVERAGE QUEUE LENGTH": 66.34,
+            "AVERAGE WAITING TIME": 497.55
+        }
+    },
+    "94": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1362.5808168692233,
+            "HARMONIC_MEAN_LOSS": 229.73117647058822,
+            "AVERAGE QUEUE LENGTH": 130.18099999999998,
+            "AVERAGE WAITING TIME": 976.3575
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 808.7517712499924,
+            "HARMONIC_MEAN_LOSS": 143.6264705882353,
+            "AVERAGE QUEUE LENGTH": 81.38833333333334,
+            "AVERAGE WAITING TIME": 610.4125
+        }
+    },
+    "95": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1196.6547747784236,
+            "HARMONIC_MEAN_LOSS": 194.33764705882353,
+            "AVERAGE QUEUE LENGTH": 110.12466666666668,
+            "AVERAGE WAITING TIME": 825.935
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 749.0108644071861,
+            "HARMONIC_MEAN_LOSS": 130.25294117647059,
+            "AVERAGE QUEUE LENGTH": 73.81,
+            "AVERAGE WAITING TIME": 553.575
+        }
+    },
+    "96": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 557.0213236492837,
+            "HARMONIC_MEAN_LOSS": 99.09999999999998,
+            "AVERAGE QUEUE LENGTH": 56.156666666666666,
+            "AVERAGE WAITING TIME": 421.175
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 594.8809523761876,
+            "HARMONIC_MEAN_LOSS": 108.17235294117647,
+            "AVERAGE QUEUE LENGTH": 61.297666666666665,
+            "AVERAGE WAITING TIME": 459.7325
+        }
+    },
+    "97": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 489.03444152738365,
+            "HARMONIC_MEAN_LOSS": 84.64117647058823,
+            "AVERAGE QUEUE LENGTH": 47.96333333333333,
+            "AVERAGE WAITING TIME": 359.725
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 542.9501151118766,
+            "HARMONIC_MEAN_LOSS": 97.41941176470588,
+            "AVERAGE QUEUE LENGTH": 55.20433333333334,
+            "AVERAGE WAITING TIME": 414.0325
+        }
+    },
+    "98": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1410.1393450648768,
+            "HARMONIC_MEAN_LOSS": 237.18647058823532,
+            "AVERAGE QUEUE LENGTH": 134.40566666666666,
+            "AVERAGE WAITING TIME": 1008.0425
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 755.2404583971916,
+            "HARMONIC_MEAN_LOSS": 128.215294117647,
+            "AVERAGE QUEUE LENGTH": 72.65533333333332,
+            "AVERAGE WAITING TIME": 544.915
+        }
+    },
+    "99": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 1644.2901447129093,
+            "HARMONIC_MEAN_LOSS": 289.175294117647,
+            "AVERAGE QUEUE LENGTH": 163.86599999999999,
+            "AVERAGE WAITING TIME": 1228.995
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 795.7202476373213,
+            "HARMONIC_MEAN_LOSS": 139.9841176470588,
+            "AVERAGE QUEUE LENGTH": 79.32433333333333,
+            "AVERAGE WAITING TIME": 594.9325
+        }
+    },
+    "100": {
+        "net": {
+            "RMS_WAITING_TIME_LOSS": 611.5284069444363,
+            "HARMONIC_MEAN_LOSS": 105.24294117647058,
+            "AVERAGE QUEUE LENGTH": 59.63766666666667,
+            "AVERAGE WAITING TIME": 447.2825
+        },
+        "ttl": {
+            "RMS_WAITING_TIME_LOSS": 658.2945237505778,
+            "HARMONIC_MEAN_LOSS": 115.2270588235294,
+            "AVERAGE QUEUE LENGTH": 65.29533333333333,
+            "AVERAGE WAITING TIME": 489.715
+        }
+    }
+}
