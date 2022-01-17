@@ -54,7 +54,7 @@ if __name__ == "__main__":
         result = run_test(simulator,net)
         results[i+1] = result
 
-    new_dir_path = allocate_new_dir('car_200_ttl_120')
+    new_dir_path = allocate_new_dir('car_200_ttl_15')
 
     with open(new_dir_path + "/test_results.json","w") as test:
         json.dump(results,test,indent=4)
