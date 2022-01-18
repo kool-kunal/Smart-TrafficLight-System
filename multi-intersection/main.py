@@ -7,15 +7,15 @@ import os
 from visualise import generate_test_plots
 
 MAX_STEPS = 3000
-N_CARS = 400
+N_CARS = 500
 NUM_STATES = 40
 SUMO_CONFIG_FILE_NAME = 'sumo_config.sumocfg'
 NEAT_CONFIG_FILE_PATH = 'config/config-feedforward.txt'
 TEST_MODEL_PATH = 'C:/Users/karti/Desktop/New_Training/Smart-TrafficLight-System/checkpoints/training_with_avg_waiting_time_only/winner_1110.p'
 GREEN_DURATION = 15
 YELLOW_DURATION = 3
-TEST_RUNS = 100
-GUI = False
+TEST_RUNS = 1
+GUI = True
 
 
 def run_test(net):
@@ -62,7 +62,7 @@ if __name__ == "__main__":
         result = run_test(net)
         results[i+1] = result
 
-    new_dir_path = allocate_new_dir('car_400_ttl_60')
+    new_dir_path = allocate_new_dir('car_100_ttl_15_gui')
 
     with open(new_dir_path + "/test_results.json", "w") as test:
         json.dump(results, test, indent=4)
