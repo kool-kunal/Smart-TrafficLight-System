@@ -7,7 +7,7 @@ import os
 from visualise import generate_test_plots
 
 MAX_STEPS = 3000
-N_CARS = 400
+N_CARS = 500
 NUM_STATES = 40
 SUMO_CONFIG_FILE_NAME = 'sumo_config.sumocfg'
 NEAT_CONFIG_FILE_PATH = 'config/config-feedforward.txt'
