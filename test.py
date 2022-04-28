@@ -6,7 +6,7 @@ import json
 import os
 from visualize import generate_test_plots
 
-MAX_STEPS = 1000
+MAX_STEPS = 600
 N_CARS = 50
 NUM_STATES = 40
 SUMO_CONFIG_FILE_NAME = 'sumo_config.sumocfg'
@@ -14,8 +14,8 @@ NEAT_CONFIG_FILE_PATH = 'config/config-feedforward_1.txt'
 TEST_MODEL_PATH = 'winner_1110.p'
 GREEN_DURATION = 15
 YELLOW_DURATION = 3
-TEST_RUNS = 100
-GUI = False
+TEST_RUNS = 1
+GUI = True
 
 
 def run_test(net):
@@ -30,6 +30,15 @@ def run_test(net):
     results['ttl'] = ttl_simulator.run_test()
 
     return results
+
+
+def print_result(results):
+    print("{:<15} {:<8} {:<10} {:<10} {:<8} {:<8}".format(
+        'Test run', 'Model', 'RMS_LOSS', 'HM_LOSS', 'AQL', 'AWT'))
+    print("------------------------------------------------------------")
+    for i in range(len(results)):
+        print(f"{i+1:<15} {'net':<8} {results[i+1]['net']['RMS_WAITING_TIME_LOSS']:<10.3f} {results[i+1]['net']['HARMONIC_MEAN_LOSS']:<10.3f} {results[i+1]['net']['AVERAGE QUEUE LENGTH']:<8.3f} {results[i+1]['net']['AVERAGE WAITING TIME']:<8.3f}")
+        print(f"{i+1:<15} {'ttl':<8} {results[i+1]['ttl']['RMS_WAITING_TIME_LOSS']:<10.3f} {results[i+1]['ttl']['HARMONIC_MEAN_LOSS']:<10.3f} {results[i+1]['ttl']['AVERAGE QUEUE LENGTH']:<8.3f} {results[i+1]['ttl']['AVERAGE WAITING TIME']:<8.3f}")
 
 
 def allocate_new_dir(folder_name):
@@ -52,7 +61,7 @@ if __name__ == "__main__":
     net = neat.nn.FeedForwardNetworknet = neat.nn.feed_forward.FeedForwardNetwork.create(
         genome, config)
 
-    generator = TrafficGenerator(MAX_STEPS, N_CARS)
+    #generator = TrafficGenerator(MAX_STEPS, N_CARS)
 
     results = {}
 
@@ -60,13 +69,16 @@ if __name__ == "__main__":
                   'AVERAGE_QUEUE_LENGTH', 'AVERAGE_WAITING_TIME']
 
     for i in range(TEST_RUNS):
-        generator.generate_routefile(i)
+        # generator.generate_routefile(i)
         result = run_test(net)
         results[i+1] = result
 
-    new_dir_path = allocate_new_dir('car_50_ttl_120')
+    print('\n\n')
+    print_result(results)
 
-    with open(new_dir_path + "/test_results.json", "w") as test:
-        json.dump(results, test, indent=4)
+    # new_dir_path = allocate_new_dir('car_50_ttl_120')
 
-    generate_test_plots(new_dir_path)
+    # with open(new_dir_path + "/test_results.json", "w") as test:
+    #     json.dump(results, test, indent=4)
+
+    # generate_test_plots(new_dir_path)
